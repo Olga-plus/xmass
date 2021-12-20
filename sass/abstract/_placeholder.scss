@@ -1,0 +1,14 @@
+%transition {
+    transition: all .5s ease-out;
+}
+
+%border {
+    border-radius: 20px;
+    border: 1px solid $color-primary;
+    color: $color-light;
+}
+
+%background {
+    backdrop-filter: blur(6px);
+    background-color: $color-input-backg;
+}

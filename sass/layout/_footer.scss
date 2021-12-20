@@ -1,0 +1,14 @@
+.footer{
+    background-color: $color-background;
+    &_data {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: white;
+
+    }
+} 
+
+.year {
+    margin: 0 5px;
+}

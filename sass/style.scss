@@ -1,0 +1,24 @@
+@import "../node_modules/normalize-scss/sass/_normalize";
+@include normalize();
+
+@import "abstract/_constants";
+@import "abstract/placeholder";
+@import "abstract/mixins";
+
+@import "./base/_base";
+@import "./base/_buttons.scss";
+@import "./base/logo";
+@import "./base/_input.scss";
+@import "./base/_wrapper.scss";
+@import "./base/balls";
+@import "./base/blur";
+@import "./base/controls";
+@import "./base/sliders";
+@import "./base/_card.scss";
+
+@import "./layout/header";
+@import "./layout/footer";
+
+@import "./pages/_page";
+@import "./pages/_start-page.scss";
+@import "./pages/main-page";

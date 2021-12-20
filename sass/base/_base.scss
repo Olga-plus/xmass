@@ -1,0 +1,19 @@
+// * {
+//   box-sizing: border-box;
+// }
+
+html{
+  font-size: 10px;
+
+}
+
+body{
+  font-size: 1.6rem;
+  font-family: 'Open Sans', Verdana, Geneva, Tahoma, sans-serif;
+  color: $color-light;
+}
+
+h1{
+  @include font (2.4rem);
+  font-family: 'Popins', Verdana, sans-serif;
+}

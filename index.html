@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+    <title>X-MASS-APP</title>
+</head>
+<body>
+    <header class="header">
+        <div class="wrapper header__wrapper">
+            <nav class="navigation">
+                <a href="#" class="logo-app">
+                    <object  type="image/svg+xml" data="./assets/Xtree-logo.svg" class="logo-object"> </object>
+                </a>
+                <!-- <a href="#/" onclick="locationResolver('/')" class="logo-app link">Home</a>
+                <a href="#/tous" onclick="locationResolver('/tous/')" class="switch-settings-page link">Игрушки</a>
+                <a href="#/x-mass-tree" onclick="locationResolver('/x-mass-tree/')" class="switch-play-page link">Ёлка</a> -->
+
+                <!-- <a href="#/" onclick="locationResolver('/')" class="logo-app link">Home</a> -->
+                <a href="#" onclick="locationResolver('/tous/')" class="switch-settings-page link">Игрушки</a>
+                <a href="#" onclick="locationResolver('/x-mass-tree/')" class="switch-play-page link">Ёлка</a>
+            </nav>
+            <div class="header__controls">
+                <input type="search" class="search input-search" autocomplete="off" />
+                <div class="select"><span>0</span></div>
+            </div>
+        </div>
+    </header>
+    <section class="page main-page">
+        <div class="blur">
+            <div class="wrapper wrapper-controls">
+                <div class="controls">
+                    <div class="filters-value">
+                        <div class="title-controls">
+                            Фильтры по значению
+                        </div>
+                        <div class="shape">
+                            Форма:
+                            <button class="data-ball"></button>
+                            <button class="data-bell"></button>
+                            <button class="data-cone"></button>
+                            <button class="data-snowflake"></button>
+                            <button class="data-toy"></button>
+                        </div>
+
+                        <div class="color">
+                            Цвет:
+                            <button class="data-white"></button>
+                            <button class="data-yellow"></button>
+                            <button class="data-red"></button>
+                            <button class="data-blue"></button>
+                            <button class="data-green"></button>
+                        </div>
+
+                        <div class="size">
+                            Размер:
+                            <button class="data-big"></button>
+                            <button class="data-middle"></button>
+                            <button class="data-small"></button>
+                        </div>
+
+                        <div class="favorite-container">
+                            Только любимые:
+                            <div class="form-group">
+                                <input type="checkbox" class="favorite-input" id="checkbox">
+                                <label for="checkbox" class="favorite-input-label"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filters-range">
+                        <div class="title-controls">
+                            Фильтры по диапазону
+                        </div>
+                        <div class="count">
+                            <span class="control-span">Колличество экземпляров</span>
+                            <div class="count-slider-container">
+                                <output class="slider-output">1</output>
+                                <div class="count-slider"></div>
+                                <output class="slider-output">12</output>
+                            </div>          
+                        </div>
+                        <div class="year">
+                            <span class="control-span">Год приобретения:</span> 
+                            <div class="year-slider-container">
+                                <output class="slider-output">1940</output>
+                                <div class="year-slider"></div>
+                                <output class="slider-output">2020</output>
+                            </div>          
+                        </div>
+                    </div>
+
+                    <div class="filters-sort">
+                        <div class="title-controls">
+                            Cортировка
+                        </div>
+                        <select class="sort-select">
+                            <option selected value="sort-name-max">По названию от «А» до «Я»</option>
+                            <option value="sort-name-min">По названию от «Я» до «А»</option>
+                            <option value="sort-count-max">По количеству по возрастанию</option>
+                            <option value="sort-count-min">По количеству по убыванию</option>
+                        </select>
+                        <button class="reset">Сброс фильтров</button>
+                    </div>
+                </div>
+                <div class="card-container"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="wrapper">
+            <!-- <a class="rss-logo" href="https://rs.school/images/rs_school_js.svg" target="_blank"></a> -->
+            <div class="footer_data">
+                <p class="copyright">©</p>
+                <p class="year">2021</p>
+                <a class="github-username link" href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>  
+            </div>
+ 
+                <a href="#" class="logo-app">
+                    <object type="image/svg+xml" data="./assets/rs_school_js-logo.svg" class="logo-object rs"> </object>
+                </a>
+
+
+        </div>
+    </footer>
+    <!-- <script src="./js/app.js"></script> -->
+</body>
+</html>

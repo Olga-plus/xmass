@@ -1,0 +1,8 @@
+.page{
+  display: flex;
+  align-items: center;
+  background-image: $img-background;
+  background-size: cover;
+  min-height: calc(100vh - 109px);
+  background-attachment: fixed;
+}
