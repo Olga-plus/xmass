@@ -11,16 +11,16 @@
     <header class="header">
         <div class="wrapper header__wrapper">
             <nav class="navigation">
-                <a href="#" class="logo-app">
-                    <object  type="image/svg+xml" data="./assets/Xtree-logo.svg" class="logo-object"> </object>
+                <a href="#/" id="home" class="logo-app">
+                    <object  type="image/svg+xml" data="./assets/svg/tree.svg" class="logo-app"> </object>
                 </a>
                 <!-- <a href="#/" onclick="locationResolver('/')" class="logo-app link">Home</a>
                 <a href="#/tous" onclick="locationResolver('/tous/')" class="switch-settings-page link">Игрушки</a>
                 <a href="#/x-mass-tree" onclick="locationResolver('/x-mass-tree/')" class="switch-play-page link">Ёлка</a> -->
 
                 <!-- <a href="#/" onclick="locationResolver('/')" class="logo-app link">Home</a> -->
-                <a href="#" onclick="locationResolver('/tous/')" class="switch-settings-page link">Игрушки</a>
-                <a href="#" onclick="locationResolver('/x-mass-tree/')" class="switch-play-page link">Ёлка</a>
+                <a href="#" id="tous" class="switch-settings-page link">Игрушки</a>
+                <a href="#" id="tree" class="switch-play-page link">Ёлка</a>
             </nav>
             <div class="header__controls">
                 <input type="search" class="search input-search" autocomplete="off" />
@@ -28,7 +28,20 @@
             </div>
         </div>
     </header>
-    <section class="page main-page">
+    <section id="start-page" class="page start-page">
+        <div class="wrapper wrapper_start-page">
+            <div class="ball ball-one"></div>
+            <div class="ball ball-two"></div>
+            <div class="title title-text">
+                <h1 class="start-page-title">Новогодняя игра
+                    <span>"наряди ёлку"</span>
+                </h1>
+               
+            </div>
+             <button id="title-btn" class="title title-btn" >start</button>
+        </div>
+    </section>
+    <section id="main-page" class="none">
         <div class="blur">
             <div class="wrapper wrapper-controls">
                 <div class="controls">
