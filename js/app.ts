@@ -13,14 +13,15 @@ const tree = document.querySelector('#tree');
 const mainePage = document.querySelector('#main-page');
 const homePage = document.querySelector('#start-page');
 home.addEventListener('click', () => { startPage()});
-titleBtn.addEventListener('click', () => {  tousPage()});
+titleBtn.addEventListener('click', () => { tousPage()});
 tous.addEventListener('click', () => { tousPage()});
 
 
-let cardX =  data.forEach(item => {
+let cardXs =  data.forEach(item => {
     let cardX = new Card (item);
     cardX.render();
 });
+
 
 function startPage(): void {
     mainePage.className = 'none';
@@ -30,4 +31,27 @@ function startPage(): void {
 function tousPage(): void {
     homePage.className = 'none';
     mainePage.className = 'page main-page';
+}
+
+const checkFavorite = document.querySelector('input[id="checkbox"]');
+checkFavorite.addEventListener('click', () => {ChangCard()});
+let favoriteValue = false;
+
+function ChangCard() {
+    console.log(!favoriteValue)
+    if(!favoriteValue){
+        favoriteValue = !favoriteValue;
+        cardContauner.innerHTML = '';
+        let favorCard = data.filter(elem => elem.favorite === true).forEach(item => {
+        let cardX = new Card (item);
+        cardX.render();
+    })}
+    else if(favoriteValue){
+        favoriteValue = !favoriteValue;
+        cardContauner.innerHTML = '';
+        let cardXs =  data.forEach(item => {
+            let cardX = new Card (item);
+            cardX.render();
+        });
+    }
 }
