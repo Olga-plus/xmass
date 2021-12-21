@@ -1,17 +1,33 @@
-.logo-app {
+// .logo-app {
   // background-image: url(../assets/Xtree-logo.svg);
   // width: 40px;
   // height: 60px;
   // background-repeat: no-repeat; 
-  margin-right: 30px;
-  cursor: pointer;
-  }
+  // margin-right: 30px;
+  // cursor: pointer;
+  // }
   
 .rs {
   margin-top: 7px;
 }
-.logo-app:hover {
+// .logo-app:hover {
  
+// }
+
+// .logo-svg:hover {
+//   .logo-path {
+//     fill: $color-primary;
+//     @extend %transition;
+//   }    
+  
+// }
+.logo-object{
+  cursor: pointer;
+}
+
+.logo-app {
+  margin-right: 30px;
+  cursor: pointer;
 }
 
 .logo-svg:hover {
@@ -19,5 +35,5 @@
     fill: $color-primary;
     @extend %transition;
   }    
-  
+  cursor: pointer;
 }
