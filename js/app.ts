@@ -45,6 +45,9 @@ let filterShapeConst = {
     colorRed: false,
     colorBlue: false,
     colorGreen: false,
+    sizeBig: false,
+    sizeMiddle: false,
+    sizeSmall: false,
 }
 
 let filterShape = [
@@ -90,6 +93,11 @@ function ChangCard(): void {
         this.btn = document.querySelector(this.selector);
         this.btn.onclick = this.filterColor.bind(this);
      }
+
+     createElSize () {
+        this.btn = document.querySelector(this.selector);
+        this.btn.onclick = this.filterSize.bind(this);
+     }
      
      filterShape(){
         if (!this.shapeConst){
@@ -114,6 +122,25 @@ function ChangCard(): void {
             this.shapeConst = !this.shapeConst;
             cardContauner.innerText = '';
             data.filter(elem => elem.color === this.forma).forEach(item => {
+            let cardX = new Card(item);
+            cardX.render();
+            this.btn.classList.add('active');   
+            
+        })  
+        } else
+        if (this.shapeConst) {
+            this.shapeConst = !this.shapeConst;
+            cardContauner.innerText = '';
+            cardXs();
+            this.btn.classList.remove('active'); 
+        } 
+     }
+
+     filterSize(){
+        if (!this.shapeConst){
+            this.shapeConst = !this.shapeConst;
+            cardContauner.innerText = '';
+            data.filter(elem => elem.size === this.forma).forEach(item => {
             let cardX = new Card(item);
             cardX.render();
             this.btn.classList.add('active');   
@@ -153,3 +180,12 @@ function ChangCard(): void {
  
  let green = new Filter (filterShape[9], filterShapeConst.colorGreen, '.data-green' );
  green.createElColor();
+
+ let big = new Filter (filterShape[10], filterShapeConst.sizeBig, '.data-big' );
+ big.createElSize();
+
+ let middle = new Filter (filterShape[11], filterShapeConst.sizeMiddle, '.data-middle' );
+ middle.createElSize();
+
+ let small = new Filter (filterShape[12], filterShapeConst.sizeSmall, '.data-small' );
+ small.createElSize();
