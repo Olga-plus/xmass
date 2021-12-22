@@ -125,7 +125,15 @@ export class Card {
     }
 }
 
-export default Card;
+
+export function cardXs(): void{
+    data.forEach(item => {
+    let cardX = new Card (item);
+    cardX.render();
+});
+} 
+
+export default {Card, cardXs};
 
 // let cardX =  data.forEach(item => {
 //     let cardX = new Card (item);
