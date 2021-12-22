@@ -87,6 +87,28 @@
     margin-left: 20px;
 }
 
+.color button.active:nth-child(1)::after {
+    border-color: #666;
+}
+
+.color button.active:nth-child(2)::after {
+    border-color: #666;
+}
+
+.color button.active::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 5px;
+    left: 9px;
+    width: 6px;
+    height: 10px;
+    border: solid #fff;
+    border-width: 0 4px 4px 0;
+    transform: rotate(
+45deg);
+}
+
 .color button:nth-child(2) {
     background-color: #ecf008;
     margin-left: 20px;

@@ -40,9 +40,18 @@ let filterShapeConst = {
     shapeCone: false,
     shapeSnowFlake: false,
     shapeToy: false,
+    colorWhite: false,
+    colorYellow: false,
+    colorRed: false,
+    colorBlue: false,
+    colorGreen: false,
 }
 
-let filterShape = ["шар", "колокольчик", "шишка", "снежинка", "фигурка"]
+let filterShape = [
+    "шар", "колокольчик", "шишка", "снежинка", "фигурка", 
+    "белый", "желтый", "красный", "синий", "зелёный",
+    "большой", "средний", "малый"
+]
 
 function ChangCard(): void {
     console.log(!favoriteValue)
@@ -72,9 +81,14 @@ function ChangCard(): void {
       this.selector = selector
      }
 
-     createEl () {
+     createElShape () {
         this.btn = document.querySelector(this.selector);
         this.btn.onclick = this.filterShape.bind(this);
+     }
+
+     createElColor () {
+        this.btn = document.querySelector(this.selector);
+        this.btn.onclick = this.filterColor.bind(this);
      }
      
      filterShape(){
@@ -82,8 +96,27 @@ function ChangCard(): void {
             this.shapeConst = !this.shapeConst;
             cardContauner.innerText = '';
             data.filter(elem => elem.shape === this.forma).forEach(item => {
-            let cardX = new Card (item);
+            let cardX = new Card(item);
+            cardX.render(); 
+            this.btn.classList.add('active');  
+        })  
+        } else
+        if (this.shapeConst) {
+            this.shapeConst = !this.shapeConst;
+            cardContauner.innerText = '';
+            cardXs();
+            this.btn.classList.remove('active');  
+        } 
+     }
+
+     filterColor(){
+        if (!this.shapeConst){
+            this.shapeConst = !this.shapeConst;
+            cardContauner.innerText = '';
+            data.filter(elem => elem.color === this.forma).forEach(item => {
+            let cardX = new Card(item);
             cardX.render();
+            this.btn.classList.add('active');   
             
         })  
         } else
@@ -91,16 +124,32 @@ function ChangCard(): void {
             this.shapeConst = !this.shapeConst;
             cardContauner.innerText = '';
             cardXs();
+            this.btn.classList.remove('active'); 
         } 
      }
  }
  let ball = new Filter (filterShape[0], filterShapeConst.shapeBall, '.data-ball');
- ball.createEl();
+ ball.createElShape();
  let bell = new Filter (filterShape[1], filterShapeConst.shapeBell, '.data-bell');
- bell.createEl();
+ bell.createElShape();
  let cone = new Filter (filterShape[2], filterShapeConst.shapeCone, '.data-cone');
- cone.createEl();
+ cone.createElShape();
  let snowflake = new Filter (filterShape[3], filterShapeConst.shapeSnowFlake, '.data-snowflake' );
- snowflake.createEl();
+ snowflake.createElShape();
  let toy = new Filter (filterShape[4], filterShapeConst.shapeToy, '.data-toy' );
- toy.createEl();
+ toy.createElShape();
+
+ let white = new Filter (filterShape[5], filterShapeConst.colorWhite, '.data-white' );
+ white.createElColor();
+
+ let yellow = new Filter (filterShape[6], filterShapeConst.colorYellow, '.data-yellow' );
+ yellow.createElColor();
+
+ let red = new Filter (filterShape[7], filterShapeConst.colorRed, '.data-red' );
+ red.createElColor();
+
+ let blue = new Filter (filterShape[8], filterShapeConst.colorBlue, '.data-blue' );
+ blue.createElColor();
+ 
+ let green = new Filter (filterShape[9], filterShapeConst.colorGreen, '.data-green' );
+ green.createElColor();

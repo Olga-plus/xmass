@@ -134,8 +134,3 @@ export function cardXs(): void{
 } 
 
 export default {Card, cardXs};
-
-// let cardX =  data.forEach(item => {
-//     let cardX = new Card (item);
-//     cardX.render();
-// });
