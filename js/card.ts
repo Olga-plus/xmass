@@ -1,9 +1,5 @@
 import "../sass/style.scss";
 import data from '../assets/data.js';
-
-const page = document.querySelector(".page");
-const cardContauner: HTMLElement = document.querySelector(".card-container") as HTMLElement;
-
 export class Card {
     num: string;
     name: string;
@@ -16,7 +12,7 @@ export class Card {
 
     private cardFavor: HTMLParagraphElement;
     private cardRibbon: HTMLDivElement;
-    private card: HTMLDivElement;
+    card: HTMLDivElement;
 
     constructor({ num, name, count, year, shape, color, size, favorite }: { num: string; name: string; count: string; year: string; shape: string; color: string; size: string; favorite: boolean; }) {
         this.num = num;
@@ -29,17 +25,11 @@ export class Card {
         this.favorite = favorite;
     }
 
-    toggleFavorite() {
-        this.favorite = !this.favorite
-        return this.favorite;
-    }
-
     render(): void {
         // TODO add rendering
         this.card = document.createElement('div');
         this.card.className = 'card';
         this.card.setAttribute(`data-num`, `${this.num}`);
-        cardContauner.appendChild(this.card);
 
         let cardTitle = document.createElement('h2');
         cardTitle.className = 'card-title';
@@ -111,26 +101,23 @@ export class Card {
 
     clicked(): void {
         console.log(this.card);
-        if(this.favorite === false){
-            this.favorite = this.toggleFavorite();
+        this.favorite = !this.favorite
+        this.cardRibbon.classList.toggle("active");
+        this.card.classList.toggle("active");
+        if(this.favorite === true){
             this.cardFavor.innerText= 'Любимая: да';
-            this.cardRibbon.classList.add('active')
-            this.card.classList.add('active')
-        } else  if(this.favorite === true){
-            this.favorite = this.toggleFavorite();
+        } else  if(this.favorite === false){
             this.cardFavor.innerText= 'Любимая: нет';
-            this.cardRibbon.classList.remove('active');
-            this.card.classList.remove('active')
         } 
     }
 }
 
-
-export function cardXs(): void{
-    data.forEach(item => {
-    let cardX = new Card (item);
-    cardX.render();
-});
+export function cardXs(): Card[]{
+    return data.map(function (item) {
+            let cardX = new Card(item);
+            cardX.render();
+            return cardX;
+        });
 } 
 
 export default {Card, cardXs};
