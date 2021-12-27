@@ -28,12 +28,20 @@
 .logo-app {
   margin-right: 30px;
   cursor: pointer;
+  background-repeat: no-repeat;
+  background-image: url(/assets/Xtree-logo.svg);
+  width: 40px;
+  height: 60px;
 }
 
-.logo-svg:hover {
-  .logo-path {
-    fill: $color-primary;
-    @extend %transition;
-  }    
-  cursor: pointer;
-}
+// .logo-app:hover {
+//   background-image: url(/assets/Xtree-logo.svg);
+//   @extend %transition;
+// }
+// .logo-svg:hover {
+//   .logo-path, .fil0 {
+//     fill: $color-primary;
+//     @extend %transition;
+//   }    
+//   cursor: pointer;
+// }

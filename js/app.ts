@@ -7,13 +7,13 @@ import { filterShapes, ShapeFilter } from "./ShapeFilter";
 // const page = document.querySelector(".page");
 export const cardContauner: HTMLElement = document.querySelector(".card-container") as HTMLElement;
 
-const home = document.querySelector('#home');
-const tous = document.querySelector('#tous');
-const titleBtn = document.querySelector('#title-btn');
-const tree = document.querySelector('#tree');
-const mainePage = document.querySelector('#main-page');
-const homePage = document.querySelector('#start-page');
-
+const home: HTMLElement  = document.querySelector('#home');
+const tous : HTMLElement = document.querySelector('#tous');
+const titleBtn: HTMLElement  = document.querySelector('#title-btn');
+const tree: HTMLElement  = document.querySelector('#tree');
+const mainePage: HTMLElement  = document.querySelector('#main-page');
+const homePage: HTMLElement  = document.querySelector('#start-page');
+const favoritPage: HTMLElement  = document.querySelector('#favorie-page');
 export const cards = cardXs();
 console.log(cards);
 
@@ -22,15 +22,24 @@ cards.forEach(item => cardContauner.appendChild(item.card) );
 home.addEventListener('click', () => { startPage()});
 titleBtn.addEventListener('click', () => { tousPage()});
 tous.addEventListener('click', () => { tousPage()});
+tree.addEventListener('click', () => {teePage()});
 
 function startPage(): void {
     mainePage.className = 'none';
+    favoritPage.className = 'none';
     homePage.className = 'page start-page';
 }
 
 function tousPage(): void {
     homePage.className = 'none';
+    favoritPage.className = 'none';
     mainePage.className = 'page main-page';
+}
+
+function teePage(): void {
+    mainePage.className = 'none';
+    homePage.className = 'none';
+    favoritPage.className = 'page favorites-page';
 }
 
 const checkFavorite = document.querySelector('input[id="checkbox"]');
@@ -61,7 +70,6 @@ let filterShapeConst = {
 // ]
 
 function ChangCard(): void {
-    console.log(!favoriteValue)
     favoriteValue = !favoriteValue;
     cardContauner.innerHTML = '';
     if(favoriteValue){
@@ -83,14 +91,11 @@ function ChangCard(): void {
 // class ShapeFilter implements Render {
 export const shapeFormaa: HTMLDivElement = document.querySelector('.shape');
 
-export class Render {
-
-}
 //     filterShape (): void{
 //     cards.filter(elem => this.salectorShape.has(elem.shape)).forEach(item => cardContauner.appendChild(item.card))
 // }
 
-const shape= ["шар", "колокольчик", "шишка", "снежинка", "фигурка"];
+const shape = ["шар", "колокольчик", "шишка", "снежинка", "фигурка"];
 const shapeName = ['ball', 'bell', 'cone', 'snowFl', 'toy'];
 
 function filtersShape(): ShapeFilter[] {

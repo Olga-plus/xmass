@@ -1,0 +1,10 @@
+.audio-control {
+    width: 20px;
+    height: 20px;
+    margin-right: 40px;
+    background-image: url(/assets/svg/audio.svg);
+}
+
+.snow-control.active, .audio-control.active {
+    filter: saturate(1.5) brightness(.8);
+}

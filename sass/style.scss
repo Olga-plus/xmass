@@ -15,6 +15,9 @@
 @import "./base/_controls";
 @import "./base/_sliders";
 @import "./base/_card.scss";
+@import "./base/audio-control";
+@import "./base/_snow-control.scss";
+
 
 @import "./layout/header";
 @import "./layout/footer";
@@ -22,3 +25,4 @@
 @import "./pages/_page";
 @import "./pages/_start-page.scss";
 @import "./pages/main-page";
+@import "./pages/favorite-page";

@@ -1,5 +1,8 @@
-import { Render, shapeFormaa, cardContauner, cards } from "./app";
+import { shapeFormaa, cardContauner, cards } from "./app";
 
+export class Render {
+
+}
 export class ShapeFilter implements Render {
     selectorShape: Set<string>;
     nameAtribute: string;
@@ -28,16 +31,15 @@ export class ShapeFilter implements Render {
         this.button.onclick = this.getData.bind(this);
     }
 
-
     getData() {
         this.button.classList.toggle("active");
         console.log(this.selectorShape.size);
         if (this.selectorShape.size === 0) {
-            console.log(this.selectorShape.add(this.name), 'gg1');
+            console.log(this.selectorShape.add(this.name), 'add');
             return this.selectorShape.add(this.name);
         }
         if (this.selectorShape.size !== 0) {
-            console.log(this.selectorShape, '1');
+            console.log(this.selectorShape, 'delete');
             return this.selectorShape.delete(this.name);
 
         }
