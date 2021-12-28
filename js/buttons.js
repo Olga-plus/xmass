@@ -31,3 +31,7 @@
 
     // }
     
+            // this.controlsTitle = document.createElement('div');
+        // this.controlsTitle.className = 'controls-title';
+        // this.controlsTitle.innerText = 'Фильтры по значению';
+        // filtersValue.appendChild(this.controlsTitle);

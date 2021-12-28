@@ -1,8 +1,7 @@
 import "../sass/style.scss";
-import data from '../assets/data.js';
-import {Card, cardXs} from '../js/card'
-import { node, SourceMapDevToolPlugin } from "webpack";
-import { filterShapes, ShapeFilter } from "./ShapeFilter";
+import {cardXs} from '../js/card'
+import { ShapeFilter } from "./ShapeFilter";
+// import { filterShapes, filtersShape, ShapeFilter } from "./ShapeFilter";
 
 // const page = document.querySelector(".page");
 export const cardContauner: HTMLElement = document.querySelector(".card-container") as HTMLElement;
@@ -98,26 +97,22 @@ export const shapeFormaa: HTMLDivElement = document.querySelector('.shape');
 const shape = ["шар", "колокольчик", "шишка", "снежинка", "фигурка"];
 const shapeName = ['ball', 'bell', 'cone', 'snowFl', 'toy'];
 
-function filtersShape(): ShapeFilter[] {
-    return filtersNames.shape.map(function(item, i) {
-        const filters = new ShapeFilter(item, shapeName[i]);
-        filters.renderButtons();
-        return filters;
-    } )
-}
 
-let shapeFilters = filtersShape();
 
-shapeFilters.forEach(elem => console.log(elem))
-const ballshape = document.querySelector('#ball');
-const bellshape = document.querySelector('#bell');
-const coneshape = document.querySelector('#cone');
-const snowFlshape = document.querySelector('#snowFl');
-const toyshape = document.querySelector('#toy');
-ballshape.addEventListener('click', () => {filterShapes('шар')});
-bellshape.addEventListener('click', () => {filterShapes('колокольчик')});
-coneshape.addEventListener('click', () => {filterShapes('шишка')});
-snowFlshape.addEventListener('click', () => {filterShapes('снежинка')});
-toyshape.addEventListener('click', () => {filterShapes('фигурка')});
+// let shapeFilters = filtersShape();
 
-console.log(shapeFilters)
+// shapeFilters.forEach(elem => console.log(elem))
+// const ballshape = document.querySelector('#ball');
+// const bellshape = document.querySelector('#bell');
+// const coneshape = document.querySelector('#cone');
+// const snowFlshape = document.querySelector('#snowFl');
+// const toyshape = document.querySelector('#toy');
+// ballshape.addEventListener('click', () => {filterShapes('шар')});
+// bellshape.addEventListener('click', () => {filterShapes('колокольчик')});
+// coneshape.addEventListener('click', () => {filterShapes('шишка')});
+// snowFlshape.addEventListener('click', () => {filterShapes('снежинка')});
+// toyshape.addEventListener('click', () => {filterShapes('фигурка')});
+
+// console.log(shapeFilters)
+const filters = new ShapeFilter();
+filters.renderButtons();
