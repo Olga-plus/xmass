@@ -1,9 +1,12 @@
 import "../sass/style.scss";
-import {cardXs} from '../js/card'
+import card, {cardXs} from '../js/card'
 import { ShapeFilter } from "./ShapeFilter";
 import * as noUiSlider from 'nouislider';
-
-// import { filterShapes, filtersShape, ShapeFilter } from "./ShapeFilter";
+import { ColorFilter } from "./ColorFilter";
+import { Favorite } from "./favorite";
+import { FavoriteCard } from "./cardsFavorite";
+import { state } from "./state";
+import { SizeFilter } from "./SizeFilter";
 
 // const page = document.querySelector(".page");
 let slider = document.getElementById('slider');
@@ -66,44 +69,7 @@ function teePage(): void {
     favoritPage.className = 'page favorites-page';
 }
 
-const checkFavorite = document.querySelector('input[id="checkbox"]');
-checkFavorite.addEventListener('click', () => {ChangCard()});
 
-let favoriteValue: boolean = false;
-
-let filterShapeConst = {
-    shapeBall: false,
-    shapeBell: false,
-    shapeCone: false,
-    shapeSnowFlake: false,
-    shapeToy: false,
-    colorWhite: false,
-    colorYellow: false,
-    colorRed: false,
-    colorBlue: false,
-    colorGreen: false,
-    sizeBig: false,
-    sizeMiddle: false,
-    sizeSmall: false,
-}
-
-// let filterShape = [
-//     "шар", "колокольчик", "шишка", "снежинка", "фигурка", 
-//     "белый", "желтый", "красный", "синий", "зелёный",
-//     "большой", "средний", "малый"
-// ]
-
-function ChangCard(): void {
-    favoriteValue = !favoriteValue;
-    cardContauner.innerHTML = '';
-    if(favoriteValue){
-        cards.filter(elem => elem.favorite === true).forEach(item => cardContauner.appendChild(item.card) )
-    }
-    else if(!favoriteValue){
-        
-        cards.forEach(item => cardContauner.appendChild(item.card) )
-    }
-}
 
  export let filtersNames = {
     shape: ["шар", "колокольчик", "шишка", "снежинка", "фигурка"],
@@ -115,29 +81,31 @@ function ChangCard(): void {
 // class ShapeFilter implements Render {
 export const shapeFormaa: HTMLDivElement = document.querySelector('.shape');
 
-//     filterShape (): void{
-//     cards.filter(elem => this.salectorShape.has(elem.shape)).forEach(item => cardContauner.appendChild(item.card))
-// }
-
-const shape = ["шар", "колокольчик", "шишка", "снежинка", "фигурка"];
-const shapeName = ['ball', 'bell', 'cone', 'snowFl', 'toy'];
-
-
-
-// let shapeFilters = filtersShape();
-
-// shapeFilters.forEach(elem => console.log(elem))
-// const ballshape = document.querySelector('#ball');
-// const bellshape = document.querySelector('#bell');
-// const coneshape = document.querySelector('#cone');
-// const snowFlshape = document.querySelector('#snowFl');
-// const toyshape = document.querySelector('#toy');
-// ballshape.addEventListener('click', () => {filterShapes('шар')});
-// bellshape.addEventListener('click', () => {filterShapes('колокольчик')});
-// coneshape.addEventListener('click', () => {filterShapes('шишка')});
-// snowFlshape.addEventListener('click', () => {filterShapes('снежинка')});
-// toyshape.addEventListener('click', () => {filterShapes('фигурка')});
-
-// console.log(shapeFilters)
 const filters = new ShapeFilter();
 filters.renderButtons();
+
+const colorsFilters = new ColorFilter();
+colorsFilters.renderButtons();
+
+const sizeFilters = new SizeFilter();
+sizeFilters.renderButtons();
+
+const favoriteFilter = new Favorite();
+favoriteFilter.create();
+
+
+export function cardFs(): FavoriteCard[]{
+    return cards.map(function (item, index) {
+        console.log('tytytyt', item)
+        if (item.favorite === true){
+        let cardsFavorite = new FavoriteCard(item.count, item.num);
+        cardsFavorite.createFavoriteCard();
+            return cardsFavorite; 
+        }
+
+        });
+} 
+
+let fff = cardFs();
+// let cardsFavorite = new FavoriteCard('2', '1');
+// cardsFavorite.createFavoriteCard();
