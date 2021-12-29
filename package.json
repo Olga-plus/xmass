@@ -29,7 +29,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "normalize-scss": "^7.0.1"
+    "normalize-scss": "^7.0.1",
+    "nouislider": "^15.5.0"
   },
   "description": ""
 }

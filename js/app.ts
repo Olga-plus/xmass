@@ -1,9 +1,34 @@
 import "../sass/style.scss";
 import {cardXs} from '../js/card'
 import { ShapeFilter } from "./ShapeFilter";
+import * as noUiSlider from 'nouislider';
+
 // import { filterShapes, filtersShape, ShapeFilter } from "./ShapeFilter";
 
 // const page = document.querySelector(".page");
+let slider = document.getElementById('slider');
+noUiSlider.create(slider, {
+    start: [1, 12],
+    connect: true,
+    range: {
+        'min': 1,
+        'max': 12
+    }
+});
+
+const one = document.querySelector('.slider-output');
+one.innerHTML
+
+let sliderYear = document.getElementById('year-slider');
+console.log(sliderYear)
+noUiSlider.create(sliderYear, {
+    start: [1940, 2020],
+    connect: true,
+    range: {
+        'min': 1940,
+        'max': 2020
+    }
+});
 export const cardContauner: HTMLElement = document.querySelector(".card-container") as HTMLElement;
 
 const home: HTMLElement  = document.querySelector('#home');

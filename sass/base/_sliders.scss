@@ -14,18 +14,37 @@
     width: 270px;
 }
 
-.noUi-target {
-    background: #FAFAFA;
-    border-radius: 3px;
-    position: relative;
-}
-
-.noUi-horizontal {
-    height: 18px;
-}
-
 .year-slider-container, .count-slider-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+output {
+    margin: 1px 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 70px;
+    height: 40px;
+    backdrop-filter: blur(6px);
+    border-radius: 20px;
+    border: 1px solid #278D9F;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1600px;
+    font-size: 20px;
+    line-height: 40px;
+}
+
+.noUi-horizontal .noUi-handle {
+    width: 18px;
+    height: 18px;
+    right: -17px;
+    top: -6px;
+    border-radius: 50%;
 }

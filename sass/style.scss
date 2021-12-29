@@ -1,6 +1,8 @@
 @import "../node_modules/normalize-scss/sass/_normalize";
 @include normalize();
 
+@import 'nouislider/dist/nouislider.css';
+
 @import "abstract/_constants";
 @import "abstract/placeholder";
 @import "abstract/mixins";
