@@ -48,43 +48,40 @@ export class ShapeFilter {
         filtersValue.appendChild(shape);
 
         let buttonBall = document.createElement('button');
-
         buttonBall.setAttribute(`data-filter`, `${nameBall}`);
 
-        this.buttonBell = document.createElement('button');
- 
-        this.buttonBell.setAttribute(`data-filter`, `${nameBell}`);
+        let buttonBell = document.createElement('button');
+        buttonBell.setAttribute(`data-filter`, `${nameBell}`);
 
-        this.buttonCone = document.createElement('button');
+        let buttonCone = document.createElement('button');
+        buttonCone.setAttribute(`data-filter`, `${nameCone}`);
 
-        this.buttonCone.setAttribute(`data-filter`, `${nameCone}`);
-
-        this.buttonSnowF = document.createElement('button');
-
-        this.buttonSnowF.setAttribute(`data-filter`, `${nameSnowF}`);
+        let buttonSnowF = document.createElement('button');
+        buttonSnowF.setAttribute(`data-filter`, `${nameSnowF}`);
         
-        this.buttonToy = document.createElement('button');
-
-        this.buttonToy.setAttribute(`data-filter`, `${nameToy}`);
+        let buttonToy = document.createElement('button');
+        buttonToy.setAttribute(`data-filter`, `${nameToy}`);
 
         shape.appendChild(buttonBall);
-        shape.appendChild(this.buttonBell);
-        shape.appendChild(this.buttonCone);
-        shape.appendChild(this.buttonSnowF);
-        shape.appendChild(this.buttonToy);
-        this.buttonSnowF.onclick = this.filterShapes.bind(this, nameSnowF);
-        this.buttonToy.onclick = this.filterShapes.bind(this, nameToy);
-        this.buttonCone.onclick = this.filterShapes.bind(this, nameCone);
-        this.buttonBell.onclick = this.filterShapes.bind(this, nameBell);
-        buttonBall.onclick = this.filterShapes.bind(this, nameBall);
-       
+        shape.appendChild(buttonBell);
+        shape.appendChild(buttonCone);
+        shape.appendChild(buttonSnowF);
+        shape.appendChild(buttonToy);
+        buttonSnowF.onclick = this.filterShapes.bind(this, buttonSnowF);
+        buttonToy.onclick = this.filterShapes.bind(this, buttonToy);
+        buttonCone.onclick = this.filterShapes.bind(this, buttonCone);
+        buttonBell.onclick = this.filterShapes.bind(this, buttonBell);
+        buttonBall.onclick = this.filterShapes.bind(this, buttonBall);
     }
 
 
-filterShapes(i: string) : void{
-    let a = this;
+
+filterShapes(a: HTMLButtonElement) : void{
+    let b = this;
+    a.classList.toggle("active");
+    let i = a.getAttribute('data-filter');
     cardContauner.innerHTML = '';
-    console.log(a, i , this.selectorShape);
+    console.log(b, i , this.selectorShape);
      if (!this.selectorShape.has(i)){
         this.selectorShape.add(i); 
          cards.filter(elem => this.selectorShape.has(elem.shape)).forEach(item => cardContauner.appendChild(item.card))
@@ -98,19 +95,6 @@ filterShapes(i: string) : void{
          cards.forEach(item => cardContauner.appendChild(item.card))
      } 
  } 
-    // getData() {
-    //     this.button.classList.toggle("active");
-    //     console.log(this.selectorShape.size);
-    //     if (this.selectorShape.size === 0) {
-    //         console.log(this.selectorShape.add(this.name), 'add');
-    //         return this.selectorShape.add(this.name);
-    //     }
-    //     if (this.selectorShape.size !== 0) {
-    //         console.log(this.selectorShape, 'delete');
-    //         return this.selectorShape.delete(this.name);
-
-    //     }
-    // };
 
 }
 
