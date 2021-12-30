@@ -7,6 +7,7 @@ import { Favorite } from "./favorite";
 import { FavoriteCard } from "./cardsFavorite";
 import { state } from "./state";
 import { SizeFilter } from "./SizeFilter";
+import { FiltersSort } from "./Sort";
 
 // const page = document.querySelector(".page");
 let slider = document.getElementById('slider');
@@ -23,7 +24,7 @@ const one = document.querySelector('.slider-output');
 one.innerHTML
 
 let sliderYear = document.getElementById('year-slider');
-console.log(sliderYear)
+
 noUiSlider.create(sliderYear, {
     start: [1940, 2020],
     connect: true,
@@ -32,6 +33,8 @@ noUiSlider.create(sliderYear, {
         'max': 2020
     }
 });
+
+
 export const cardContauner: HTMLElement = document.querySelector(".card-container") as HTMLElement;
 
 const home: HTMLElement  = document.querySelector('#home');
@@ -96,7 +99,7 @@ favoriteFilter.create();
 
 export function cardFs(): FavoriteCard[]{
     return cards.map(function (item, index) {
-        console.log('tytytyt', item)
+        // console.log('tytytyt', item)
         if (item.favorite === true){
         let cardsFavorite = new FavoriteCard(item.count, item.num);
         cardsFavorite.createFavoriteCard();
@@ -109,3 +112,6 @@ export function cardFs(): FavoriteCard[]{
 let fff = cardFs();
 // let cardsFavorite = new FavoriteCard('2', '1');
 // cardsFavorite.createFavoriteCard();
+
+let selectedF = new FiltersSort();
+selectedF.renderButtons();
