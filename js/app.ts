@@ -39,14 +39,15 @@ noUiSlider.create(sliderYear, {
 let snow = document.querySelector('.snow-control')
 let cont = document.querySelector('.main-tree-container');
 let one1 = document.querySelector('.snow-blocks');
-let one2 = document.querySelector('.snow2');
+let one2 = document.querySelectorAll('.snow');
 let sneg = 0
 snow.addEventListener('click', () =>{onOff()});
 
 function onOff(){
-    cont.classList.toggle("snow-blocks");
+    cont.classList.toggle("none");
     one1.classList.toggle("none");
-    one2.classList.toggle("none");
+    one2.forEach(item => item.classList.toggle("none"))
+  
 }
 export const cardContauner: HTMLElement = document.querySelector(".card-container") as HTMLElement;
 
