@@ -1,4 +1,4 @@
-import { cardContauner, cards } from "./app";
+import { Filter } from './interfaces';
 
 export let filtersNames = {
     shape: ["шар", "колокольчик", "шишка", "снежинка", "фигурка"],
@@ -6,17 +6,27 @@ export let filtersNames = {
     color: ["белый", "желтый", "красный", "синий", "зелёный"],
     size: ["большой", "средний", "малый"]
  };
- const filtersValue: HTMLDivElement = document.querySelector('.filters-value');
-export class ShapeFilter {
+const filtersValue: HTMLDivElement = document.querySelector('.filters-value');
 
-    selectorShape: Set<string> = new Set();
-    // constructor() {
+export class ShapeFilter implements Filter {
+    private callback: () => void;
+    private selectorShape: Set<string> = new Set();
 
-    //     this.selectorShape = new Set();
-    // }
+    constructor(callback: () => void) {
+        this.callback = callback;
+         this.selectorShape = new Set();
+    }
+
+    checkFilterIsSelected(shape: string): boolean {
+        return this.selectorShape.has(shape);
+    }
+
+    reset() {
+        this.selectorShape.clear();
+        // Убрать выделение на кнопках
+    }
 
     renderButtons() {
-
         const shape = document.createElement('div');
         shape.className = 'shape';
         shape.innerText = `Форма`;
@@ -51,22 +61,6 @@ export class ShapeFilter {
 
     filterShapes(a: HTMLButtonElement) : void{
         a.classList.toggle("active");
-        let i = a.getAttribute('data-filter');
-        console.log(this.selectorShape)
-        cardContauner.innerHTML = '';
-
-        if (!this.selectorShape.has(i)){
-            this.selectorShape.add(i); 
-            cards.filter(elem => this.selectorShape.has(elem.shape)).forEach(item => {cardContauner.appendChild(item.card)})
-        } else
-        if (this.selectorShape.has(i) && this.selectorShape.size > 0){
-            this.selectorShape.delete(i) ; 
-            cards.filter(elem => this.selectorShape.has(elem.shape)).forEach(item => cardContauner.appendChild(item.card))
-        }  
-        if (this.selectorShape.size === 0){
-            this.selectorShape.delete(i) ; 
-            cards.forEach(item => cardContauner.appendChild(item.card))
-        } 
-    } 
-
+        this.callback(); 
+    }
 }

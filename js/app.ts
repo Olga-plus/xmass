@@ -36,6 +36,18 @@ noUiSlider.create(sliderYear, {
 });
 
 
+let snow = document.querySelector('.snow-control')
+let cont = document.querySelector('.main-tree-container');
+let one1 = document.querySelector('.snow-blocks');
+let one2 = document.querySelector('.snow2');
+let sneg = 0
+snow.addEventListener('click', () =>{onOff()});
+
+function onOff(){
+    cont.classList.toggle("snow-blocks");
+    one1.classList.toggle("none");
+    one2.classList.toggle("none");
+}
 export const cardContauner: HTMLElement = document.querySelector(".card-container") as HTMLElement;
 
 const home: HTMLElement  = document.querySelector('#home');
@@ -73,8 +85,6 @@ function teePage(): void {
     favoritPage.className = 'page favorites-page';
 }
 
-
-
  export let filtersNames = {
     shape: ["шар", "колокольчик", "шишка", "снежинка", "фигурка"],
     shapeName: ['ball', 'bell', 'cone', 'snowFl', 'toy'],
@@ -85,7 +95,7 @@ function teePage(): void {
 // class ShapeFilter implements Render {
 export const shapeFormaa: HTMLDivElement = document.querySelector('.shape');
 
-const filters = new ShapeFilter();
+const filters = new ShapeFilter(filterCards);
 filters.renderButtons();
 
 const colorsFilters = new ColorFilter();
@@ -107,7 +117,7 @@ export function cardFs(): FavoriteCard[]{
             return cardsFavorite; 
         }
 
-        });
+    });
 } 
 
 let fff = cardFs();
@@ -116,3 +126,8 @@ let fff = cardFs();
 
 let selectedF = new FiltersSort();
 selectedF.renderButtons();
+
+function filterCards() {
+    cardContauner.innerHTML = '';
+    cards.filter(elem => filters.checkFilterIsSelected(elem.shape)).forEach(item => {cardContauner.appendChild(item.card)});
+}

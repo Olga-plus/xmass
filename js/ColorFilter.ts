@@ -1,5 +1,5 @@
 import { cardContauner, cards } from "./app";
-
+import { Filter } from './interfaces';
 
 
 export let filtersNames = {
@@ -11,8 +11,9 @@ export let filtersNames = {
 
  const filtersValue: HTMLDivElement = document.querySelector('.filters-value');
 
+//  export class ColorFilter implements Filter {
 export class ColorFilter {
-    selectorShape: Set<string>;
+    private selectorShape: Set<string>;
 
     constructor() {
         this.selectorShape = new Set();

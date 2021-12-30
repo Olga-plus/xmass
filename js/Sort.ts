@@ -3,12 +3,12 @@ import { ShapeFilter } from "./ShapeFilter";
 
 const filtersSort: HTMLDivElement = document.querySelector('.filters-sort');
 
-export class FiltersSort extends ShapeFilter {
+export class FiltersSort {
 
 
     selectorSort: Set<string>;
     constructor() {
-        super();
+        // super();
         this.selectorSort = new Set();
     }
 
@@ -55,7 +55,6 @@ export class FiltersSort extends ShapeFilter {
         if (a.value === 'sort-count-min'){
             cards.sort((a, b) => b.count.localeCompare(a.count, undefined, {numeric: true})).forEach(item => cardContauner.appendChild(item.card));
         }
-
 
     }
 

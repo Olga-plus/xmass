@@ -12,6 +12,10 @@ export class ChristmasState {
         this.favoriteToys.delete(card);
         console.log('Bye!')
     }
+
+    getFavoriteTous(){
+        return
+    }
 }
 
 export const state = new ChristmasState();
