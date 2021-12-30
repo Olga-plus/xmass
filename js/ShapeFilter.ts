@@ -1,5 +1,4 @@
 import { cardContauner, cards } from "./app";
-import { ChristmasState } from "./state";
 
 export let filtersNames = {
     shape: ["шар", "колокольчик", "шишка", "снежинка", "фигурка"],
@@ -10,10 +9,11 @@ export let filtersNames = {
  const filtersValue: HTMLDivElement = document.querySelector('.filters-value');
 export class ShapeFilter {
 
-    selectorShape: Set<string>;
-    constructor() {
-        this.selectorShape = new Set();
-    }
+    selectorShape: Set<string> = new Set();
+    // constructor() {
+
+    //     this.selectorShape = new Set();
+    // }
 
     renderButtons() {
 
@@ -57,7 +57,7 @@ export class ShapeFilter {
 
         if (!this.selectorShape.has(i)){
             this.selectorShape.add(i); 
-            cards.filter(elem => this.selectorShape.has(elem.shape)).forEach(item => cardContauner.appendChild(item.card))
+            cards.filter(elem => this.selectorShape.has(elem.shape)).forEach(item => {cardContauner.appendChild(item.card)})
         } else
         if (this.selectorShape.has(i) && this.selectorShape.size > 0){
             this.selectorShape.delete(i) ; 

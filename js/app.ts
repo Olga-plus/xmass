@@ -8,10 +8,12 @@ import { FavoriteCard } from "./cardsFavorite";
 import { state } from "./state";
 import { SizeFilter } from "./SizeFilter";
 import { FiltersSort } from "./Sort";
+import { playAudio } from "./Player";
 
+playAudio();
 // const page = document.querySelector(".page");
 let slider = document.getElementById('slider');
-noUiSlider.create(slider, {
+let b = noUiSlider.create(slider, {
     start: [1, 12],
     connect: true,
     range: {
@@ -21,7 +23,6 @@ noUiSlider.create(slider, {
 });
 
 const one = document.querySelector('.slider-output');
-one.innerHTML
 
 let sliderYear = document.getElementById('year-slider');
 

@@ -4,8 +4,8 @@ export class ChristmasState {
     private favoriteToys = new Set<Card>();
 
     selectCard(card: Card): void {
-    this.favoriteToys.add(card);
-    console.log('Hej!')
+        this.favoriteToys.add(card);
+        console.log('Hej!')
     }
 
     deselectCard(card: Card): void {

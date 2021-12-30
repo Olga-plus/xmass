@@ -33,11 +33,13 @@ export class FavoriteCard {
             cardFavoriteImg.setAttribute(`alt`, `toy`);
             cardFavoriteImg.src = `../assets/toys/${this.num}.webp`
             this.cardFavorite.appendChild(cardFavoriteImg);
-            cardFavoriteImg.ondragstart = this.dragstart_.bind(this)
 
+        cardFavoriteImg.ondragstart = this.dragstart_.bind(this);
+        // treeContainer.
     }
 
-    dragstart_(){
-
+    dragstart_(a:any){
+        console.log(a);
+        
     }
 }
