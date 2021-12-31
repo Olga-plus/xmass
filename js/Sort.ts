@@ -7,8 +7,9 @@ export class FiltersSort {
 
 
     selectorSort: Set<string>;
-    constructor() {
-        // super();
+    callback: () => void;
+    constructor(callback: () => void) {
+        this.callback = callback;
         this.selectorSort = new Set();
     }
 
@@ -60,10 +61,7 @@ export class FiltersSort {
 
     resetSettings(a: HTMLOptionElement){
         console.log('RESET');
-        cardContauner.innerHTML = '';
-        // a.value = "NotStarted";
-
-        cards.forEach(item => cardContauner.appendChild(item.card))
+        this.callback();
     }
 }
 

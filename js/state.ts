@@ -14,7 +14,9 @@ export class ChristmasState {
     }
 
     getFavoriteTous(){
-        return
+        let favoriteToy = Array.from(this.favoriteToys);
+        
+        return favoriteToy;
     }
 }
 

@@ -17,6 +17,5 @@ export function playAudio() {
         playBTN.classList.remove('active')
         isPlay = 0;
         audio.pause(); 
-        console.log( "!!!" , audio.duration)
     }
 }

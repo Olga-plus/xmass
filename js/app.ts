@@ -44,7 +44,7 @@ let sneg = 0
 snow.addEventListener('click', () =>{onOff()});
 
 function onOff(){
-    cont.classList.toggle("none");
+    // cont.classList.toggle("none");
     one1.classList.toggle("none");
     one2.forEach(item => item.classList.toggle("none"))
   
@@ -58,8 +58,9 @@ const tree: HTMLElement  = document.querySelector('#tree');
 const mainePage: HTMLElement  = document.querySelector('#main-page');
 const homePage: HTMLElement  = document.querySelector('#start-page');
 const favoritPage: HTMLElement  = document.querySelector('#favorie-page');
-export const cards = cardXs();
-console.log(cards);
+
+
+export const cards = cardXs(); //---!!!!!!!!!!!!!!
 
 cards.forEach(item => cardContauner.appendChild(item.card) );
 
@@ -86,18 +87,11 @@ function teePage(): void {
     favoritPage.className = 'page favorites-page';
 }
 
- export let filtersNames = {
-    shape: ["шар", "колокольчик", "шишка", "снежинка", "фигурка"],
-    shapeName: ['ball', 'bell', 'cone', 'snowFl', 'toy'],
-    color: ["белый", "желтый", "красный", "синий", "зелёный"],
-    size: ["большой", "средний", "малый"]
- };
  const containerControls: HTMLDivElement = document.querySelector('.controls');
-// class ShapeFilter implements Render {
-export const shapeFormaa: HTMLDivElement = document.querySelector('.shape');
 
-const filters = new ShapeFilter(filterCards);
-filters.renderButtons();
+// const shapeFormaa: HTMLDivElement = document.querySelector('.shape');
+
+
 
 const colorsFilters = new ColorFilter();
 colorsFilters.renderButtons();
@@ -121,14 +115,33 @@ export function cardFs(): FavoriteCard[]{
     });
 } 
 
-let fff = cardFs();
-// let cardsFavorite = new FavoriteCard('2', '1');
-// cardsFavorite.createFavoriteCard();
+let favoriteCardsTree = cardFs();
 
-let selectedF = new FiltersSort();
+
+let selectedF = new FiltersSort(resetFun);
 selectedF.renderButtons();
 
+function arrShapes (){
+    const filtersShape = new ShapeFilter(filterCards);
+    filtersShape.renderButtons();
+    return filtersShape;
+}
+const filtersShape = arrShapes();
+
+console.log(filtersShape, 'ghjkl;');
 function filterCards() {
     cardContauner.innerHTML = '';
-    cards.filter(elem => filters.checkFilterIsSelected(elem.shape)).forEach(item => {cardContauner.appendChild(item.card)});
+    let fillArr = cards.filter(elem => filtersShape.checkFilterIsSelected(elem.shape))
+    if (fillArr.length > 0) {
+        fillArr.forEach(item => {cardContauner.appendChild(item.card)});
+    } else if (fillArr.length === 0) {
+        cards.forEach(item => {cardContauner.appendChild(item.card)});
+    }
+    
+}
+
+function resetFun(){
+    cardContauner.innerHTML = '';
+    filtersShape.reset();
+    cards.forEach(item => {cardContauner.appendChild(item.card)});
 }
