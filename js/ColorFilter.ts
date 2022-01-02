@@ -1,22 +1,46 @@
-import { cardContauner, cards } from "./app";
 import { Filter } from './interfaces';
-
-
-export let filtersNames = {
-    shape: ["шар", "колокольчик", "шишка", "снежинка", "фигурка"],
-    shapeName: ['ball', 'bell', 'cone', 'snowFl', 'toy'],
-    color: ["белый", "желтый", "красный", "синий", "зелёный"],
-    size: ["большой", "средний", "малый"]
- };
-
- const filtersValue: HTMLDivElement = document.querySelector('.filters-value');
+const filtersValue: HTMLDivElement = document.querySelector('.filters-value');
 
 //  export class ColorFilter implements Filter {
-export class ColorFilter {
-    private selectorShape: Set<string>;
+export class ColorFilter implements Filter{
+    private selectorColor: Set<string>;
+    buttonWhite: HTMLButtonElement;
+    buttonYellow: HTMLButtonElement;
+    buttonRed: HTMLButtonElement;
+    buttonBlue: HTMLButtonElement;
+    buttonGreen: HTMLButtonElement;
+    callback: () => void;
+    selected: boolean = false;
 
-    constructor() {
-        this.selectorShape = new Set();
+    constructor(callback: () => void) {
+        this.callback = callback
+        this.selectorColor = new Set();
+    }
+
+    checkFilter(){
+        if (this.selectorColor.size > 0){
+        console.log(this.selectorColor.size)
+        return this.selected = true;
+        } else
+        if (this.selectorColor.size === 0){
+            console.log(this.selectorColor.size)
+            return this.selected = false;
+        }
+
+    }
+
+    checkFilterIsSelected(color: string): boolean {
+        return this.selectorColor.has(color);
+    }
+
+    reset() {
+        this.selectorColor.clear();
+        this.buttonWhite.classList.remove("active");
+        this.buttonYellow.classList.remove("active");
+        this.buttonRed.classList.remove("active");
+        this.buttonBlue.classList.remove("active");
+        this.buttonGreen.classList.remove("active");
+        // Убрать выделение на кнопках
     }
 
     renderButtons() {
@@ -26,51 +50,47 @@ export class ColorFilter {
         color.innerText = `Цвет`;
         filtersValue.appendChild(color);
 
-        let buttonWhite = document.createElement('button');
-        buttonWhite.setAttribute(`data-filter`, `белый`);
+        this.buttonWhite = document.createElement('button');
+        this.buttonWhite.setAttribute(`data-filter`, `белый`);
 
-        let buttonYellow = document.createElement('button');
-        buttonYellow.setAttribute(`data-filter`, `желтый`);
+        this.buttonYellow = document.createElement('button');
+        this.buttonYellow.setAttribute(`data-filter`, `желтый`);
 
-        let buttonRed = document.createElement('button');
-        buttonRed.setAttribute(`data-filter`, `красный`);
+        this.buttonRed = document.createElement('button');
+        this.buttonRed.setAttribute(`data-filter`, `красный`);
 
-        let buttonBlue = document.createElement('button');
-        buttonBlue.setAttribute(`data-filter`, `синий`);
+        this.buttonBlue = document.createElement('button');
+        this.buttonBlue.setAttribute(`data-filter`, `синий`);
         
-        let buttonGreen = document.createElement('button');
-        buttonGreen.setAttribute(`data-filter`, `зелёный`);
+        this.buttonGreen = document.createElement('button');
+        this.buttonGreen.setAttribute(`data-filter`, `зелёный`);
 
-        color.appendChild(buttonWhite);
-        color.appendChild(buttonYellow);
-        color.appendChild(buttonRed);
-        color.appendChild(buttonBlue);
-        color.appendChild(buttonGreen);
-        buttonWhite.onclick = this.filterColor.bind(this, buttonWhite);
-        buttonYellow.onclick = this.filterColor.bind(this, buttonYellow);
-        buttonRed.onclick = this.filterColor.bind(this, buttonRed);
-        buttonBlue.onclick = this.filterColor.bind(this, buttonBlue);
-        buttonGreen.onclick = this.filterColor.bind(this, buttonGreen);
+        color.appendChild(this.buttonWhite);
+        color.appendChild(this.buttonYellow);
+        color.appendChild(this.buttonRed);
+        color.appendChild(this.buttonBlue);
+        color.appendChild(this.buttonGreen);
+
+        this.buttonWhite.onclick = this.filterColor.bind(this, this.buttonWhite);
+        this.buttonYellow.onclick = this.filterColor.bind(this, this.buttonYellow);
+        this.buttonRed.onclick = this.filterColor.bind(this, this.buttonRed);
+        this.buttonBlue.onclick = this.filterColor.bind(this, this.buttonBlue);
+        this.buttonGreen.onclick = this.filterColor.bind(this, this.buttonGreen);
     }
 
     filterColor(a: HTMLButtonElement) : void{
         a.classList.toggle("active");
-        let i = a.getAttribute('data-filter');
-        console.log(this.selectorShape)
-        cardContauner.innerHTML = '';
-
-        if (!this.selectorShape.has(i)){
-            this.selectorShape.add(i); 
-            cards.filter(elem => this.selectorShape.has(elem.color)).forEach(item => cardContauner.appendChild(item.card))
+        let dataFilter = a.getAttribute('data-filter');
+        if (!this.selectorColor.has(dataFilter)){
+            this.selectorColor.add(dataFilter); 
+            this.checkFilter();
         } else
-        if (this.selectorShape.has(i) && this.selectorShape.size > 0){
-            this.selectorShape.delete(i) ; 
-            cards.filter(elem => this.selectorShape.has(elem.color)).forEach(item => cardContauner.appendChild(item.card))
-        }  
-        if (this.selectorShape.size === 0){
-            this.selectorShape.delete(i) ; 
-            cards.forEach(item => cardContauner.appendChild(item.card))
-        } 
-    } 
+        if (this.selectorColor.has(dataFilter) && this.selectorColor.size > 0){
+            this.selectorColor.delete(dataFilter) ; 
+            this.checkFilter();
+        }
+        
+        this.callback(); 
+    }
 
 }

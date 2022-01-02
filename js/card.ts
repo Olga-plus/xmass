@@ -1,6 +1,7 @@
 import "../sass/style.scss";
 import data from '../assets/data.js';
-export class Card {
+import { ChristmasState} from "./state";
+export class Card extends ChristmasState{
     num: string;
     name: string;
     count: string;
@@ -12,9 +13,11 @@ export class Card {
 
     private cardFavor: HTMLParagraphElement;
     private cardRibbon: HTMLDivElement;
+    arrFavorCard: Set<HTMLDivElement> = new Set();
     card: HTMLDivElement;
-
-    constructor({ num, name, count, year, shape, color, size, favorite }: { num: string; name: string; count: string; year: string; shape: string; color: string; size: string; favorite: boolean; }) {
+    callback: () => void;
+    constructor({ num, name, count, year, shape, color, size, favorite}: { num: string; name: string; count: string; year: string; shape: string; color: string; size: string; favorite: boolean;}) {
+        super();
         this.num = num;
         this.name = name;
         this.count = count;
@@ -96,11 +99,11 @@ export class Card {
         }
         this.card.appendChild(this.cardRibbon);
 
-        this.card.onclick = this.clicked.bind(this);
+        this.card.onclick = this.clicked.bind(this, this.card);
     }
 
-    clicked(): void {
-        console.log(this.card);
+    clicked(a: HTMLDivElement): void {
+        console.log(a);
         this.favorite = !this.favorite
         this.cardRibbon.classList.toggle("active");
         this.card.classList.toggle("active");
@@ -109,6 +112,7 @@ export class Card {
         } else  if(this.favorite === false){
             this.cardFavor.innerText= 'Любимая: нет';
         } 
+        
     }
 }
 
@@ -119,5 +123,6 @@ export function cardXs(): Card[]{
             return cardX;
         });
 } 
+
 
 export default {Card, cardXs};

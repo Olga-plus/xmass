@@ -1,11 +1,11 @@
 import { Filter } from './interfaces';
 
-export let filtersNames = {
-    shape: ["шар", "колокольчик", "шишка", "снежинка", "фигурка"],
-    shapeName: ['ball', 'bell', 'cone', 'snowFl', 'toy'],
-    color: ["белый", "желтый", "красный", "синий", "зелёный"],
-    size: ["большой", "средний", "малый"]
- };
+// export let filtersNames = {
+//     shape: ["шар", "колокольчик", "шишка", "снежинка", "фигурка"],
+//     shapeName: ['ball', 'bell', 'cone', 'snowFl', 'toy'],
+//     color: ["белый", "желтый", "красный", "синий", "зелёный"],
+//     size: ["большой", "средний", "малый"]
+//  };
 const filtersValue: HTMLDivElement = document.querySelector('.filters-value');
 
 export class ShapeFilter implements Filter {
@@ -17,14 +17,26 @@ export class ShapeFilter implements Filter {
     buttonCone: HTMLButtonElement;
     buttonToy: HTMLButtonElement;
     buttonSnowF: HTMLButtonElement;
+    selected: boolean = false;
 
     constructor(callback: () => void) {
         this.callback = callback;
          this.selectorShape = new Set();
     }
 
+    checkFilter(){
+        if (this.selectorShape.size > 0){
+        console.log(this.selectorShape.size)
+        return this.selected = true;
+        } else
+        if (this.selectorShape.size === 0){
+            console.log(this.selectorShape.size)
+            return this.selected = false;
+        }
+
+    }
+
     checkFilterIsSelected(shape: string): boolean {
-        console.log( this.selectorShape,'iz select');
         return this.selectorShape.has(shape);
     }
 
@@ -35,7 +47,6 @@ export class ShapeFilter implements Filter {
         this.buttonCone.classList.remove("active");
         this.buttonSnowF.classList.remove("active");
         this.buttonToy.classList.remove("active");
-
         // Убрать выделение на кнопках
     }
 
@@ -77,11 +88,13 @@ export class ShapeFilter implements Filter {
         a.classList.toggle("active");
         let dataFilter = a.getAttribute('data-filter');
         if (!this.selectorShape.has(dataFilter)){
-            this.selectorShape.add(dataFilter); 
-            console.log(this.selectorShape);
+            this.selectorShape.add(dataFilter);
+           this.checkFilter();
+             
         } else
         if (this.selectorShape.has(dataFilter) && this.selectorShape.size > 0){
             this.selectorShape.delete(dataFilter) ; 
+            this.checkFilter()
         }
         this.callback(); 
     }
