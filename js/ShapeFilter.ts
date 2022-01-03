@@ -41,6 +41,7 @@ export class ShapeFilter implements Filter {
     }
 
     reset() {
+        this.selected = false;
         this.selectorShape.clear();
         this.buttonBall.classList.remove("active");
         this.buttonBell.classList.remove("active");

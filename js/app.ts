@@ -10,19 +10,38 @@ import { SizeFilter } from "./SizeFilter";
 import { FiltersSort } from "./Sort";
 import { playAudio } from "./Player";
 
+
+const nums = [10, -40, 0, 666];
+ 
+
 playAudio();
 // const page = document.querySelector(".page");
-let slider = document.getElementById('slider');
-let b = noUiSlider.create(slider, {
+var slider = document.getElementById('slider');
+noUiSlider.create(slider, {
     start: [1, 12],
+    snap: true,
     connect: true,
     range: {
         'min': 1,
+        '5%': 2,
+        '10%': 3,
+        '15%': 4,
+        '20%': 5,
+        '25%': 6,
+        '30%': 7,
+        '35%': 8,
+        '40%': 9,
+        '45%': 10,
+        '50%': 11,
         'max': 12
     }
 });
+console.log(noUiSlider.PipsType.LargeValue, 'hhhhhhhhhhhh')
 
 const one = document.querySelector('.slider-output');
+
+
+
 
 let sliderYear = document.getElementById('year-slider');
 
@@ -124,25 +143,36 @@ const sizeFilters = arrSize();
 
 function filterCards() {
     cardContauner.innerHTML = '';
-    console.log(colorsFilters.selected)
+  
     if (colorsFilters.selected && filtersShape.selected && sizeFilters.selected){
         cards.filter(elem => colorsFilters.checkFilterIsSelected(elem.color) && filtersShape.checkFilterIsSelected(elem.shape) && sizeFilters.checkFilterIsSelected(elem.size)).forEach(item => {cardContauner.appendChild(item.card)});
     } else
+    if (colorsFilters.selected && sizeFilters.selected){
+        cards.filter(elem => colorsFilters.checkFilterIsSelected(elem.color) && sizeFilters.checkFilterIsSelected(elem.size)).forEach(item => {cardContauner.appendChild(item.card)});
+    } else
+    if (filtersShape.selected && sizeFilters.selected){
+        cards.filter(elem => filtersShape.checkFilterIsSelected(elem.shape) && sizeFilters.checkFilterIsSelected(elem.size)).forEach(item => {cardContauner.appendChild(item.card)});
+    } else
     if (colorsFilters.selected && filtersShape.selected){
         cards.filter(elem => colorsFilters.checkFilterIsSelected(elem.color) && filtersShape.checkFilterIsSelected(elem.shape)).forEach(item => {cardContauner.appendChild(item.card)});
-    }else
+    } else
     if (colorsFilters.selected){
         cards.filter(elem => colorsFilters.checkFilterIsSelected(elem.color)).forEach(item => {cardContauner.appendChild(item.card)});
-    } else if (filtersShape.selected){
+    } else 
+    if (filtersShape.selected){
         cards.filter(elem => filtersShape.checkFilterIsSelected(elem.shape)).forEach(item => {cardContauner.appendChild(item.card)});
+    } else 
+    if (sizeFilters.selected){
+        cards.filter(elem => sizeFilters.checkFilterIsSelected(elem.size)).forEach(item => {cardContauner.appendChild(item.card)});
     } else {
-        let fillArr = cards.filter(elem => colorsFilters.checkFilterIsSelected(elem.color) && filtersShape.checkFilterIsSelected(elem.shape) && sizeFilters.checkFilterIsSelected(elem.size) )
-    if (fillArr.length > 0) {
-        fillArr.forEach(item => {cardContauner.appendChild(item.card)});
-        } else if (fillArr.length === 0) {
-            cards.forEach(item => {cardContauner.appendChild(item.card)});
-        } 
-    }  
+        cards.forEach(item => {cardContauner.appendChild(item.card)});
+        // let fillArr = cards.filter(elem => colorsFilters.checkFilterIsSelected(elem.color) && filtersShape.checkFilterIsSelected(elem.shape) && sizeFilters.checkFilterIsSelected(elem.size) )
+        // if (fillArr.length > 0) {
+        //     fillArr.forEach(item => {cardContauner.appendChild(item.card)});
+        //     } else if (fillArr.length === 0) {
+        //         cards.forEach(item => {cardContauner.appendChild(item.card)});
+        //     } 
+        }  
 }
 
 function resetFun(){
@@ -163,8 +193,6 @@ function createFavorite() {
 
 }
 
-// let a = state.getFavoriteTous
-// console.log(a)
 export function cardFs(): FavoriteCard[]{
         return cards.map((item) => {
                 if (item.favorite === true){
@@ -174,6 +202,4 @@ export function cardFs(): FavoriteCard[]{
                 }
             });
 }
-
-// cardFs();
 

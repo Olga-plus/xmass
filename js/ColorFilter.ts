@@ -34,6 +34,7 @@ export class ColorFilter implements Filter{
     }
 
     reset() {
+        this.selected = false;
         this.selectorColor.clear();
         this.buttonWhite.classList.remove("active");
         this.buttonYellow.classList.remove("active");

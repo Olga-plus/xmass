@@ -33,6 +33,7 @@ export class SizeFilter implements Filter {
     }
 
     reset() {
+        this.selected = false;
         this.selectorSize.clear();
         this.buttonBig.classList.remove("active");
         this.buttonMedium.classList.remove("active");
