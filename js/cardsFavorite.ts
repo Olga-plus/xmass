@@ -1,13 +1,16 @@
 import { count } from "console";
+import { start } from "repl";
 import { state } from "./state";
 
 const containerFavorite = document.querySelector('.favorites-container');
 const treeContainer = document.querySelector('.main-tree-container');
-
 export class FavoriteCard {
+    cardFavoriteImg: HTMLImageElement;
     count: string;
     num: string;
     cardFavorite: HTMLDivElement;
+    countFavorite: HTMLParagraphElement;
+    treeContainer: HTMLDivElement;
 
     constructor (count: string, num: string){
         this.count = count;
@@ -20,26 +23,35 @@ export class FavoriteCard {
         this.cardFavorite.setAttribute(`data-num`, `${this.num}`);
         containerFavorite.appendChild(this.cardFavorite);
 
-        let countFavorite = document.createElement('p');
-        countFavorite.className = 'favorites-count';
-        countFavorite.innerText = `${this.count}`
-        this.cardFavorite.appendChild(countFavorite);
+        this.countFavorite = document.createElement('p');
+        this.countFavorite.className = 'favorites-count';
+        this.countFavorite.innerText = `${this.count}`
+        this.cardFavorite.appendChild(this.countFavorite);
 
-            let cardFavoriteImg = new Image();
-            cardFavoriteImg.className = 'favorites-card-img';
-            cardFavoriteImg.id = `${this.num}-${this.num}`;
-            cardFavoriteImg.setAttribute(`data-imgnum`, `${this.num}`);
-            cardFavoriteImg.setAttribute(`draggable`, `true`);
-            cardFavoriteImg.setAttribute(`alt`, `toy`);
-            cardFavoriteImg.src = `../assets/toys/${this.num}.webp`
-            this.cardFavorite.appendChild(cardFavoriteImg);
+        for (let i = 1; i < Number(this.count); i++){
 
-        cardFavoriteImg.ondragstart = this.dragstart_.bind(this);
-        // treeContainer.
+            this.cardFavoriteImg = new Image();
+            this.cardFavoriteImg.className = 'favorites-card-img';
+            this.cardFavoriteImg.id = `${this.num}-${i}`;
+            this.cardFavoriteImg.setAttribute(`data-imgnum`, `${this.num}`);
+            this.cardFavoriteImg.setAttribute(`draggable`, `true`);
+            this.cardFavoriteImg.setAttribute(`alt`, `toy`);
+            this.cardFavoriteImg.src = `../assets/toys/${this.num}.webp`
+            this.cardFavorite.appendChild(this.cardFavoriteImg); 
+            this.cardFavoriteImg.ondragstart = this.dragstart_.bind(Event);
+            this.cardFavoriteImg.ondragend = this.dragEnd_.bind(this, this.cardFavorite);
+        }
     }
 
-    dragstart_(a:any){
-        console.log(a);
-        
+    dragstart_(ev: any, containerCard: HTMLDivElement): void{
+        ev.dataTransfer.setData(`text/plain`, ev.target.id)
+        console.log ('start', ev, ev.target.id);
     }
+
+    dragEnd_(containerCard:HTMLDivElement): void{
+        let countToy = containerCard.querySelectorAll('.favorites-card-img');
+        this.countFavorite.innerText = `${countToy.length}`
+        console.log ('end');
+    }
+
 }

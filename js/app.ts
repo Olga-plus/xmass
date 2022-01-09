@@ -9,14 +9,15 @@ import { ChristmasState } from "./state";
 import { SizeFilter } from "./SizeFilter";
 import { FiltersSort } from "./Sort";
 import { playAudio } from "./Player";
+import { TreeContainer } from "./containerTree";
 
 
-const nums = [10, -40, 0, 666];
- 
+
+
 
 playAudio();
 // const page = document.querySelector(".page");
-var slider = document.getElementById('slider');
+let slider = document.getElementById('slider');
 noUiSlider.create(slider, {
     start: [1, 12],
     snap: true,
@@ -202,4 +203,16 @@ export function cardFs(): FavoriteCard[]{
                 }
             });
 }
+function contTree (){
+  const tree = new TreeContainer();
+  tree.createConteiner();
+}
+
+contTree ();
+
+// let dropContainer =  document.querySelector('.main-tree-container');
+// let containerToys = document.querySelector('.favorites-container');
+// const toyDrag = document.querySelector('#select2');
+// console.log(toyDrag, dropContainer, 'fgfgfgfgfgfgfg');
+
 
