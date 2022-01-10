@@ -19,7 +19,7 @@ export class TreeContainer {
         this.treeContainer.ondrop = this.dragDrop_.bind(Event);
     }
 
-    dragOver_(event: any): void{
+    dragOver_(event: Event): void{
         event.preventDefault();
     }
 
@@ -27,13 +27,12 @@ export class TreeContainer {
     //     event.preventDefault();
     //     console.log('Enter', this)
     // }
-    dragDrop_(ev:any): void{
+    dragDrop_(ev: any): void{
+        console.log(ev);
         let data = ev.dataTransfer.getData("text");
         console.log(ev.dataTransfer)
         ev.target.append(document.getElementById(data));
         ev.dataTransfer.clearData();
-       
-        
     }
 
 

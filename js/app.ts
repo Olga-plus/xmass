@@ -10,36 +10,34 @@ import { SizeFilter } from "./SizeFilter";
 import { FiltersSort } from "./Sort";
 import { playAudio } from "./Player";
 import { TreeContainer } from "./containerTree";
+import { Snow } from "./snow";
 
+let slider = document.getElementById('r-slider');
 
-
-
-
-playAudio();
 // const page = document.querySelector(".page");
-let slider = document.getElementById('slider');
+// let slider = document.getElementById('slider');
 noUiSlider.create(slider, {
     start: [1, 12],
-    snap: true,
+    tooltips: true,
     connect: true,
+    padding: 0,
     range: {
         'min': 1,
-        '5%': 2,
-        '10%': 3,
-        '15%': 4,
-        '20%': 5,
-        '25%': 6,
-        '30%': 7,
-        '35%': 8,
-        '40%': 9,
-        '45%': 10,
-        '50%': 11,
         'max': 12
-    }
+    },
+    format:{
+        to: function(value){
+            return Math.round(value);
+        },
+        from: function(value){
+            return parseInt(value);
+        },
+    },
 });
-console.log(noUiSlider.PipsType.LargeValue, 'hhhhhhhhhhhh')
 
-const one = document.querySelector('.slider-output');
+// slider.noUiSlider.on('change', (values, handle) => {
+//     console.log(slider.noUiSlider.get());
+// })
 
 
 
@@ -56,18 +54,20 @@ noUiSlider.create(sliderYear, {
 });
 
 
-let snow = document.querySelector('.snow-control')
-let cont = document.querySelector('.main-tree-container');
-let one1 = document.querySelector('.snow-blocks');
-let one2 = document.querySelectorAll('.snow');
-let sneg = 0
-snow.addEventListener('click', () =>{onOff()});
+// let snow = document.querySelector('.snow-control')
+// let cont = document.querySelector('.main-tree-container');
+// let one1 = document.querySelector('.snow-blocks');
+// let one2 = document.querySelectorAll('.snow');
+// let sneg = 0
+// snow.addEventListener('click', () =>{onOff()});
 
-function onOff(){
-    // cont.classList.toggle("none");
-    one1.classList.toggle("none");
-    one2.forEach(item => item.classList.toggle("none"))
-}
+// function onOff(){
+//     // cont.classList.toggle("none");
+//     one1.classList.toggle("none");
+//     one2.forEach(item => item.classList.toggle("none"))
+// }
+
+
 export const cardContauner: HTMLElement = document.querySelector(".card-container") as HTMLElement;
 
 const home: HTMLElement  = document.querySelector('#home');
@@ -203,13 +203,20 @@ export function cardFs(): FavoriteCard[]{
                 }
             });
 }
+
 function contTree (){
   const tree = new TreeContainer();
   tree.createConteiner();
 }
-
 contTree ();
 
+function snowOn(){
+    let snowPlay = new Snow();
+    snowPlay.createSnow();
+}
+snowOn();
+
+playAudio();
 // let dropContainer =  document.querySelector('.main-tree-container');
 // let containerToys = document.querySelector('.favorites-container');
 // const toyDrag = document.querySelector('#select2');
