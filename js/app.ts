@@ -1,5 +1,5 @@
 import "../sass/style.scss";
-import card, {cardXs} from '../js/card'
+import {cardXs} from '../js/card'
 import { ShapeFilter } from "./ShapeFilter";
 import * as noUiSlider from 'nouislider';
 import { ColorFilter } from "./ColorFilter";
@@ -14,7 +14,7 @@ import { Snow } from "./snow";
 import { filterCards } from "./filterCards";
 import { sortCards } from "./sortCards";
 
-let countSlider = noUiSlider.create(document.getElementById('r-slider'), {
+let countSlider = noUiSlider.create(document.getElementById('slider'), {
     start: [1, 12],
     tooltips: true,
     connect: true,
@@ -34,21 +34,42 @@ let countSlider = noUiSlider.create(document.getElementById('r-slider'), {
 });
 
 countSlider.on('change', (values, handle) => {
-    console.log(values);
+    console.log(values, handle);
+    let a = document.querySelectorAll('.slider-output');
+    a[0].innerHTML = `${values[0]}`;
+    a[1].innerHTML = `${values[1]}`;
+    cardContauner.innerHTML = '';
+    // cards.filter(elem => elem.count >= values[0].toString() && elem.count <= values[1].toString())
+    cards.filter(elem => Number(elem.count) >= values[0] && Number(elem.count) <= values[1])
+    .forEach(item => {cardContauner.appendChild(item.card)});
 })
 
-
-
-let sliderYear = document.getElementById('year-slider');
-
-noUiSlider.create(sliderYear, {
+let yearSlider = noUiSlider.create(document.getElementById('year-slider'), {
     start: [1940, 2020],
     connect: true,
     range: {
         'min': 1940,
         'max': 2020
-    }
+    },
+    format:{
+        to: function(value){
+            return Math.round(value);
+        },
+        from: function(value){
+            return parseInt(value);
+        },
+    },
 });
+
+yearSlider.on('change', (values, handle) => {
+    console.log(values, handle);
+    let a = document.querySelectorAll('.slider-output');
+    a[2].innerHTML = `${values[0]}`;
+    a[3].innerHTML = `${values[1]}`;
+    cardContauner.innerHTML = '';
+    cards.filter(elem => Number(elem.year) >= values[0] && Number(elem.year) <= values[1])
+    .forEach(item => {cardContauner.appendChild(item.card)});
+})
 
 
 export const cardContauner: HTMLElement = document.querySelector(".card-container") as HTMLElement;
@@ -133,9 +154,7 @@ const favoriteFilter = new Favorite(createFavorite);
 favoriteFilter.create();
 const state = new ChristmasState()
 function createFavorite() {
-
     console.log('ffff')
-
 }
 
 export function cardFs(): FavoriteCard[]{

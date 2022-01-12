@@ -48,3 +48,10 @@ output {
     top: -6px;
     border-radius: 50%;
 }
+
+.noUi-handle:before, .noUi-handle:after {
+    display: none;
+}
+.noUi-tooltip {
+    display: none
+}
