@@ -1,5 +1,5 @@
 import "../sass/style.scss";
-import card, {cardXs, Card} from '../js/card'
+import card, {cardXs} from '../js/card'
 import { ShapeFilter } from "./ShapeFilter";
 import * as noUiSlider from 'nouislider';
 import { ColorFilter } from "./ColorFilter";
@@ -11,12 +11,10 @@ import { FiltersSort } from "./Sort";
 import { playAudio } from "./Player";
 import { TreeContainer } from "./containerTree";
 import { Snow } from "./snow";
+import { filterCards } from "./filterCards";
+import { sortCards } from "./sortCards";
 
-let slider = document.getElementById('r-slider');
-
-// const page = document.querySelector(".page");
-// let slider = document.getElementById('slider');
-noUiSlider.create(slider, {
+let countSlider = noUiSlider.create(document.getElementById('r-slider'), {
     start: [1, 12],
     tooltips: true,
     connect: true,
@@ -35,10 +33,9 @@ noUiSlider.create(slider, {
     },
 });
 
-// slider.noUiSlider.on('change', (values, handle) => {
-//     console.log(slider.noUiSlider.get());
-// })
-
+countSlider.on('change', (values, handle) => {
+    console.log(values);
+})
 
 
 
@@ -54,20 +51,6 @@ noUiSlider.create(sliderYear, {
 });
 
 
-// let snow = document.querySelector('.snow-control')
-// let cont = document.querySelector('.main-tree-container');
-// let one1 = document.querySelector('.snow-blocks');
-// let one2 = document.querySelectorAll('.snow');
-// let sneg = 0
-// snow.addEventListener('click', () =>{onOff()});
-
-// function onOff(){
-//     // cont.classList.toggle("none");
-//     one1.classList.toggle("none");
-//     one2.forEach(item => item.classList.toggle("none"))
-// }
-
-
 export const cardContauner: HTMLElement = document.querySelector(".card-container") as HTMLElement;
 
 const home: HTMLElement  = document.querySelector('#home');
@@ -81,9 +64,7 @@ const containerFavorite = document.querySelector('.favorites-container');
 
 
 export const cards = cardXs(); //---!!!!!!!!!!!!!!
-
-
-cards.forEach(item => cardContauner.appendChild(item.card) );
+cards.forEach(item => cardContauner.appendChild(item.card));
 
 home.addEventListener('click', () => { startPage()});
 titleBtn.addEventListener('click', () => { tousPage()});
@@ -109,72 +90,34 @@ function teePage(): void {
     containerFavorite.innerHTML = '';
     let a = cards.filter(elem => elem.favorite === true);
     cardFs();
-
 }
 
-const containerControls: HTMLDivElement = document.querySelector('.controls');
 
-// const shapeFormaa: HTMLDivElement = document.querySelector('.shape');
-
-
-let selectedF = new FiltersSort(resetFun);
+const selectedF = new FiltersSort(resetFun, sortCards, filterCards);
 selectedF.renderButtons();
 
-function arrShapes (){
+function arrShapes (): ShapeFilter{
     const filtersShape = new ShapeFilter(filterCards);
     filtersShape.renderButtons();
     return filtersShape;
 }
-const filtersShape = arrShapes();
+export const filtersShape = arrShapes();
 
 function arrColors (){
     const colorsFilters = new ColorFilter(filterCards);
     colorsFilters.renderButtons();
     return colorsFilters;
 }
-const colorsFilters = arrColors();
+export const colorsFilters = arrColors();
 
 function arrSize (){
     const sizeFilters = new SizeFilter(filterCards);
     sizeFilters.renderButtons();
     return sizeFilters;
 }
-const sizeFilters = arrSize();
+export const sizeFilters = arrSize();
 
-
-function filterCards() {
-    cardContauner.innerHTML = '';
-  
-    if (colorsFilters.selected && filtersShape.selected && sizeFilters.selected){
-        cards.filter(elem => colorsFilters.checkFilterIsSelected(elem.color) && filtersShape.checkFilterIsSelected(elem.shape) && sizeFilters.checkFilterIsSelected(elem.size)).forEach(item => {cardContauner.appendChild(item.card)});
-    } else
-    if (colorsFilters.selected && sizeFilters.selected){
-        cards.filter(elem => colorsFilters.checkFilterIsSelected(elem.color) && sizeFilters.checkFilterIsSelected(elem.size)).forEach(item => {cardContauner.appendChild(item.card)});
-    } else
-    if (filtersShape.selected && sizeFilters.selected){
-        cards.filter(elem => filtersShape.checkFilterIsSelected(elem.shape) && sizeFilters.checkFilterIsSelected(elem.size)).forEach(item => {cardContauner.appendChild(item.card)});
-    } else
-    if (colorsFilters.selected && filtersShape.selected){
-        cards.filter(elem => colorsFilters.checkFilterIsSelected(elem.color) && filtersShape.checkFilterIsSelected(elem.shape)).forEach(item => {cardContauner.appendChild(item.card)});
-    } else
-    if (colorsFilters.selected){
-        cards.filter(elem => colorsFilters.checkFilterIsSelected(elem.color)).forEach(item => {cardContauner.appendChild(item.card)});
-    } else 
-    if (filtersShape.selected){
-        cards.filter(elem => filtersShape.checkFilterIsSelected(elem.shape)).forEach(item => {cardContauner.appendChild(item.card)});
-    } else 
-    if (sizeFilters.selected){
-        cards.filter(elem => sizeFilters.checkFilterIsSelected(elem.size)).forEach(item => {cardContauner.appendChild(item.card)});
-    } else {
-        cards.forEach(item => {cardContauner.appendChild(item.card)});
-        // let fillArr = cards.filter(elem => colorsFilters.checkFilterIsSelected(elem.color) && filtersShape.checkFilterIsSelected(elem.shape) && sizeFilters.checkFilterIsSelected(elem.size) )
-        // if (fillArr.length > 0) {
-        //     fillArr.forEach(item => {cardContauner.appendChild(item.card)});
-        //     } else if (fillArr.length === 0) {
-        //         cards.forEach(item => {cardContauner.appendChild(item.card)});
-        //     } 
-        }  
-}
+filterCards();
 
 function resetFun(){
     cardContauner.innerHTML = '';
@@ -184,6 +127,7 @@ function resetFun(){
     cards.forEach(item => {cardContauner.appendChild(item.card)});
 }
 
+sortCards;
 
 const favoriteFilter = new Favorite(createFavorite);
 favoriteFilter.create();
@@ -195,31 +139,25 @@ function createFavorite() {
 }
 
 export function cardFs(): FavoriteCard[]{
-        return cards.map((item) => {
-                if (item.favorite === true){
-                let cardsFavorite = new FavoriteCard(item.count, item.num);
-                cardsFavorite.createFavoriteCard();
-                return cardsFavorite;
-                }
-            });
+    return cards.map((item) => {
+        if (item.favorite === true){
+        let cardsFavorite = new FavoriteCard(item.count, item.num);
+        cardsFavorite.createFavoriteCard();
+        return cardsFavorite;
+        }
+    });
 }
 
-function contTree (){
+function contTree() {
   const tree = new TreeContainer();
   tree.createConteiner();
 }
 contTree ();
 
-function snowOn(){
+function snowOn() {
     let snowPlay = new Snow();
     snowPlay.createSnow();
 }
 snowOn();
-
 playAudio();
-// let dropContainer =  document.querySelector('.main-tree-container');
-// let containerToys = document.querySelector('.favorites-container');
-// const toyDrag = document.querySelector('#select2');
-// console.log(toyDrag, dropContainer, 'fgfgfgfgfgfgfg');
-
 

@@ -25,7 +25,6 @@ export class SizeFilter implements Filter {
             console.log(this.selectorSize.size)
             return this.selected = false;
         }
-
     }
 
     checkFilterIsSelected(shape: string): boolean {
@@ -75,6 +74,7 @@ export class SizeFilter implements Filter {
             this.selectorSize.delete(dataFilter);
             this.checkFilter() 
         }
-        this.callback(); 
+        let av = this.callback(); 
+        console.log(av, 'AAAAAAAAAAA');
     }
 }

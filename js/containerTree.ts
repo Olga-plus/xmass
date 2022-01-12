@@ -1,7 +1,6 @@
 import { FavoriteCard } from "./cardsFavorite";
 
 const sectiontreeContainer = document.querySelector('.maine');
-
 export class TreeContainer {
 
     treeContainer: HTMLDivElement;
@@ -27,11 +26,11 @@ export class TreeContainer {
     //     event.preventDefault();
     //     console.log('Enter', this)
     // }
-    dragDrop_(ev: any): void{
+    dragDrop_(ev: DragEvent): void{
         console.log(ev);
         let data = ev.dataTransfer.getData("text");
         console.log(ev.dataTransfer)
-        ev.target.append(document.getElementById(data));
+        sectiontreeContainer.append(document.getElementById(data)); //section
         ev.dataTransfer.clearData();
     }
 

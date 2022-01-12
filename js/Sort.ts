@@ -1,20 +1,25 @@
 import { cardContauner, cards } from "./app";
+import { Card } from "./card";
 import { ShapeFilter } from "./ShapeFilter";
 
 const filtersSort: HTMLDivElement = document.querySelector('.filters-sort');
 
 export class FiltersSort {
 
-
     selectorSort: Set<string>;
     callback: () => void;
-    constructor(callback: () => void) {
+    sortCards: (a:string) => void;
+    filterCards: () => void | Card[];
+
+    constructor(callback: () => void, sortCards: (a:string) => void, filterCards: () => void | Card[]) {
         this.callback = callback;
+        this.sortCards= sortCards
         this.selectorSort = new Set();
+        this.filterCards = filterCards;
     }
 
-    renderButtons() {
 
+    renderButtons() {
         const titleSortControls = document.createElement('div');
         titleSortControls.className = 'title-controls';
         titleSortControls.innerText = 'Сортировка';
@@ -36,26 +41,28 @@ export class FiltersSort {
         buttonReset.innerText = 'Сброс фильтров';
         titleSortControls.appendChild(buttonReset);
         buttonReset.onclick = this.resetSettings.bind(this, sortSelect);
-
     }
 
     sortToys (a: HTMLOptionElement) {
         cardContauner.innerHTML = '';
-        console.log(this, a.value);
-       
-        if (a.value === 'sort-name-max'){
-            cards.sort((a, b) => a.name.localeCompare(b.name)).forEach(item => cardContauner.appendChild(item.card));
-        }
-        if (a.value === 'sort-name-min'){
-            cards.sort((a, b) => b.name.localeCompare(a.name)).forEach(item => cardContauner.appendChild(item.card));
-        }
-        if (a.value === 'sort-count-max'){
-            cards.sort((a, b) => a.count.localeCompare(b.count, undefined, {numeric: true})).forEach(item => cardContauner.appendChild(item.card));
-        }
+        console.log(this.filterCards(), 'sssss', a.value);
 
-        if (a.value === 'sort-count-min'){
-            cards.sort((a, b) => b.count.localeCompare(a.count, undefined, {numeric: true})).forEach(item => cardContauner.appendChild(item.card));
-        }
+        let s = a.value
+
+        this.sortCards(s);
+        // if (a.value === 'sort-name-max'){
+        //     cards.sort((a, b) => a.name.localeCompare(b.name)).forEach(item => cardContauner.appendChild(item.card));
+        // }
+        // if (a.value === 'sort-name-min'){
+        //     cards.sort((a, b) => b.name.localeCompare(a.name)).forEach(item => cardContauner.appendChild(item.card));
+        // }
+        // if (a.value === 'sort-count-max'){
+        //     cards.sort((a, b) => a.count.localeCompare(b.count, undefined, {numeric: true})).forEach(item => cardContauner.appendChild(item.card));
+        // }
+
+        // if (a.value === 'sort-count-min'){
+        //     cards.sort((a, b) => b.count.localeCompare(a.count, undefined, {numeric: true})).forEach(item => cardContauner.appendChild(item.card));
+        // }
 
     }
 

@@ -1,7 +1,7 @@
 import "../sass/style.scss";
 import data from '../assets/data.js';
 import { ChristmasState} from "./state";
-export class Card extends ChristmasState{
+export class Card{
     num: string;
     name: string;
     count: string;
@@ -16,8 +16,8 @@ export class Card extends ChristmasState{
     arrFavorCard: Set<HTMLDivElement> = new Set();
     card: HTMLDivElement;
     callback: () => void;
-    constructor({ num, name, count, year, shape, color, size, favorite}: { num: string; name: string; count: string; year: string; shape: string; color: string; size: string; favorite: boolean;}) {
-        super();
+    constructor({ num, name, count, year, shape, color, size, favorite}: 
+        { num: string; name: string; count: string; year: string; shape: string; color: string; size: string; favorite: boolean;}) {
         this.num = num;
         this.name = name;
         this.count = count;

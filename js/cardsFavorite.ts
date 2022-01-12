@@ -1,6 +1,3 @@
-import { count } from "console";
-import { start } from "repl";
-import { state } from "./state";
 
 const containerFavorite = document.querySelector('.favorites-container');
 const treeContainer = document.querySelector('.main-tree-container');
