@@ -30,6 +30,9 @@ export class SizeFilter extends ChristmasState implements Filter {
     }
 
     checkFilterIsSelected(shape: string): boolean {
+        if (this.selectorSize.size === 0) {
+            return true;
+        };
         return this.selectorSize.has(shape);
     }
 

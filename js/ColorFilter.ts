@@ -19,11 +19,9 @@ export class ColorFilter implements Filter{
 
     checkFilter() {
         if (this.selectorColor.size > 0){
-        console.log(this.selectorColor.size)
         return this.selected = true;
         } else
         if (this.selectorColor.size === 0){
-            console.log(this.selectorColor.size)
             return this.selected = false;
         }
     }

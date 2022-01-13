@@ -26,17 +26,18 @@ export class ShapeFilter implements Filter {
 
     checkFilter(){
         if (this.selectorShape.size > 0){
-        console.log(this.selectorShape.size)
         return this.selected = true;
         } else
         if (this.selectorShape.size === 0){
-            console.log(this.selectorShape.size)
             return this.selected = false;
         }
 
     }
 
     checkFilterIsSelected(shape: string): boolean {
+        if (this.selectorShape.size === 0) {
+            return true;
+        };
         return this.selectorShape.has(shape);
     }
 

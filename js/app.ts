@@ -12,6 +12,7 @@ import { TreeContainer } from "./containerTree";
 import { Snow } from "./snow";
 import { SearchFilter } from "./Search";
 import { SliderFilterCount } from "./Slider";
+import { SliderFilterYear } from "./SliderYear";
 
 export const cardContauner: HTMLElement = document.querySelector(".card-container") as HTMLElement;
 
@@ -57,7 +58,6 @@ function teePage(): void {
 
 
 const selectedF = new FiltersSort(resetFun, filterCards);
-selectedF.renderButtons();
 
 function arrShapes (): ShapeFilter{
     const filtersShape = new ShapeFilter(filterCards);
@@ -78,8 +78,19 @@ function arrSize (){
     sizeFilters.renderButtons();
     return sizeFilters;
 }
-export const sizeFilters = arrSize();
 
+export const sizeFilters = arrSize();
+const sliderCount = new SliderFilterCount(filterCards);
+const sliderYear = new SliderFilterYear(filterCards);
+
+function filterCards() {
+    cardContauner.innerHTML = '';
+    cards.filter(elem => colorsFilters.checkFilterIsSelected(elem.color) && filtersShape.checkFilterIsSelected(elem.shape) 
+        && sizeFilters.checkFilterIsSelected(elem.size) && sliderCount.checkFilterIsSelected(Number(elem.count))
+        && sliderYear.checkFilterIsSelected(Number(elem.year))).sort((a,b )=> selectedF.checkSortNameIsSelected(a.name, b.name) 
+        || selectedF.checkSortCountIsSelected(a.count, b.count))
+        .forEach(item => cardContauner.appendChild(item.card));
+}
 
 filterCards();
 
@@ -89,49 +100,10 @@ function resetFun(){
     colorsFilters.reset();
     sizeFilters.reset();
     sliderCount.reset();
+    sliderYear.reset();
     cards.forEach(item => {
         cardContauner.appendChild(item.card)});
 }
-
-// sortCards;
-
-const sliderCount = new SliderFilterCount(filterCards);
-
-function filterCards() {
-    cardContauner.innerHTML = '';
-    cards.filter(elem => colorsFilters.checkFilterIsSelected(elem.color) && filtersShape.checkFilterIsSelected(elem.shape) 
-        && sizeFilters.checkFilterIsSelected(elem.size) && sliderCount.checkFilterIsSelected(Number(elem.count)))
-        .forEach(item => cardContauner.appendChild(item.card));
-}
-
-
-
-// let yearSlider = noUiSlider.create(document.getElementById('year-slider'), {
-//     start: [1940, 2020],
-//     connect: true,
-//     range: {
-//         'min': 1940,
-//         'max': 2020
-//     },
-//     format:{
-//         to: function(value){
-//             return Math.round(value);
-//         },
-//         from: function(value){
-//             return parseInt(value);
-//         },
-//     },
-// });
-
-// yearSlider.on('change', (values, handle) => {
-//     console.log(values, handle);
-//     let a = document.querySelectorAll('.slider-output');
-//     a[2].innerHTML = `${values[0]}`;
-//     a[3].innerHTML = `${values[1]}`;
-//     cardContauner.innerHTML = '';
-//     cards.filter(elem => Number(elem.year) >= values[0] && Number(elem.year) <= values[1])
-//     .forEach(item => {cardContauner.appendChild(item.card)});
-// })
 
 
 let search = new SearchFilter(inputSearch);
@@ -139,7 +111,6 @@ search.createSerch();
 
 function inputSearch() {
 }
-
 
 const favoriteFilter = new Favorite(createFavorite);
 favoriteFilter.create();
