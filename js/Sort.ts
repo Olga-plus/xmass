@@ -8,10 +8,11 @@ export class FiltersSort {
     callback: () => void;
     sortCards: (a:string) => void;
     filterCards: () => void | Card[];
+    // constructor(callback: () => void, sortCards: (a:string) => void, filterCards: () => void | Card[]) {
 
-    constructor(callback: () => void, sortCards: (a:string) => void, filterCards: () => void | Card[]) {
+    constructor(callback: () => void, filterCards: () => void | Card[]) {
         this.callback = callback;
-        this.sortCards= sortCards
+        // this.sortCards= sortCards
         this.selectorSort = new Set();
         this.filterCards = filterCards;
     }
@@ -47,7 +48,7 @@ export class FiltersSort {
 
         let s = a.value
 
-        this.sortCards(s);
+        // this.sortCards(s);
         // if (a.value === 'sort-name-max'){
         //     cards.sort((a, b) => a.name.localeCompare(b.name)).forEach(item => cardContauner.appendChild(item.card));
         // }

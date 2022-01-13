@@ -76,7 +76,6 @@ export class SizeFilter extends ChristmasState implements Filter {
             this.selectorSize.delete(dataFilter);
             this.checkFilter() 
         }
-        let av = this.callback(); 
-        console.log(av, 'AAAAAAAAAAA');
+        this.callback(); 
     }
 }

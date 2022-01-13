@@ -13,9 +13,9 @@ export class Favorite extends ChristmasState{
         this.callback = callback;
     }
 
-    checkFun (){
-        return this.favoriteValue;
-    }
+    // checkFun (){
+    //     return this.favoriteValue;
+    // }
 
     create() {
         const inFav = document.createElement('div');

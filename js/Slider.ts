@@ -1,18 +1,29 @@
 import { Card } from "./card";
+import { Filter } from './interfaces';
 import * as noUiSlider from 'nouislider';
 const cardContauner: HTMLElement = document.querySelector(".card-container") as HTMLElement;
 const filtrRunge: HTMLElement = document.querySelector(".filters-range") as HTMLElement;
 
-export class SliderFilter  {
-   
+import { API } from "nouislider";
 
-
-    constructor() {
-
+export class SliderFilterCount implements Filter {
+    countSlider: API;
+    callback: () => void;
+    constructor(callback: () => void) {
+        this.callback = callback;
+        this.createSlaider();
     }
 
-    createSlaider(){
+    checkFilterIsSelected(filter: number): boolean {
+        let values = this.countSlider.get() as number[];
+        return values[0] <= filter && values[1] >= filter;
+    }
 
+    reset(){
+        this.countSlider.set([1, 12])
+    }
+
+    createSlaider() {
         let count = document.createElement('div');
         count.className = 'count';
         filtrRunge.appendChild(count);
@@ -22,71 +33,78 @@ export class SliderFilter  {
         nameCount.innerText = 'Колличество экземпляров:';
         count.appendChild(nameCount);
 
+        let countContainer = document.createElement('div');
+        countContainer.className = 'count-slider-container';
+        count.appendChild(countContainer);
+
         let outputCountStart = document.createElement('output');
         outputCountStart.className = 'slider-output';
         outputCountStart.innerText = '1';
-        count.appendChild(outputCountStart);
+        countContainer.appendChild(outputCountStart);
 
         let sliderCount = document.createElement('div');
         sliderCount.className = 'count-slider';
         sliderCount.id = 'slider';
-        count.appendChild(sliderCount);
+        countContainer.appendChild(sliderCount);
 
         let outputCountFin = document.createElement('output');
         outputCountFin.className = 'slider-output';
         outputCountFin.innerText = '12';
-        count.appendChild(outputCountFin);
+        countContainer.appendChild(outputCountFin);
 
 
-        let year = document.createElement('div');
-        count.className = 'year';
-        filtrRunge.appendChild(year);
+        // let year = document.createElement('div');
+        // count.className = 'year';
+        // filtrRunge.appendChild(year);
 
-        let nameYear = document.createElement('span');
-        nameYear.className = 'control-span';
-        nameYear.innerText = 'Год приобретения:';
-        year.appendChild(nameYear);
+        // let nameYear = document.createElement('span');
+        // nameYear.className = 'control-span';
+        // nameYear.innerText = 'Год приобретения:';
+        // year.appendChild(nameYear);
 
-        let outputYearStart = document.createElement('output');
-        outputYearStart.className = 'slider-output';
-        outputYearStart.innerText = '1940';
-        count.appendChild(outputYearStart);
+        // let countContainer = document.createElement('div');
+        // countContainer.className = 'count-slider-container';
+        // count.appendChild(countContainer);
 
-        let sliderYear = document.createElement('div');
-        sliderYear.className = 'year-slider';
-        sliderYear.id = 'year-slider';
-        count.appendChild(sliderYear);
+        // let outputYearStart = document.createElement('output');
+        // outputYearStart.className = 'slider-output';
+        // outputYearStart.innerText = '1940';
+        // countContainer.appendChild(outputYearStart);
 
-        let outputYearFin = document.createElement('output');
-        outputYearFin.className = 'slider-output';
-        outputYearFin.innerText = '2020';
-        count.appendChild(outputYearFin);
+        // let sliderYear = document.createElement('div');
+        // sliderYear.className = 'year-slider';
+        // sliderYear.id = 'year-slider';
+        // countContainer.appendChild(sliderYear);
 
-    //     let countSlider = noUiSlider.create(sliderCount, {
-    //         start: [1, 12],
-    //         tooltips: true,
-    //         connect: true,
-    //         padding: 0,
-    //         range: {
-    //             'min': 1,
-    //             'max': 12
-    //         },
-    //         format:{
-    //             to: function(value){
-    //                 return Math.round(value);
-    //             },
-    //             from: function(value){
-    //                 return parseInt(value);
-    //             },
-    //         },
-    //     });
+        // let outputYearFin = document.createElement('output');
+        // outputYearFin.className = 'slider-output';
+        // outputYearFin.innerText = '2020';
+        // countContainer.appendChild(outputYearFin);
 
-    //     countSlider.on = this.rangeSlider.bind(this)
-    // }
+        this.countSlider = noUiSlider.create(document.getElementById('slider'), {
+            start: [1, 12],
+            tooltips: true,
+            connect: true,
+            padding: 0,
+            range: {
+                'min': 1,
+                'max': 12
+            },
+            format:{
+                to: function(value){
+                    return Math.round(value);
+                },
+                from: function(value){
+                    return parseInt(value);
+                },
+            },
+        });
 
-    // rangeSlider(){
-    //     console.log(this)
-    // }
-}
-
+        this.countSlider.on('change', (values) => {
+            let a = document.querySelectorAll('.slider-output');
+            a[0].innerHTML = `${values[0]}`;
+            a[1].innerHTML = `${values[1]}`;
+            this.callback();
+        })
+    }
 }

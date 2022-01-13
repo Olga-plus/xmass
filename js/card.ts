@@ -1,7 +1,7 @@
 import "../sass/style.scss";
 import data from '../assets/data.js';
-import { ChristmasState} from "./state";
-export class Card{
+import { state} from "./state";
+export class Card {
     num: string;
     name: string;
     count: string;
@@ -109,8 +109,10 @@ export class Card{
         this.card.classList.toggle("active");
         if(this.favorite === true){
             this.cardFavor.innerText= 'Любимая: да';
+            state.selectCard(this);
         } else  if(this.favorite === false){
             this.cardFavor.innerText= 'Любимая: нет';
+            state.deselectCard(this);
         } 
         
     }

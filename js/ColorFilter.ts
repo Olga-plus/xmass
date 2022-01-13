@@ -17,7 +17,7 @@ export class ColorFilter implements Filter{
         this.selectorColor = new Set();
     }
 
-    checkFilter(){
+    checkFilter() {
         if (this.selectorColor.size > 0){
         console.log(this.selectorColor.size)
         return this.selected = true;
@@ -26,10 +26,12 @@ export class ColorFilter implements Filter{
             console.log(this.selectorColor.size)
             return this.selected = false;
         }
-
     }
 
     checkFilterIsSelected(color: string): boolean {
+        if (this.selectorColor.size === 0) {
+            return true;
+        };
         return this.selectorColor.has(color);
     }
 
