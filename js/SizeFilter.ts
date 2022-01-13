@@ -1,8 +1,9 @@
 import { Filter } from "./interfaces";
+import { ChristmasState } from "./state";
 
 const filtersValue: HTMLDivElement = document.querySelector('.filters-value');
 
-export class SizeFilter implements Filter {
+export class SizeFilter extends ChristmasState implements Filter {
     private callback: () => void;
 
     selectorSize: Set<string>;
@@ -12,6 +13,7 @@ export class SizeFilter implements Filter {
     selected: boolean = false;
 
     constructor(callback: () => void) {
+        super();
         this.selectorSize = new Set();
         this.callback = callback;
     }

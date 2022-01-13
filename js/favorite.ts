@@ -1,7 +1,8 @@
 import { cardContauner, cards } from "./app";
 import {ChristmasState} from "./state";
 const filtersValue: HTMLDivElement = document.querySelector('.filters-value');
-const inFav: HTMLDivElement = document.querySelector('.select');
+// const inFav: HTMLDivElement = document.querySelector('.select');
+const headerControls = document.querySelector('.header__controls');
 export class Favorite extends ChristmasState{
     private favoriteValue: boolean = false;
     callback: () => void;
@@ -17,6 +18,10 @@ export class Favorite extends ChristmasState{
     }
 
     create() {
+        const inFav = document.createElement('div');
+        inFav.className = 'select';
+        headerControls.appendChild(inFav);
+
         this.favoriteCount = document.createElement('span');
         this.favoriteCount.innerText = `${cards.filter(elem => elem.favorite === true).length}`
         inFav.appendChild(this.favoriteCount);

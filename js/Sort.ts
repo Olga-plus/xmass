@@ -1,7 +1,5 @@
-import { cardContauner, cards } from "./app";
 import { Card } from "./card";
-import { ShapeFilter } from "./ShapeFilter";
-
+const cardContauner: HTMLElement = document.querySelector(".card-container") as HTMLElement;
 const filtersSort: HTMLDivElement = document.querySelector('.filters-sort');
 
 export class FiltersSort {

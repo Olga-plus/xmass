@@ -1,5 +1,5 @@
 import "../sass/style.scss";
-import {cardXs} from '../js/card'
+import {Card, cardXs} from '../js/card'
 import { ShapeFilter } from "./ShapeFilter";
 import * as noUiSlider from 'nouislider';
 import { ColorFilter } from "./ColorFilter";
@@ -13,64 +13,8 @@ import { TreeContainer } from "./containerTree";
 import { Snow } from "./snow";
 import { filterCards } from "./filterCards";
 import { sortCards } from "./sortCards";
-
-let countSlider = noUiSlider.create(document.getElementById('slider'), {
-    start: [1, 12],
-    tooltips: true,
-    connect: true,
-    padding: 0,
-    range: {
-        'min': 1,
-        'max': 12
-    },
-    format:{
-        to: function(value){
-            return Math.round(value);
-        },
-        from: function(value){
-            return parseInt(value);
-        },
-    },
-});
-
-countSlider.on('change', (values, handle) => {
-    console.log(values, handle);
-    let a = document.querySelectorAll('.slider-output');
-    a[0].innerHTML = `${values[0]}`;
-    a[1].innerHTML = `${values[1]}`;
-    cardContauner.innerHTML = '';
-    // cards.filter(elem => elem.count >= values[0].toString() && elem.count <= values[1].toString())
-    cards.filter(elem => Number(elem.count) >= values[0] && Number(elem.count) <= values[1])
-    .forEach(item => {cardContauner.appendChild(item.card)});
-})
-
-let yearSlider = noUiSlider.create(document.getElementById('year-slider'), {
-    start: [1940, 2020],
-    connect: true,
-    range: {
-        'min': 1940,
-        'max': 2020
-    },
-    format:{
-        to: function(value){
-            return Math.round(value);
-        },
-        from: function(value){
-            return parseInt(value);
-        },
-    },
-});
-
-yearSlider.on('change', (values, handle) => {
-    console.log(values, handle);
-    let a = document.querySelectorAll('.slider-output');
-    a[2].innerHTML = `${values[0]}`;
-    a[3].innerHTML = `${values[1]}`;
-    cardContauner.innerHTML = '';
-    cards.filter(elem => Number(elem.year) >= values[0] && Number(elem.year) <= values[1])
-    .forEach(item => {cardContauner.appendChild(item.card)});
-})
-
+import { createSecretKey } from "crypto";
+import { SearchFilter } from "./Search";
 
 export const cardContauner: HTMLElement = document.querySelector(".card-container") as HTMLElement;
 
@@ -138,6 +82,7 @@ function arrSize (){
 }
 export const sizeFilters = arrSize();
 
+
 filterCards();
 
 function resetFun(){
@@ -145,10 +90,118 @@ function resetFun(){
     filtersShape.reset();
     colorsFilters.reset();
     sizeFilters.reset();
-    cards.forEach(item => {cardContauner.appendChild(item.card)});
+    // cards.reset
+    cards.forEach(item => {
+        cardContauner.appendChild(item.card)});
 }
 
 sortCards;
+
+let countSlider = noUiSlider.create(document.getElementById('slider'), {
+    start: [1, 12],
+    tooltips: true,
+    connect: true,
+    padding: 0,
+    range: {
+        'min': 1,
+        'max': 12
+    },
+    format:{
+        to: function(value){
+            return Math.round(value);
+        },
+        from: function(value){
+            return parseInt(value);
+        },
+    },
+});
+
+countSlider.on('change', (values, handle) => {
+    
+    let a = document.querySelectorAll('.slider-output');
+    a[0].innerHTML = `${values[0]}`;
+    a[1].innerHTML = `${values[1]}`;
+    cardContauner.innerHTML = '';
+    sliderRange(values[0], values[1]);
+
+})
+
+function sliderRange(value1: string|number, value2: string|number){
+    if (colorsFilters.selected && filtersShape.selected && sizeFilters.selected) {
+        cards.filter(elem => colorsFilters.checkFilterIsSelected(elem.color) && filtersShape.checkFilterIsSelected(elem.shape) 
+        && sizeFilters.checkFilterIsSelected(elem.size) && (Number(elem.count) >= value1 && Number(elem.count) <= value2))
+        .forEach(item => cardContauner.appendChild(item.card));
+    }
+    else if (colorsFilters.selected && sizeFilters.selected) {
+        cards.filter(elem => colorsFilters.checkFilterIsSelected(elem.color) && sizeFilters.checkFilterIsSelected(elem.size) 
+        && (Number(elem.count) >= value1 && Number(elem.count) <= value2))
+        .forEach(item => { cardContauner.appendChild(item.card)});
+    }
+    else if (filtersShape.selected && sizeFilters.selected) {
+        cards.filter(elem => filtersShape.checkFilterIsSelected(elem.shape) && sizeFilters.checkFilterIsSelected(elem.size)
+        && (Number(elem.count) >= value1 && Number(elem.count) <= value2))
+        .forEach(item => { cardContauner.appendChild(item.card)});
+    }
+    else if (colorsFilters.selected && filtersShape.selected) {
+        cards.filter(elem => colorsFilters.checkFilterIsSelected(elem.color) && filtersShape.checkFilterIsSelected(elem.shape))
+        .forEach(item => { cardContauner.appendChild(item.card); });
+    }
+    else if (colorsFilters.selected) {
+         cards.filter(elem => colorsFilters.checkFilterIsSelected(elem.color) && (Number(elem.count) >= value1 && Number(elem.count) <= value2))
+        .forEach(item => { cardContauner.appendChild(item.card)});
+    }
+    else if (filtersShape.selected) {
+        cards.filter(elem => filtersShape.checkFilterIsSelected(elem.shape) && (Number(elem.count) >= value1 && Number(elem.count) <= value2))
+        .forEach(item => { cardContauner.appendChild(item.card)});
+    }
+    else if (sizeFilters.selected) {
+        cards.filter(elem => sizeFilters.checkFilterIsSelected(elem.size) && (Number(elem.count) >= value1 && Number(elem.count) <= value2))
+        .forEach(item => { cardContauner.appendChild(item.card)});
+    } else {
+        cards.filter(elem => Number(elem.count) >= value1 && Number(elem.count) <= value2)
+        .forEach(item => {cardContauner.appendChild(item.card)});
+    }
+    // cards.filter(elem => Number(elem.count) >= value1 && Number(elem.count) <= value2)
+    // .forEach(item => {cardContauner.appendChild(item.card)});
+    // return cards.filter(elem => Number(elem.count) >= value1 && Number(elem.count) <= value2);
+}
+
+
+
+let yearSlider = noUiSlider.create(document.getElementById('year-slider'), {
+    start: [1940, 2020],
+    connect: true,
+    range: {
+        'min': 1940,
+        'max': 2020
+    },
+    format:{
+        to: function(value){
+            return Math.round(value);
+        },
+        from: function(value){
+            return parseInt(value);
+        },
+    },
+});
+
+yearSlider.on('change', (values, handle) => {
+    console.log(values, handle);
+    let a = document.querySelectorAll('.slider-output');
+    a[2].innerHTML = `${values[0]}`;
+    a[3].innerHTML = `${values[1]}`;
+    cardContauner.innerHTML = '';
+    cards.filter(elem => Number(elem.year) >= values[0] && Number(elem.year) <= values[1])
+    .forEach(item => {cardContauner.appendChild(item.card)});
+})
+
+
+let search = new SearchFilter(inputSearch);
+search.createSerch();
+
+function inputSearch() {
+}
+
 
 const favoriteFilter = new Favorite(createFavorite);
 favoriteFilter.create();

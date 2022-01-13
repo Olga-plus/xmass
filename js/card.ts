@@ -114,6 +114,7 @@ export class Card{
         } 
         
     }
+
 }
 
 export function cardXs(): Card[]{

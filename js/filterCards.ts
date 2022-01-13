@@ -30,6 +30,7 @@ export function filterCards(): void | Card[] {
     else if (sizeFilters.selected) {
         return cards.filter(elem => sizeFilters.checkFilterIsSelected(elem.size)).forEach(item => { cardContauner.appendChild(item.card); });
     } else {
-        return cards.forEach(item => { cardContauner.appendChild(item.card); });
+        return cards.forEach(item => { cardContauner.appendChild(item.card) });
     }
+    
 }
