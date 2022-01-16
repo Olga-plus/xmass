@@ -1,4 +1,4 @@
-const cardContauner: HTMLElement = document.querySelector(".card-container") as HTMLElement;
+const cardContauner: HTMLElement = document.querySelector('.card-container') as HTMLElement;
 const filtersSort: HTMLDivElement = document.querySelector('.filters-sort');
 export class FiltersSort {
     sortSelect: any;
@@ -34,7 +34,6 @@ export class FiltersSort {
     }
 
     renderButtons() {
-
         const titleSortControls = document.createElement('div');
         titleSortControls.className = 'title-controls';
         titleSortControls.innerText = 'Сортировка';

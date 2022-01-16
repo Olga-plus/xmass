@@ -4,7 +4,7 @@ import { ShapeFilter } from "./ShapeFilter";
 import { ColorFilter } from "./ColorFilter";
 import { Favorite } from "./favorite";
 import { FavoriteCard } from "./cardsFavorite";
-import { ChristmasState } from "./state";
+import { state } from "./state";
 import { SizeFilter } from "./SizeFilter";
 import { FiltersSort } from "./Sort";
 import { playAudio } from "./Player";
@@ -23,16 +23,16 @@ const tree: HTMLElement  = document.querySelector('#tree');
 const mainePage: HTMLElement  = document.querySelector('#main-page');
 const homePage: HTMLElement  = document.querySelector('#start-page');
 const favoritPage: HTMLElement  = document.querySelector('#favorie-page');
-const containerFavorite = document.querySelector('.favorites-container');
+const containerFavorite: HTMLElement = document.querySelector('.favorites-container');
+const favoriteCount = document.getElementById('count-favorite');
 
-
-export const cards = cardXs(); //---!!!!!!!!!!!!!!
-cards.forEach(item => cardContauner.appendChild(item.card));
 
 home.addEventListener('click', () => { startPage()});
 titleBtn.addEventListener('click', () => { tousPage()});
 tous.addEventListener('click', () => { tousPage()});
 tree.addEventListener('click', () => {teePage()});
+
+export const cards = cardXs(); //---!!!!!!!!!!!!!!
 
 function startPage(): void {
     mainePage.className = 'none';
@@ -44,6 +44,9 @@ function tousPage(): void {
     homePage.className = 'none';
     favoritPage.className = 'none';
     mainePage.className = 'page main-page';
+
+    cards.forEach(item => cardContauner.appendChild(item.card));
+    favoriteCount.innerText = `${cards.filter(elem => elem.favorite === true).length}`;
 }
 
 function teePage(): void {
@@ -51,13 +54,18 @@ function teePage(): void {
     homePage.className = 'none';
     favoritPage.className = 'page favorites-page';
     containerFavorite.innerHTML = '';
+    cardFs();
+}
+
+function cardFs(): FavoriteCard[]{
     let favoritToys = state.getFavoriteTous();
-    // favoritToys.forEach(item => cardContauner.appendChild(item.card));
-    // cardFs();
+    return favoritToys.map((item) => {
+        let cardsFavorite = new FavoriteCard(item.count, item.num);
+        return cardsFavorite;
+    });
 }
 
 
-const selectedF = new FiltersSort(resetFun, filterCards);
 
 function arrShapes (): ShapeFilter{
     const filtersShape = new ShapeFilter(filterCards);
@@ -83,6 +91,8 @@ export const sizeFilters = arrSize();
 const sliderCount = new SliderFilterCount(filterCards);
 const sliderYear = new SliderFilterYear(filterCards);
 
+const selectedF = new FiltersSort(resetFun, filterCards);
+
 function filterCards() {
     cardContauner.innerHTML = '';
     cards.filter(elem => colorsFilters.checkFilterIsSelected(elem.color) && filtersShape.checkFilterIsSelected(elem.shape) 
@@ -101,32 +111,32 @@ function resetFun(){
     sizeFilters.reset();
     sliderCount.reset();
     sliderYear.reset();
-    cards.forEach(item => {
-        cardContauner.appendChild(item.card)});
+    cards.forEach(item => cardContauner.appendChild(item.card));
 }
 
+const checkFavorite = new Favorite(favoriteCheck);
 
-let search = new SearchFilter(inputSearch);
-search.createSerch();
+function favoriteCheck(): void {
+    if(this.favoriteValue){
+        state.getFavoriteTous().forEach(item => {cardContauner.appendChild(item.card)});
+    }
+    else if(!this.favoriteValue){
+        cards.filter(elem => elem.favorite === true).forEach(item => {cardContauner.appendChild(item.card)});
+    }
+}
+
+const search = new SearchFilter(inputSearch);
+
+const sorryWrapp = document.querySelector('.sorry-centr')
 
 function inputSearch() {
-}
-
-const favoriteFilter = new Favorite(createFavorite);
-favoriteFilter.create();
-const state = new ChristmasState()
-function createFavorite() {
-    console.log('ffff')
-}
-
-export function cardFs(): FavoriteCard[]{
-    return cards.map((item) => {
-        if (item.favorite === true){
-        let cardsFavorite = new FavoriteCard(item.count, item.num);
-        cardsFavorite.createFavoriteCard();
-        return cardsFavorite;
-        }
-    });
+    cardContauner.innerHTML = '';
+    const result = cards.filter(elem => elem.name.toLowerCase().includes(this.headerSerach.value.toLowerCase()));
+    if (result.length === 0){
+        sorryWrapp.classList.remove('none');
+    } else {
+        result.forEach(item => {cardContauner.appendChild(item.card)}); 
+    }
 }
 
 function contTree() {
@@ -139,6 +149,6 @@ function snowOn() {
     let snowPlay = new Snow();
     snowPlay.createSnow();
 }
+
 snowOn();
 playAudio();
-

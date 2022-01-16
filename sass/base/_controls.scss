@@ -42,8 +42,7 @@
 }
 
 .shape button.active {
-    filter: invert(9%) sepia(63%) saturate(461%) hue-rotate(
-322deg) brightness(83%) contrast(88%);
+    filter: invert(9%) sepia(63%) saturate(461%) hue-rotate(322deg) brightness(83%) contrast(88%);
 }
 
 .shape button:nth-child(1) {
@@ -105,8 +104,7 @@
     height: 10px;
     border: solid #fff;
     border-width: 0 4px 4px 0;
-    transform: rotate(
-45deg);
+    transform: rotate(45deg);
 }
 
 .color button:nth-child(2) {
@@ -232,8 +230,7 @@
     height: 10px;
     border: solid #fff;
     border-width: 0 4px 4px 0;
-    transform: rotate(
-45deg);
+    transform: rotate(45deg);
 }
 
 .sort-select {
@@ -245,7 +242,7 @@
     height: 40px;
     padding: 5px 25px;
     margin: 10px 0;
-    margin-bottom: 125px;
+    margin-bottom: 35px;
     background-color: rgba(31, 112, 127, .3);
     background-image: url(../assets/svg/arrow-down.svg);
     background-size: 20px;

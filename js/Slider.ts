@@ -29,7 +29,7 @@ export class SliderFilterCount implements Filter {
 
         let nameCount = document.createElement('span');
         nameCount.className = 'control-span';
-        nameCount.innerText = 'Колличество экземпляров:';
+        nameCount.innerText = 'Количество экземпляров:';
         count.appendChild(nameCount);
 
         let countContainer = document.createElement('div');

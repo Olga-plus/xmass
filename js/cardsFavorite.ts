@@ -12,6 +12,7 @@ export class FavoriteCard {
     constructor (count: string, num: string){
         this.count = count;
         this.num = num;
+        this.createFavoriteCard()
     }
 
     createFavoriteCard () {

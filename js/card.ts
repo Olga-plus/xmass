@@ -1,6 +1,9 @@
 import "../sass/style.scss";
 import data from '../assets/data.js';
 import { state} from "./state";
+
+const filtersValue: HTMLDivElement = document.querySelector('.filters-value');
+const headerControls = document.querySelector('.header__controls');
 export class Card {
     num: string;
     name: string;
@@ -16,6 +19,7 @@ export class Card {
     arrFavorCard: Set<HTMLDivElement> = new Set();
     card: HTMLDivElement;
     callback: () => void;
+
     constructor({ num, name, count, year, shape, color, size, favorite}: 
         { num: string; name: string; count: string; year: string; shape: string; color: string; size: string; favorite: boolean;}) {
         this.num = num;
@@ -84,6 +88,7 @@ export class Card {
         } else
         if (this.favorite === true) {
             this.cardFavor.innerHTML = `Любимая: ${yes}`; 
+            state.selectCard(this);
         }
         
         cardDescription.appendChild(this.cardFavor);
@@ -110,13 +115,13 @@ export class Card {
         if(this.favorite === true){
             this.cardFavor.innerText= 'Любимая: да';
             state.selectCard(this);
+            state.valueFavorite();
         } else  if(this.favorite === false){
             this.cardFavor.innerText= 'Любимая: нет';
             state.deselectCard(this);
+            state.valueFavorite();
         } 
-        
     }
-
 }
 
 export function cardXs(): Card[]{

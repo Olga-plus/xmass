@@ -1,21 +1,28 @@
 import { Card } from './card';
+const favoriteCount = document.getElementById('count-favorite');
 
 export class ChristmasState {
     favoriteToys = new Set<Card>();
 
+    constructor(){
+        this.valueFavorite();
+    }
+
     selectCard(card: Card): void {
         this.favoriteToys.add(card);
-        console.log('Hej!',this.favoriteToys)
     }
 
     deselectCard(card: Card): void {
         this.favoriteToys.delete(card);
-        console.log('Bye!', this.favoriteToys)
+    }
+
+    valueFavorite(){
+        let favoritesToy = this.getFavoriteTous();
+        favoriteCount.innerText = `${favoritesToy.length}`;
     }
 
     getFavoriteTous(){
         let favoritesToy = Array.from(this.favoriteToys);
-        console.log(favoritesToy, 'ffffffffffffffffffffff')
         return favoritesToy;
     }
 }
