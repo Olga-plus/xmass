@@ -24,7 +24,7 @@ const mainePage: HTMLElement  = document.querySelector('#main-page');
 const homePage: HTMLElement  = document.querySelector('#start-page');
 const favoritPage: HTMLElement  = document.querySelector('#favorie-page');
 const containerFavorite: HTMLElement = document.querySelector('.favorites-container');
-const favoriteCount = document.getElementById('count-favorite');
+const favoriteCount: HTMLElement = document.getElementById('count-favorite');
 
 
 home.addEventListener('click', () => { startPage()});
@@ -127,13 +127,17 @@ function favoriteCheck(): void {
 
 const search = new SearchFilter(inputSearch);
 
-const sorryWrapp = document.querySelector('.sorry-centr')
-
 function inputSearch() {
     cardContauner.innerHTML = '';
     const result = cards.filter(elem => elem.name.toLowerCase().includes(this.headerSerach.value.toLowerCase()));
     if (result.length === 0){
-        sorryWrapp.classList.remove('none');
+        const sorryWrapp = document.createElement('div');
+        sorryWrapp.className = 'wrapper sorry-centr';
+        const sorryText = document.createElement('div');
+        sorryText.className = 'sorry';
+        sorryText.innerText = "Извините, совпадений не обнаружено ;)";
+        sorryWrapp.appendChild(sorryText);
+        cardContauner.appendChild(sorryWrapp);
     } else {
         result.forEach(item => {cardContauner.appendChild(item.card)}); 
     }
