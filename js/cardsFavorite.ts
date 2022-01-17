@@ -26,7 +26,7 @@ export class FavoriteCard {
         this.countFavorite.innerText = `${this.count}`
         this.cardFavorite.appendChild(this.countFavorite);
 
-        for (let i = 1; i < Number(this.count); i++){
+        for (let i = 0; i < Number(this.count); i++){
 
             this.cardFavoriteImg = new Image();
             this.cardFavoriteImg.className = 'favorites-card-img';
@@ -37,7 +37,7 @@ export class FavoriteCard {
             this.cardFavoriteImg.src = `../assets/toys/${this.num}.webp`
             this.cardFavorite.appendChild(this.cardFavoriteImg); 
             this.cardFavoriteImg.ondragstart = this.dragstart_.bind(Event);
-            this.cardFavoriteImg.ondragend = this.dragEnd_.bind(this, this.cardFavorite);
+            this.cardFavoriteImg.ondragend = this.dragEnd_.bind(this);
         }
     }
 
@@ -46,8 +46,9 @@ export class FavoriteCard {
         console.log ('start', ev, ev.target.id);
     }
 
-    dragEnd_(containerCard:HTMLDivElement): void{
-        let countToy = containerCard.querySelectorAll('.favorites-card-img');
+    dragEnd_(event: DragEvent): void {
+        // event.dataTransfer.dropEffect === 'none'
+        let countToy = this.cardFavorite.querySelectorAll('.favorites-card-img');
         this.countFavorite.innerText = `${countToy.length}`
         console.log ('end');
     }

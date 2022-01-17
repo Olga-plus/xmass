@@ -20,6 +20,8 @@ export class TreeContainer {
         area.setAttribute('shape', 'poly');
         map.appendChild(area);
         this.treeContainer.appendChild(map);
+        const treeImg = new Image();
+
 
     //   <img src="./assets/tree/2.webp" class="main-tree" usemap="#tree-map" alt="tree">
         this.treeContainer.ondragover = this.dragOver_.bind(this);
@@ -38,11 +40,11 @@ export class TreeContainer {
     dragDrop_(ev: DragEvent): void{
         console.log(ev);
         let data = ev.dataTransfer.getData("text");
-        console.log(ev.dataTransfer)
-        document.getElementById(data).style.top = '0';
-        document.getElementById(data).style.left = '0';
+        console.log(ev.offsetX)
+        document.getElementById(data).style.top = `${ev.offsetY}px`;
+        document.getElementById(data).style.left = `${ev.offsetX}px`;
         sectiontreeContainer.append(document.getElementById(data)); //section
-
+        
         ev.dataTransfer.clearData();
     }
 
