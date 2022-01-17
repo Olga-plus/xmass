@@ -17,7 +17,7 @@
 .year-slider-container, .count-slider-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 output {
@@ -32,20 +32,12 @@ output {
     border: 1px solid #278D9F;
 }
 
-.controls {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1600px;
-    font-size: 20px;
-    line-height: 40px;
-}
 
 .noUi-horizontal .noUi-handle {
     width: 18px;
     height: 18px;
-    right: -17px;
-    top: -6px;
+    right: inherit;
+    bottom: 0px;
     border-radius: 50%;
 }
 
@@ -54,4 +46,12 @@ output {
 }
 .noUi-tooltip {
     display: none
+}
+
+.noUi-target{
+    border: none;
+    top: 0px;
+    right: -12px;
+    margin-right: 14px;
+    margin-left: 8px;
 }

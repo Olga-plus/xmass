@@ -3,7 +3,9 @@
 }
 
 .wrapper_start-page {
+    display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .start-page-title {
