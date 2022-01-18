@@ -34,6 +34,7 @@ export class FavoriteCard {
             this.cardFavoriteImg.setAttribute(`data-imgnum`, `${this.num}`);
             this.cardFavoriteImg.setAttribute(`draggable`, `true`);
             this.cardFavoriteImg.setAttribute(`alt`, `toy`);
+            this.cardFavoriteImg.setAttribute(`data-local`, '1');
             this.cardFavoriteImg.src = `../assets/toys/${this.num}.webp`
             this.cardFavorite.appendChild(this.cardFavoriteImg); 
             this.cardFavoriteImg.ondragstart = this.dragstart_.bind(Event);
@@ -47,9 +48,16 @@ export class FavoriteCard {
     }
 
     dragEnd_(event: DragEvent): void {
-        // event.dataTransfer.dropEffect === 'none'
+        if ( event.dataTransfer.dropEffect === 'none' && this.cardFavoriteImg.getAttribute('data-local') === '0'){
+            this.cardFavoriteImg.style.removeProperty('top');
+            this.cardFavoriteImg.style.removeProperty('left');
+            this.cardFavorite.appendChild(this.cardFavoriteImg); 
+        }
+       
         let countToy = this.cardFavorite.querySelectorAll('.favorites-card-img');
         this.countFavorite.innerText = `${countToy.length}`
+        this.cardFavoriteImg.setAttribute('data-local', '0');
+        console.log( this.cardFavoriteImg.getAttribute('data-local'), 'ffffffffffff')
         console.log ('end');
     }
 
