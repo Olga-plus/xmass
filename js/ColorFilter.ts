@@ -3,6 +3,7 @@ const filtersValue: HTMLDivElement = document.querySelector('.filters-value');
 
 //  export class ColorFilter implements Filter {
 export class ColorFilter implements Filter{
+    private localStorageKey = 'colorFilter';
     private selectorColor: Set<string>;
     buttonWhite: HTMLButtonElement;
     buttonYellow: HTMLButtonElement;
@@ -13,8 +14,17 @@ export class ColorFilter implements Filter{
     selected: boolean = false;
 
     constructor(callback: () => void) {
-        this.callback = callback
-        this.selectorColor = new Set();
+        this.callback = callback;
+        const local = localStorage.getItem(this.localStorageKey)
+        if (!local){
+           this.selectorColor = new Set(); 
+        }
+        else {
+            this.selectorColor = new Set(JSON.parse(local));
+        }
+        this.renderButtons();
+        
+        // checkbox
     }
 
     checkFilter() {
@@ -53,18 +63,33 @@ export class ColorFilter implements Filter{
 
         this.buttonWhite = document.createElement('button');
         this.buttonWhite.setAttribute(`data-filter`, `белый`);
+        if (this.selectorColor.has(`белый`)){
+            this.buttonWhite.classList.add("active");
+        }
 
         this.buttonYellow = document.createElement('button');
         this.buttonYellow.setAttribute(`data-filter`, `желтый`);
+        if (this.selectorColor.has(`желтый`)){
+            this.buttonYellow.classList.add("active");
+        }
 
         this.buttonRed = document.createElement('button');
         this.buttonRed.setAttribute(`data-filter`, `красный`);
+        if (this.selectorColor.has(`красный`)){
+            this.buttonRed.classList.add("active");
+        }
 
         this.buttonBlue = document.createElement('button');
         this.buttonBlue.setAttribute(`data-filter`, `синий`);
+        if (this.selectorColor.has(`синий`)){
+            this.buttonBlue.classList.add("active");
+        }
         
         this.buttonGreen = document.createElement('button');
         this.buttonGreen.setAttribute(`data-filter`, `зелёный`);
+        if (this.selectorColor.has(`зелёный`)){
+            this.buttonGreen.classList.add("active");
+        }
 
         color.appendChild(this.buttonWhite);
         color.appendChild(this.buttonYellow);
@@ -80,6 +105,8 @@ export class ColorFilter implements Filter{
     }
 
     filterColor(a: HTMLButtonElement) : void{
+
+        console.log(this);
         a.classList.toggle("active");
         let dataFilter = a.getAttribute('data-filter');
         if (!this.selectorColor.has(dataFilter)){
@@ -90,6 +117,8 @@ export class ColorFilter implements Filter{
             this.selectorColor.delete(dataFilter) ; 
             this.checkFilter();
         }
+
+        localStorage.setItem(this.localStorageKey, JSON.stringify(Array.from(this.selectorColor)));
         
         this.callback(); 
     }

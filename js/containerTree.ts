@@ -44,7 +44,6 @@ export class TreeContainer {
         document.getElementById(data).style.top = `${ev.offsetY}px`;
         document.getElementById(data).style.left = `${ev.offsetX}px`;
         sectiontreeContainer.append(document.getElementById(data)); //section
-        
         ev.dataTransfer.clearData();
     }
 

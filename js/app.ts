@@ -44,8 +44,7 @@ function tousPage(): void {
     homePage.className = 'none';
     favoritPage.className = 'none';
     mainePage.className = 'page main-page';
-
-    cards.forEach(item => cardContauner.appendChild(item.card));
+    filterCards();
     favoriteCount.innerText = `${cards.filter(elem => elem.favorite === true).length}`;
 }
 
@@ -65,8 +64,6 @@ function cardFs(): FavoriteCard[]{
     });
 }
 
-
-
 function arrShapes (): ShapeFilter{
     const filtersShape = new ShapeFilter(filterCards);
     filtersShape.renderButtons();
@@ -76,7 +73,7 @@ export const filtersShape = arrShapes();
 
 function arrColors (){
     const colorsFilters = new ColorFilter(filterCards);
-    colorsFilters.renderButtons();
+    // colorsFilters.renderButtons();
     return colorsFilters;
 }
 export const colorsFilters = arrColors();
