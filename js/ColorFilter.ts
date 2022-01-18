@@ -23,8 +23,6 @@ export class ColorFilter implements Filter{
             this.selectorColor = new Set(JSON.parse(local));
         }
         this.renderButtons();
-        
-        // checkbox
     }
 
     checkFilter() {
@@ -51,7 +49,7 @@ export class ColorFilter implements Filter{
         this.buttonRed.classList.remove("active");
         this.buttonBlue.classList.remove("active");
         this.buttonGreen.classList.remove("active");
-        // localStorage.clear();
+        localStorage.clear();
         // Убрать выделение на кнопках
     }
 
@@ -106,8 +104,6 @@ export class ColorFilter implements Filter{
     }
 
     filterColor(a: HTMLButtonElement) : void{
-
-        console.log(this);
         a.classList.toggle("active");
         let dataFilter = a.getAttribute('data-filter');
         if (!this.selectorColor.has(dataFilter)){

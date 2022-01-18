@@ -1,9 +1,5 @@
-import { cardContauner, cards } from "./app";
-import {ChristmasState, state} from "./state";
+import { cardContauner } from "./app";
 const filtersValue: HTMLDivElement = document.querySelector('.filters-value');
-// const inFav: HTMLDivElement = document.querySelector('.select');
-// const headerControls = document.querySelector('.header__controls');
-const favoriteCount = document.getElementById('count-favorite');
 export class Favorite {
     private favoriteValue: boolean = false;
     callback: () => void;
@@ -14,17 +10,14 @@ export class Favorite {
         this.callback = callback;
         this.selectorOnly = new Set();
         this.create();
-
     }
 
     checkFilterOnlyIsSelected(check: boolean): boolean {
         
         if ( this.selectorOnly.size > 0 && check === true){
-            console.log(check, this.selectorOnly, 'YYYYYYYYYYYY')
             return true;
         }
         else if (this.selectorOnly.size === 0){
-            console.log(check, this.selectorOnly, 'uuuuuu')
             return true;
         }
     }

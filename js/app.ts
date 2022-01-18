@@ -91,13 +91,26 @@ const sliderYear = new SliderFilterYear(filterCards);
 const selectedF = new FiltersSort(resetFun, filterCards);
 const checkFavorite = new Favorite(filterCards);
 
+const search = new SearchFilter(filterCards);
+
 function filterCards() {
     cardContauner.innerHTML = '';
-    cards.filter(elem => colorsFilters.checkFilterIsSelected(elem.color) && filtersShape.checkFilterIsSelected(elem.shape) 
+    let arrSize = cards.filter(elem => colorsFilters.checkFilterIsSelected(elem.color) && filtersShape.checkFilterIsSelected(elem.shape) 
         && sizeFilters.checkFilterIsSelected(elem.size) && sliderCount.checkFilterIsSelected(Number(elem.count))
-        && sliderYear.checkFilterIsSelected(Number(elem.year)) && checkFavorite.checkFilterOnlyIsSelected(elem.favorite)).sort((a,b )=> selectedF.checkSortNameIsSelected(a.name, b.name) 
-        || selectedF.checkSortCountIsSelected(a.count, b.count))
-        .forEach(item => cardContauner.appendChild(item.card));
+        && sliderYear.checkFilterIsSelected(Number(elem.year)) && checkFavorite.checkFilterOnlyIsSelected(elem.favorite)
+        && search.checkFilterSearchIsSelected(elem.name))
+        .sort((a,b )=> selectedF.checkSortNameIsSelected(a.name, b.name) 
+        || selectedF.checkSortCountIsSelected(a.count, b.count));
+        arrSize.forEach(item => cardContauner.appendChild(item.card));
+    if (arrSize.length === 0){
+        const sorryWrapp = document.createElement('div');
+        sorryWrapp.className = 'wrapper sorry-centr';
+        const sorryText = document.createElement('div');
+        sorryText.className = 'sorry';
+        sorryText.innerText = "Извините, совпадений не обнаружено ;)";
+        sorryWrapp.appendChild(sorryText);
+        cardContauner.appendChild(sorryWrapp);
+    }
 }
 
 filterCards();
@@ -114,38 +127,20 @@ export function resetFun(){
 
 
 
-// function favoriteCheck(): void {
-   
-    // if(this.favoriteValue){
-    //     cards.filter(elem => elem.favorite === true).forEach(item => {cardContauner.appendChild(item.card)});
-    //     filtersShape.reset();
-    //     colorsFilters.reset();
-    //     sizeFilters.reset();
-    //     sliderCount.reset();
-    //     sliderYear.reset();
-    // }
-    // else if(!this.favoriteValue){
-
-    //     cards.forEach(item => {cardContauner.appendChild(item.card)});
-    // }
-// }
-
-const search = new SearchFilter(inputSearch);
-
 function inputSearch() {
-    cardContauner.innerHTML = '';
-    const result = cards.filter(elem => elem.name.toLowerCase().includes(this.headerSerach.value.toLowerCase()));
-    if (result.length === 0){
-        const sorryWrapp = document.createElement('div');
-        sorryWrapp.className = 'wrapper sorry-centr';
-        const sorryText = document.createElement('div');
-        sorryText.className = 'sorry';
-        sorryText.innerText = "Извините, совпадений не обнаружено ;)";
-        sorryWrapp.appendChild(sorryText);
-        cardContauner.appendChild(sorryWrapp);
-    } else {
-        result.forEach(item => {cardContauner.appendChild(item.card)}); 
-    }
+    // cardContauner.innerHTML = '';
+    // const result = cards.filter(elem => elem.name.toLowerCase().includes(this.headerSerach.value.toLowerCase()));
+    // if (result.length === 0){
+    //     const sorryWrapp = document.createElement('div');
+    //     sorryWrapp.className = 'wrapper sorry-centr';
+    //     const sorryText = document.createElement('div');
+    //     sorryText.className = 'sorry';
+    //     sorryText.innerText = "Извините, совпадений не обнаружено ;)";
+    //     sorryWrapp.appendChild(sorryText);
+    //     cardContauner.appendChild(sorryWrapp);
+    // } else {
+    //     result.forEach(item => {cardContauner.appendChild(item.card)}); 
+    // }
 }
 
 function contTree() {
