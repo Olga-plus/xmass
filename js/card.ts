@@ -1,6 +1,7 @@
 import "../sass/style.scss";
 import data from '../assets/data.js';
 import { state} from "./state";
+import { resetFun } from "./app";
 
 const filtersValue: HTMLDivElement = document.querySelector('.filters-value');
 const headerControls = document.querySelector('.header__controls');
@@ -21,7 +22,7 @@ export class Card {
     callback: () => void;
 
     constructor({ num, name, count, year, shape, color, size, favorite}: 
-        { num: string; name: string; count: string; year: string; shape: string; color: string; size: string; favorite: boolean;}) {
+        { num: string; name: string; count: string; year: string; shape: string; color: string; size: string; favorite: boolean; }, callback: () => void) {
         this.num = num;
         this.name = name;
         this.count = count;
@@ -30,6 +31,8 @@ export class Card {
         this.color = color;
         this.size = size;
         this.favorite = favorite;
+        this.callback = callback
+        this.render();
     }
 
     render(): void {
@@ -104,11 +107,10 @@ export class Card {
         }
         this.card.appendChild(this.cardRibbon);
 
-        this.card.onclick = this.clicked.bind(this, this.card);
+        this.card.onclick = this.clicked.bind(this);
     }
 
     clicked(a: HTMLDivElement): void {
-        console.log(a);
         this.favorite = !this.favorite
         this.cardRibbon.classList.toggle("active");
         this.card.classList.toggle("active");
@@ -121,16 +123,31 @@ export class Card {
             state.deselectCard(this);
             state.valueFavorite();
         } 
+        this.callback();
     }
 }
 
 export function cardXs(): Card[]{
     return data.map(function (item) {
-            let cardX = new Card(item);
-            cardX.render();
+            let cardX = new Card(item, fufan);
             return cardX;
         });
 } 
+
+function fufan() {
+     
+        // this.cardRibbon.classList.toggle("active");
+        // this.card.classList.toggle("active");
+        // if(this.favorite === true){
+        //     this.cardFavor.innerText= 'Любимая: да';
+        //     state.selectCard(this);
+        //     state.valueFavorite();
+        // } else  if(this.favorite === false){
+        //     this.cardFavor.innerText= 'Любимая: нет';
+        //     state.deselectCard(this);
+        //     state.valueFavorite();
+        // } 
+}
 
 
 export default {Card, cardXs};

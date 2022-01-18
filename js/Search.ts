@@ -17,7 +17,6 @@ export class SearchFilter {
         this.headerSerach.autocomplete = 'off';
         this.headerSerach.autofocus = true;
         filtersSort.insertBefore(this.headerSerach, filtersSort.firstChild);
-
         this.headerSerach.oninput = this.filterSearch.bind(this)
     }
 

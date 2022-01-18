@@ -89,19 +89,20 @@ const sliderCount = new SliderFilterCount(filterCards);
 const sliderYear = new SliderFilterYear(filterCards);
 
 const selectedF = new FiltersSort(resetFun, filterCards);
+const checkFavorite = new Favorite(filterCards);
 
 function filterCards() {
     cardContauner.innerHTML = '';
     cards.filter(elem => colorsFilters.checkFilterIsSelected(elem.color) && filtersShape.checkFilterIsSelected(elem.shape) 
         && sizeFilters.checkFilterIsSelected(elem.size) && sliderCount.checkFilterIsSelected(Number(elem.count))
-        && sliderYear.checkFilterIsSelected(Number(elem.year))).sort((a,b )=> selectedF.checkSortNameIsSelected(a.name, b.name) 
+        && sliderYear.checkFilterIsSelected(Number(elem.year)) && checkFavorite.checkFilterOnlyIsSelected(elem.favorite)).sort((a,b )=> selectedF.checkSortNameIsSelected(a.name, b.name) 
         || selectedF.checkSortCountIsSelected(a.count, b.count))
         .forEach(item => cardContauner.appendChild(item.card));
 }
 
 filterCards();
 
-function resetFun(){
+export function resetFun(){
     cardContauner.innerHTML = '';
     filtersShape.reset();
     colorsFilters.reset();
@@ -111,16 +112,23 @@ function resetFun(){
     cards.forEach(item => cardContauner.appendChild(item.card));
 }
 
-const checkFavorite = new Favorite(favoriteCheck);
 
-function favoriteCheck(): void {
-    if(this.favoriteValue){
-        state.getFavoriteTous().forEach(item => {cardContauner.appendChild(item.card)});
-    }
-    else if(!this.favoriteValue){
-        cards.filter(elem => elem.favorite === true).forEach(item => {cardContauner.appendChild(item.card)});
-    }
-}
+
+// function favoriteCheck(): void {
+   
+    // if(this.favoriteValue){
+    //     cards.filter(elem => elem.favorite === true).forEach(item => {cardContauner.appendChild(item.card)});
+    //     filtersShape.reset();
+    //     colorsFilters.reset();
+    //     sizeFilters.reset();
+    //     sliderCount.reset();
+    //     sliderYear.reset();
+    // }
+    // else if(!this.favoriteValue){
+
+    //     cards.forEach(item => {cardContauner.appendChild(item.card)});
+    // }
+// }
 
 const search = new SearchFilter(inputSearch);
 

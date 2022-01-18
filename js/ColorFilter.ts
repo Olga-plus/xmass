@@ -51,6 +51,7 @@ export class ColorFilter implements Filter{
         this.buttonRed.classList.remove("active");
         this.buttonBlue.classList.remove("active");
         this.buttonGreen.classList.remove("active");
+        // localStorage.clear();
         // Убрать выделение на кнопках
     }
 

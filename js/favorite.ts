@@ -8,14 +8,25 @@ export class Favorite {
     private favoriteValue: boolean = false;
     callback: () => void;
     favoriteCount: HTMLSpanElement;
+    selectorOnly: Set<string>
 
     constructor(callback: () => void) {
         this.callback = callback;
+        this.selectorOnly = new Set();
         this.create();
+
     }
 
-    checkFun (){
-        return this.favoriteValue;
+    checkFilterOnlyIsSelected(check: boolean): boolean {
+        
+        if ( this.selectorOnly.size > 0 && check === true){
+            console.log(check, this.selectorOnly, 'YYYYYYYYYYYY')
+            return true;
+        }
+        else if (this.selectorOnly.size === 0){
+            console.log(check, this.selectorOnly, 'uuuuuu')
+            return true;
+        }
     }
 
     create() {
@@ -47,15 +58,12 @@ export class Favorite {
     changCard(): void {
     this.favoriteValue = !this.favoriteValue;
     cardContauner.innerHTML = ''; 
-        // if(this.favoriteValue){
-        //     let a = cards.filter(elem => elem.favorite === true)
-        //     a.forEach(item => {cardContauner.appendChild(item.card)})
-            
-        // }
-        // else if(!this.favoriteValue){
-        //     let a = cards.filter(elem => elem.favorite === true)
-        //     cards.forEach(item => {cardContauner.appendChild(item.card)})
-        // }
+    if (this.selectorOnly.size === 0){
+        this.selectorOnly.add("1"); 
+    } else
+    if (this.selectorOnly.size > 0){
+        this.selectorOnly.clear() ; 
+    }
         this.callback();
     }
 }

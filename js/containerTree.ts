@@ -5,10 +5,6 @@ export class TreeContainer {
 
     treeContainer: HTMLDivElement;
 
-    // constructor (){
-
-    // }
-
     createConteiner() {
         this.treeContainer = document.createElement('div');
         this.treeContainer.className = 'main-tree-container';
@@ -21,7 +17,8 @@ export class TreeContainer {
         map.appendChild(area);
         this.treeContainer.appendChild(map);
         const treeImg = new Image();
-
+        treeImg.src = `../assets/tree/2.webp`;
+        this.treeContainer.appendChild(treeImg);
 
     //   <img src="./assets/tree/2.webp" class="main-tree" usemap="#tree-map" alt="tree">
         this.treeContainer.ondragover = this.dragOver_.bind(this);
@@ -46,7 +43,5 @@ export class TreeContainer {
         sectiontreeContainer.append(document.getElementById(data)); //section
         ev.dataTransfer.clearData();
     }
-
-
 }
 
