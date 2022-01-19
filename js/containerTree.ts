@@ -1,13 +1,18 @@
 import { FavoriteCard } from "./cardsFavorite";
 
 const sectiontreeContainer = document.querySelector('.maine');
+
 export class TreeContainer {
 
     treeContainer: HTMLDivElement;
+    constructor(){
+        this.createConteiner();
+    }
 
     createConteiner() {
         this.treeContainer = document.createElement('div');
         this.treeContainer.className = 'main-tree-container';
+        this.treeContainer.style.backgroundImage = `url('../assets/bg/2.webp')`;
         sectiontreeContainer.appendChild(this.treeContainer);
         const map = document.createElement('map');
         map.setAttribute('name',"tree-map" );
@@ -16,13 +21,8 @@ export class TreeContainer {
         area.setAttribute('shape', 'poly');
         map.appendChild(area);
         this.treeContainer.appendChild(map);
-        const treeImg = new Image();
-        treeImg.src = `../assets/tree/2.webp`;
-        this.treeContainer.appendChild(treeImg);
 
-    //   <img src="./assets/tree/2.webp" class="main-tree" usemap="#tree-map" alt="tree">
         this.treeContainer.ondragover = this.dragOver_.bind(this);
-        // this.treeContainer.ondragenter = this.dragEnter_.bind(this);
         this.treeContainer.ondrop = this.dragDrop_.bind(Event);
     }
 
@@ -44,4 +44,9 @@ export class TreeContainer {
         ev.dataTransfer.clearData();
     }
 }
+export function contTree() {
+    const tree = new TreeContainer();
+    return tree;
+}
 
+export let containTree = contTree();

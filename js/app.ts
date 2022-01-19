@@ -8,11 +8,13 @@ import { state } from "./state";
 import { SizeFilter } from "./SizeFilter";
 import { FiltersSort } from "./Sort";
 import { playAudio } from "./Player";
-import { TreeContainer } from "./containerTree";
-import { Snow } from "./snow";
+import { snowOn } from "./snow";
 import { SearchFilter } from "./Search";
 import { SliderFilterCount } from "./Slider";
 import { SliderFilterYear } from "./SliderYear";
+import { TreeCard } from "./tree";
+import { backG } from "./background";
+import { light } from "./Lightrope";
 
 export const cardContauner: HTMLElement = document.querySelector(".card-container") as HTMLElement;
 
@@ -52,6 +54,10 @@ function teePage(): void {
     mainePage.className = 'none';
     homePage.className = 'none';
     favoritPage.className = 'page favorites-page';
+
+    let tree = new TreeCard();
+    backG();
+    light();
     containerFavorite.innerHTML = '';
     cardFs();
 }
@@ -123,35 +129,6 @@ export function resetFun(){
     sliderCount.reset();
     sliderYear.reset();
     cards.forEach(item => cardContauner.appendChild(item.card));
-}
-
-
-
-function inputSearch() {
-    // cardContauner.innerHTML = '';
-    // const result = cards.filter(elem => elem.name.toLowerCase().includes(this.headerSerach.value.toLowerCase()));
-    // if (result.length === 0){
-    //     const sorryWrapp = document.createElement('div');
-    //     sorryWrapp.className = 'wrapper sorry-centr';
-    //     const sorryText = document.createElement('div');
-    //     sorryText.className = 'sorry';
-    //     sorryText.innerText = "Извините, совпадений не обнаружено ;)";
-    //     sorryWrapp.appendChild(sorryText);
-    //     cardContauner.appendChild(sorryWrapp);
-    // } else {
-    //     result.forEach(item => {cardContauner.appendChild(item.card)}); 
-    // }
-}
-
-function contTree() {
-  const tree = new TreeContainer();
-  tree.createConteiner();
-}
-contTree ();
-
-function snowOn() {
-    let snowPlay = new Snow();
-    snowPlay.createSnow();
 }
 
 snowOn();

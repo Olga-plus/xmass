@@ -55,24 +55,24 @@
     background-size: auto 110px;
 }
 
-.tree:nth-child(1) {
-    background-image: url(/assets/tree/1.webp);
-}
-.tree:nth-child(2) {
-    background-image: url(/assets/tree/2.webp);
-}
-.tree:nth-child(3) {
-    background-image: url(/assets/tree/3.webp);
-}
-.tree:nth-child(4) {
-    background-image: url(/assets/tree/4.webp);
-}
-.tree:nth-child(5) {
-    background-image: url(/assets/tree/5.webp);
-}
-.tree:nth-child(6) {
-    background-image: url(/assets/tree/6.webp);
-}
+// .tree:nth-child(1) {
+//     background-image: url(/assets/tree/1.webp);
+// }
+// .tree:nth-child(2) {
+//     background-image: url(/assets/tree/2.webp);
+// }
+// .tree:nth-child(3) {
+//     background-image: url(/assets/tree/3.webp);
+// }
+// .tree:nth-child(4) {
+//     background-image: url(/assets/tree/4.webp);
+// }
+// .tree:nth-child(5) {
+//     background-image: url(/assets/tree/5.webp);
+// }
+// .tree:nth-child(6) {
+//     background-image: url(/assets/tree/6.webp);
+// }
 
 .bg-container::before {
     content: "Выберите фон";
@@ -405,4 +405,5 @@
 
 #section-tree {
     position: relative;
+    display: flex;
 }

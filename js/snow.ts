@@ -6,8 +6,12 @@ export class Snow {
     snow: HTMLDivElement;
     snowButton: HTMLDivElement;
 
+    constructor(){
+        this.createSnow();
+    }
+
     createSnow(){
-console.log(controlsContainer)
+
         this.snowButton = document.createElement('div');
         this.snowButton.className = 'snow-control menu-item';
         this.snowButton.style.backgroundImage = `url(/assets/svg/snow.svg)`;
@@ -32,4 +36,8 @@ console.log(controlsContainer)
         // this.snow.forEach(item => item.classList.toggle("none"))
     }
 
+}
+
+export function snowOn() {
+    let snowPlay = new Snow();
 }

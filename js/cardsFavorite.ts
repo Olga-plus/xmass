@@ -44,7 +44,7 @@ export class FavoriteCard {
 
     dragstart_(ev: any, containerCard: HTMLDivElement): void{
         ev.dataTransfer.setData(`text/plain`, ev.target.id)
-        console.log ('start', ev, ev.target.id);
+        // console.log ('start', ev, ev.target.id);
     }
 
     dragEnd_(event: DragEvent): void {
@@ -57,8 +57,8 @@ export class FavoriteCard {
         let countToy = this.cardFavorite.querySelectorAll('.favorites-card-img');
         this.countFavorite.innerText = `${countToy.length}`
         this.cardFavoriteImg.setAttribute('data-local', '0');
-        console.log( this.cardFavoriteImg.getAttribute('data-local'), 'ffffffffffff')
-        console.log ('end');
+        // console.log( this.cardFavoriteImg.getAttribute('data-local'), 'ffffffffffff')
+        // console.log ('end');
     }
 
 }
