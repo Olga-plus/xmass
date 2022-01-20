@@ -1,7 +1,7 @@
 import {containTree} from './containerTree';
 
 const favoritesMenu = document.querySelector('.favorites-manu');
-
+const sectionTree = document.querySelector('#section-tree');
 export class LightRope {
     buttonMulti: HTMLButtonElement;
     buttonYellow: HTMLButtonElement;
@@ -45,7 +45,6 @@ export class LightRope {
         this.buttonGreen.className = 'color-btn green-btn';
         this.buttonGreen.setAttribute(`data-color`, `green`);
 
-
         const onOff = document.createElement('div');
         onOff.className = 'onoffswitch';
         menuGirland.appendChild( onOff);
@@ -62,8 +61,37 @@ export class LightRope {
         onOffLabel.setAttribute('for', 'myonoffswitch');
         onOffLabel.className = 'onoffswitch-label';
         menuGirland.appendChild(onOffLabel);
-        
-        cheskboxOnOff.onclick = this.checkLight.bind(this);
+
+        const lightSection = document.createElement('div');
+        lightSection.className = 'lightrope-section';
+
+        for (let j = 0; j < 10; j++){
+            const lightContainer = document.createElement('ul');
+            lightContainer.className = 'lightrope';
+            lightSection.appendChild(lightContainer);
+            sectionTree.appendChild(lightSection);
+            
+            let countLight = j + 5;
+
+            for (let i = 0; i < (countLight + (j*3.5)); i++){
+                const light = document.createElement('div');
+                light.className = 'lightrope_move';
+                if (i === 0) {
+                    light.style.transform = `rotate(0deg) translate(0px, 250px)`; 
+                }
+                if (i === 1) {
+                    light.style.transform = `rotate(-2deg) translate(0px, 250px)`; 
+                }
+                if (i % 2 > 0 && i > 1) {
+                    light.style.transform = `rotate(${-1-i}deg) translate(0px, 250px)`; 
+                }
+                if (i % 2 === 0 && i > 1) {
+                    light.style.transform = `rotate(${1+i}deg) translate(0px, 250px)`; 
+                }
+                lightContainer.appendChild(light);
+            }
+
+    }
 
         garlandContainer.append(this.buttonGreen, this.buttonBlue, this.buttonRed, this.buttonYellow, this.buttonMulti);
         this.buttonMulti.onclick = this.checkLight.bind(this, this.buttonMulti);
@@ -71,7 +99,8 @@ export class LightRope {
         this.buttonRed.onclick = this.checkLight.bind(this, this.buttonRed);
         this.buttonBlue.onclick = this.checkLight.bind(this, this.buttonBlue);
         this.buttonGreen.onclick = this.checkLight.bind(this, this.buttonGreen);
-
+        
+        cheskboxOnOff.onclick = this.checkLight.bind(this);
     }
 
     checkLight(button: HTMLButtonElement){
