@@ -10,18 +10,11 @@
 
 .lightrope {
     height: 10px;
-    // transform-origin: translate(0%, 50%);
     margin: 0;
     padding: 0;
     margin-bottom: 40px;
     position: relative; // родитель
 }  
-
-.lightrope::after {     
-    content: "";
-    position: absolute;
-    transform-origin: top left;
-}
 
 .lightrope_move {
     display: block;
