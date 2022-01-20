@@ -12,9 +12,10 @@ import { snowOn } from "./snow";
 import { SearchFilter } from "./Search";
 import { SliderFilterCount } from "./Slider";
 import { SliderFilterYear } from "./SliderYear";
-import { TreeCard } from "./tree";
+import { createTreesCard, TreeCard } from "./tree";
 import { backG } from "./background";
 import { light } from "./Lightrope";
+import { containTree, contTree } from "./containerTree";
 
 export const cardContauner: HTMLElement = document.querySelector(".card-container") as HTMLElement;
 
@@ -30,9 +31,9 @@ const favoriteCount: HTMLElement = document.getElementById('count-favorite');
 
 
 home.addEventListener('click', () => { startPage()});
-titleBtn.addEventListener('click', () => { tousPage()});
-tous.addEventListener('click', () => { tousPage()});
-tree.addEventListener('click', () => {teePage()});
+titleBtn.addEventListener('click', () => { openToysPage()});
+tous.addEventListener('click', () => { openToysPage()});
+tree.addEventListener('click', () => {openTeePage()});
 
 export const cards = cardXs(); //---!!!!!!!!!!!!!!
 
@@ -42,7 +43,7 @@ function startPage(): void {
     homePage.className = 'page start-page';
 }
 
-function tousPage(): void {
+function openToysPage(): void {
     homePage.className = 'none';
     favoritPage.className = 'none';
     mainePage.className = 'page main-page';
@@ -50,14 +51,12 @@ function tousPage(): void {
     favoriteCount.innerText = `${cards.filter(elem => elem.favorite === true).length}`;
 }
 
-function teePage(): void {
+function openTeePage(): void { // исправить
     mainePage.className = 'none';
     homePage.className = 'none';
     favoritPage.className = 'page favorites-page';
 
-    let tree = new TreeCard();
-    backG();
-    light();
+    // let tree = new TreeCard(); // елки исправить
     containerFavorite.innerHTML = '';
     cardFs();
 }
@@ -132,4 +131,7 @@ export function resetFun(){
 }
 
 snowOn();
+backG();
+createTreesCard ();
+light();
 playAudio();

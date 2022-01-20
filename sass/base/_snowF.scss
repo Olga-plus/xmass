@@ -2,7 +2,8 @@
   position: relative;
 }
 .snow-blocks{
-    position: relative;
+    position: absolute;
+    width: 100%;
     bottom: 950px;
     right: 500px;
     filter: drop-shadow(0 0 10px white);
@@ -15,7 +16,7 @@
   }
 
   .snow {
-  z-index: 100;
+    z-index: 105;
     $total: 200;
     position: absolute;
     top: inherit;

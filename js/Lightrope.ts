@@ -1,6 +1,4 @@
-import {containTree} from './containerTree';
-
-const favoritesMenu = document.querySelector('.favorites-manu');
+const favoritesMenu = document.querySelector('.favorites-menu');
 const sectionTree = document.querySelector('#section-tree');
 export class LightRope {
     buttonMulti: HTMLButtonElement;
@@ -65,29 +63,39 @@ export class LightRope {
         const lightSection = document.createElement('div');
         lightSection.className = 'lightrope-section';
 
-        for (let j = 0; j < 10; j++){
-            const lightContainer = document.createElement('ul');
-            lightContainer.className = 'lightrope';
-            lightSection.appendChild(lightContainer);
-            sectionTree.appendChild(lightSection);
+        const lightContainer = document.createElement('ul');
+        lightContainer.className = 'lightrope';
+        lightSection.appendChild(lightContainer);
+        sectionTree.appendChild(lightSection);
+        
+        let countsection =  150;
+        
+        for (let j = 0; j < 9; j++) {            
             
-            let countLight = j + 5;
-
-            for (let i = 0; i < (countLight + (j*3.5)); i++){
-                const light = document.createElement('div');
+            let countLight = j + 1;
+            console.log(countsection = countsection + 50 );
+            
+            for (let i = 0; i < (countLight + (j * 3.5)); i++) {
+              
+                const light = document.createElement('li');
                 light.className = 'lightrope_move';
+                light.style.transformOrigin = '0% 50%';
+                
                 if (i === 0) {
-                    light.style.transform = `rotate(0deg) translate(0px, 250px)`; 
+                    light.style.transform = `rotate(0.3deg) translate(0px, ${countsection}px)`; 
                 }
                 if (i === 1) {
-                    light.style.transform = `rotate(-2deg) translate(0px, 250px)`; 
+                    light.style.transform = `rotate(-1.3deg) translate(0px, ${countsection}px)`; 
                 }
+
                 if (i % 2 > 0 && i > 1) {
-                    light.style.transform = `rotate(${-1-i}deg) translate(0px, 250px)`; 
+                    light.style.transform = `rotate(${-i}deg) translate(0px, ${countsection}px)`; 
                 }
-                if (i % 2 === 0 && i > 1) {
-                    light.style.transform = `rotate(${1+i}deg) translate(0px, 250px)`; 
+                if (i % 2 === 0 && i > 0) {
+                    light.style.transform = `rotate(${i}deg) translate(0px, ${countsection}px)`; 
                 }
+
+            
                 lightContainer.appendChild(light);
             }
 

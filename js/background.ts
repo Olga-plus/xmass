@@ -1,6 +1,6 @@
 import {containTree} from './containerTree';
 
-const favoritesMenu = document.querySelector('.favorites-manu');
+const favoritesMenu = document.querySelector('.favorites-menu');
 
 export class BackgroundCard {
     bgTree: HTMLDivElement;
@@ -23,7 +23,6 @@ export class BackgroundCard {
             treeContainers.appendChild(this.bgTree);
             this.bgTree.onclick = this.checkBG.bind(this, (i));
         }
-
     }
 
     checkBG(i: number){
