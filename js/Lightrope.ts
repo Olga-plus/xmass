@@ -7,13 +7,18 @@ export class LightRope {
     buttonBlue: HTMLButtonElement;
     buttonGreen: HTMLButtonElement;
     button: HTMLButtonElement;
+    light: HTMLLIElement;
+    colorLight: string;
+    lightContainer: HTMLUListElement;
 
 
     constructor(){
-        this.createLight();
+        this.createLightcontainer()
+        // this.createLight();
+        
     }
 
-    createLight(){
+    createLightcontainer(){
 
         const menuGirland = document.createElement('div');
         menuGirland.className = 'garland-container menu-container';
@@ -37,11 +42,11 @@ export class LightRope {
 
         this.buttonBlue = document.createElement('button');
         this.buttonBlue.className = 'color-btn blue-btn';
-        this.buttonBlue.setAttribute(`data-color`, `blue`);
+        this.buttonBlue.setAttribute(`data-color`, `turquoise`);
         
         this.buttonGreen = document.createElement('button');
         this.buttonGreen.className = 'color-btn green-btn';
-        this.buttonGreen.setAttribute(`data-color`, `green`);
+        this.buttonGreen.setAttribute(`data-color`, `lawngreen`);
 
         const onOff = document.createElement('div');
         onOff.className = 'onoffswitch';
@@ -63,43 +68,10 @@ export class LightRope {
         const lightSection = document.createElement('div');
         lightSection.className = 'lightrope-section';
 
-        const lightContainer = document.createElement('ul');
-        lightContainer.className = 'lightrope';
-        lightSection.appendChild(lightContainer);
+        this.lightContainer = document.createElement('ul');
+        this.lightContainer.className = 'lightrope';
+        lightSection.appendChild(this.lightContainer);
         sectionTree.appendChild(lightSection);
-        
-        let countsection =  150;
-        
-        for (let j = 0; j < 9; j++) {            
-            
-            let countLight = j + 1;
-            console.log(countsection = countsection + 50 );
-            
-            for (let i = 0; i < (countLight + (j * 3.5)); i++) {
-              
-                const light = document.createElement('li');
-                light.className = 'lightrope_move';
-                light.style.transformOrigin = '0% 50%';
-                
-                if (i === 0) {
-                    light.style.transform = `rotate(0.3deg) translate(0px, ${countsection}px)`; 
-                }
-                if (i === 1) {
-                    light.style.transform = `rotate(-1.3deg) translate(0px, ${countsection}px)`; 
-                }
-
-                if (i % 2 > 0 && i > 1) {
-                    light.style.transform = `rotate(${-i}deg) translate(0px, ${countsection}px)`; 
-                }
-                if (i % 2 === 0 && i > 0) {
-                    light.style.transform = `rotate(${i}deg) translate(0px, ${countsection}px)`; 
-                }
-
-            
-                lightContainer.appendChild(light);
-            }
-
-    }
 
         garlandContainer.append(this.buttonGreen, this.buttonBlue, this.buttonRed, this.buttonYellow, this.buttonMulti);
         this.buttonMulti.onclick = this.checkLight.bind(this, this.buttonMulti);
@@ -108,13 +80,106 @@ export class LightRope {
         this.buttonBlue.onclick = this.checkLight.bind(this, this.buttonBlue);
         this.buttonGreen.onclick = this.checkLight.bind(this, this.buttonGreen);
         
-        cheskboxOnOff.onclick = this.checkLight.bind(this);
+        cheskboxOnOff.onclick = this.checkLight.bind(this, cheskboxOnOff);
     }
 
     checkLight(button: HTMLButtonElement){
-        console.log(button.getAttribute('data-color'));
+        if (button.getAttribute('data-color') === null) {
+            this.lightContainer.classList.toggle("none");
+        } 
+        if (button.getAttribute('data-color') === 'multicolor') {
+            this.colorLight = button.getAttribute('data-color');
+            this.lightContainer.innerHTML = '';
+            this.createMulticolorLight();
+        } 
+        else {
+            this.colorLight = button.getAttribute('data-color');
+            this.lightContainer.innerHTML = '';
+            this.createLight();
+        }
+    }
+
+    createLight(): void{
+        let countsection =  50;
+        for (let j = 0; j < 10; j++) {            
+            countsection = countsection + 50;
+            
+            for (let i = 0; i < ((j * 2)+2); i++) {
+              
+                this.light = document.createElement('li');
+                this.light.className = 'lightrope_move';
+                this.light.style.backgroundColor = `${this.colorLight}`;
+                this.light.style.boxShadow = `0px 0.6px 14px 3px ${this.colorLight}`;
+                this.light.style.transformOrigin = '0% 50%';
+                this.light.style.animationDuration = `2s`;
+
+                if (i === 0) {
+                    
+                    this.light.style.transform = `rotate(0.3deg) translate(0px, ${countsection}px )`; 
+                }
+                if (i === 1) {
+        
+                    this.light.style.transform = `rotate(-1.3deg) translate(0px, ${countsection}px )`; 
+                }
+
+                if (i % 2 > 0 && i > 1) {
+
+                    this.light.style.transform = `rotate(${-i}deg) translate(0px, ${countsection}px )`; 
+                }
+                if (i % 2 === 0 && i > 0) {
+
+                    this.light.style.transform = `rotate(${i}deg) translate(0px, ${countsection}px)`; 
+                }
+            
+                this.lightContainer.appendChild(this.light);
+            }
+
+        }
+    }
+
+    createMulticolorLight(): void{
+        let countsection =  50;
+        for (let j = 0; j < 10; j++) {
+            
+            countsection = countsection + 50;
+            
+            for (let i = 0; i < ((j * 2)+2); i++) {
+                this.colorLight = '#' + (Math.random().toString(16) + '000000').substring(2,8).toUpperCase();
+                this.light = document.createElement('li');
+                this.light.className = 'lightrope_move';
+                this.light.style.backgroundColor = `${this.colorLight}`;
+                this.light.style.boxShadow = `0px 0.6px 14px 3px ${this.colorLight}`;
+                this.light.style.transformOrigin = '0% 50%';
+                this.light.style.animationDuration = `2s`;
+
+                if (i === 0) {
+                    
+                    this.light.style.transform = `rotate(0.3deg) translate(0px, ${countsection}px )`; 
+                }
+                if (i === 1) {
+        
+                    this.light.style.transform = `rotate(-1.3deg) translate(0px, ${countsection}px )`; 
+                }
+
+                if (i % 2 > 0 && i > 1) {
+
+                    this.light.style.transform = `rotate(${-i}deg) translate(0px, ${countsection}px )`; 
+                }
+                if (i % 2 === 0 && i > 0) {
+
+                    this.light.style.transform = `rotate(${i}deg) translate(0px, ${countsection}px)`; 
+                }
+            
+                this.lightContainer.appendChild(this.light);
+            }
+
+        }
     }
 }
+
+
+
+
 
 export function light() {
     let light = new LightRope();

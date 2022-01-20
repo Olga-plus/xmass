@@ -19,10 +19,9 @@ export class Card {
     private cardRibbon: HTMLDivElement;
     arrFavorCard: Set<HTMLDivElement> = new Set();
     card: HTMLDivElement;
-    callback: () => void;
 
     constructor({ num, name, count, year, shape, color, size, favorite}: 
-        { num: string; name: string; count: string; year: string; shape: string; color: string; size: string; favorite: boolean; }, callback: () => void) {
+        { num: string; name: string; count: string; year: string; shape: string; color: string; size: string; favorite: boolean; }) {
         this.num = num;
         this.name = name;
         this.count = count;
@@ -31,7 +30,6 @@ export class Card {
         this.color = color;
         this.size = size;
         this.favorite = favorite;
-        this.callback = callback
         this.render();
     }
 
@@ -123,31 +121,15 @@ export class Card {
             state.deselectCard(this);
             state.valueFavorite();
         } 
-        this.callback();
     }
 }
 
 export function cardXs(): Card[]{
     return data.map(function (item) {
-            let cardX = new Card(item, fufan);
+            let cardX = new Card(item);
             return cardX;
         });
 } 
-
-function fufan() {
-     
-        // this.cardRibbon.classList.toggle("active");
-        // this.card.classList.toggle("active");
-        // if(this.favorite === true){
-        //     this.cardFavor.innerText= 'Любимая: да';
-        //     state.selectCard(this);
-        //     state.valueFavorite();
-        // } else  if(this.favorite === false){
-        //     this.cardFavor.innerText= 'Любимая: нет';
-        //     state.deselectCard(this);
-        //     state.valueFavorite();
-        // } 
-}
 
 
 export default {Card, cardXs};
