@@ -1,7 +1,12 @@
+// .section-tree{
+//     position: relative;
+// }
 
 .lightrope-section{
     width: inherit;
     height: inherit;
+    top: 0%;
+    left: 50%;
     position: absolute;
 }
 
@@ -16,16 +21,11 @@
 .lightrope_move {
     display: block;
     position: absolute;
-    top: 0;
-    left: 50%; 
+    // top: 0;
+    // left: 50%; 
     height: 3px;
     width: 3px;
-    border-radius: 50%;
-    // background: rgba(251, 255, 0, 0.692);
-    // box-shadow: 0px 0.6px 14px 3px yellowgreen;
-
-
-    
+    border-radius: 50%;    
     animation-name: blinker;
     animation-iteration-count: infinite;
     animation-timing-function: cubic-bezier(1.0,0,0,1.0);
@@ -46,21 +46,3 @@
     from { opacity: 1.0; }
     to { opacity: 0.5; }
   }
-
-// .lightrope {
-//     height: 10px;
-//     margin: 0;
-//     padding: 0;
-//     margin-bottom: 40px;
-//     position: relative; // родитель
-// }  
-
-// .lightrope_move {
-//     display: block;
-//     position: absolute; 
-//     height: 5px;
-//     width: 5px;
-//     border-radius: 50%;
-//     background: rgba(0, 174, 255, 0.692);
-//     transform-origin: 0 2px;
-// }

@@ -100,9 +100,9 @@ export class LightRope {
     }
 
     createLight(): void{
-        let countsection =  50;
-        for (let j = 0; j < 10; j++) {            
-            countsection = countsection + 50;
+        let countsection =  25;
+        for (let j = 0; j < 11; j++) {            
+            countsection = countsection + 60;
             
             for (let i = 0; i < ((j * 2)+2); i++) {
               
@@ -138,10 +138,10 @@ export class LightRope {
     }
 
     createMulticolorLight(): void{
-        let countsection =  50;
-        for (let j = 0; j < 10; j++) {
+        let countsection =  25;
+        for (let j = 0; j < 11; j++) {
             
-            countsection = countsection + 50;
+            countsection = countsection + 60;
             
             for (let i = 0; i < ((j * 2)+2); i++) {
                 this.colorLight = '#' + (Math.random().toString(16) + '000000').substring(2,8).toUpperCase();

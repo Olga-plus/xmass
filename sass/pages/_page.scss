@@ -1,9 +1,15 @@
 .page{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: $img-background;
-  background-size: cover;
-  min-height: calc(100vh - 145px);
-  background-attachment: fixed;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // background-image: $img-background;
+  // background-size: cover;
+  // min-height: calc(100vh - 145px);
+  // background-attachment: fixed;
+
+    min-width: 100%;
+    min-height: calc(100vh - 140px);
+    background-image: $img-background;;
+    background-size: cover;
+    background-attachment: fixed;
 }

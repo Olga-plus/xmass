@@ -1,6 +1,29 @@
-.favorie-page-wrapper{
+.blur {
+    background: rgba(22, 41, 41, 0.5);
+    backdrop-filter: blur(3px);
+    height: 100%;
+    min-height: calc(100vh - 140px);
+    width: 100%;
+}
+
+.page-container {
     display: flex;
-    flex-direction: row;
+    height: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: flex-start;
+    margin: 0 auto;
+}
+
+.menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    margin-bottom: 20px;
 }
 
 .favorites-menu {
@@ -9,29 +32,8 @@
     align-items: flex-start;
     align-content: flex-start;
     height: 100%;
-    width: 290px;
+    width: 300px;
     padding-top: 25px;
-}
-
-.favorites-container::before, .favorites-decorate::before, .bg-container::before, .tree-container::before, .garland-container::before {
-    content: "Игрушки";
-    width: 100%;
-    font-size: 20px;
-    font-weight: 400;
-    padding: 10px;
-    padding-left: 0;
-    text-transform: uppercase;
-}
-
-.menu-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    width: 100%;
-    justify-content: flex-start;
-    align-items: flex-start;
-    align-content: flex-start;
-    margin-bottom: 20px;
 }
 
 .menu-item {
@@ -44,39 +46,34 @@
     cursor: pointer;
 }
 
-.tree-container::before {
-    content: "Выберите ёлку";
+.audio-control {
+    width: 40px;
+    height: 40px;
+    margin-right: 40px;
+    background-image: url(/assets/svg/audio.svg);
 }
 
+.snow-control {
+    width: 40px;
+    height: 40px;
+    background-image: url(/assets/svg/snow.svg);
+}
+
+.tree-container::before {
+    content: "Выберите ёлку";
+    width: 100%;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 10px;
+    padding-left: 0;
+    text-transform: uppercase;
+}
 .tree {
     width: 115px;
     height: 115px;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, .5);
     background-size: auto 110px;
-}
-
-// .tree:nth-child(1) {
-//     background-image: url(/assets/tree/1.webp);
-// }
-// .tree:nth-child(2) {
-//     background-image: url(/assets/tree/2.webp);
-// }
-// .tree:nth-child(3) {
-//     background-image: url(/assets/tree/3.webp);
-// }
-// .tree:nth-child(4) {
-//     background-image: url(/assets/tree/4.webp);
-// }
-// .tree:nth-child(5) {
-//     background-image: url(/assets/tree/5.webp);
-// }
-// .tree:nth-child(6) {
-//     background-image: url(/assets/tree/6.webp);
-// }
-
-.bg-container::before {
-    content: "Выберите фон";
 }
 
 .bg {
@@ -91,38 +88,15 @@
     cursor: pointer;
 }
 
-.bg:nth-child(1) {
-    background-image: url(/assets/bg/1.webp);
+.bg-container::before {
+    content: "Выберите фон";
+    width: 100%;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 10px;
+    padding-left: 0;
+    text-transform: uppercase;
 }
-
-.bg:nth-child(2) {
-    background-image: url(/assets/bg/2.webp);
-}
-.bg:nth-child(3) {
-    background-image: url(/assets/bg/3.webp);
-}
-.bg:nth-child(4) {
-    background-image: url(/assets/bg/4.webp);
-}
-.bg:nth-child(5) {
-    background-image: url(/assets/bg/5.webp);
-}
-.bg:nth-child(6) {
-    background-image: url(/assets/bg/6.webp);
-}
-.bg:nth-child(7) {
-    background-image: url(/assets/bg/7.webp);
-}
-.bg:nth-child(8) {
-    background-image: url(/assets/bg/8.webp);
-}
-.bg:nth-child(9) {
-    background-image: url(/assets/bg/9.webp);
-}
-.bg:nth-child(10) {
-    background-image: url(/assets/bg/10.webp);
-}
-
 
 .garland-container {
     display: flex;
@@ -131,8 +105,15 @@
     width: 360px;
     height: 110px;
 }
+
 .garland-container::before {
     content: "Гирлянда";
+    width: 100%;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 10px;
+    padding-left: 0;
+    text-transform: uppercase;
 }
 
 .garland-btns {
@@ -175,137 +156,13 @@
     box-shadow: rgb(0 0 0 / 20%) 0 -1px 7px 1px, inset #304701 0 -1px 9px, #89ff00 0 2px 12px;
 }
 
-
-.onoffswitch-label {
-    display: block;
-    overflow: hidden;
-    cursor: pointer;
-    border: 1px solid #999999;
-    border-radius: 20px;
-}
-
-
-// .onoffswitch-switch {
-//     width: 26px;
-//     margin: 2px;
-//     background: #FFFFFF;
-//     border: 2px solid #999999;
-//     border-radius: 20px;
-//     position: absolute;
-//     top: 0;
-//     bottom: 0;
-//     right: 55px;
-//     transition: all 0.3s ease-in 0s;
-// }
-
-// .onoffswitch-inner {
-//     width: 200%;
-//     margin-left: -100%;
-//     transition: margin 0.3s ease-in 0s;
-// }
-
-// .onoffswitch-inner:before, .onoffswitch-inner:after {
-//     float: left;
-//     width: 50%;
-//     height: 30px;
-//     padding: 0;
-//     line-height: 30px;
-//     font-size: 16px;
-//     color: white;
-//     font-weight: 600;
-//     box-sizing: border-box;
-// }
-
-// .onoffswitch-inner:before {
-//     content: "Вкл";
-//     padding-left: 12px;
-//     background-color: #237E8F;
-//     color: #FFFFFF;
-// }
-
-// .onoffswitch-inner:after {
-//     content: "Выкл";
-//     padding-right: 10px;
-//     background-color: #EEEEEE;
-//     color: #666;
-//     text-align: right;
-// }
-
-
-#section-tree {
-    position: relative;
-    display: flex;
-    height: calc(100vh - 140px);
-    min-height: 750px;
-    width: 400px;
-    padding-bottom: 20px;
-    overflow: hidden;
- 
-}
-
-.main-tree-container {
-    height: inherit;
-    width: inherit;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    // height: calc(100vh - 140px);
-    // min-height: 750px;
-    // width: 400px;
-
-}
-.christmas-tree{
-    display: block;
-width: 95%;
-}
-
-.hide {
-    display: none;
-}
-
-.snowflakes {
-    height: calc(100vh - 50px);
-    width: 800px;
-    position: absolute;
-    top: -120px;
-    left: 50%;
-    margin-left: -400px;
-    pointer-events: none;
-    z-index: 100;
-    overflow: hidden;
-}
-
-// .garland-tree-container {
-//     display: flex;
-//     justify-content: center;
-//     height: calc(100vh - 140px);
-//     width: 800px;
-//     position: absolute;
-//     top: 20px;
-//     left: 50%;
-//     margin-left: -400px;
-//     pointer-events: none;
-//     z-index: 90;
-//     overflow: hidden;
-// }
-
-.main-tree {
-    display: block;
-    width: 500px;
-    height: 714px;
-}
-
 .favorites-aside {
     height: calc(100vh - 140px);
     min-height: 750px;
-    width:390px;
+    width: 400px;
 }
 
-.favorites-container, .favorites-decorate {
+.favorites-decorate {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -316,8 +173,20 @@ width: 95%;
     padding-top: 25px;
     padding-left: 25px;
 }
-.favorites-container::before {
+
+.favorites-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+    grid-auto-rows: minmax(85px, auto);
+    grid-column-gap: 0.5em;
+    grid-row-gap: 0.5em;
+    padding-left: 0.5em;
+}
+
+.favorites-container::before{
     content: "Игрушки";
+    grid-column-start: 1;
+    grid-column-end: 4;
     width: 100%;
     font-size: 20px;
     font-weight: 400;
@@ -330,9 +199,9 @@ width: 95%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 25%;
-    max-width: 84px;
-    min-height: 84px;
+   
+    height: 85px;
+    object-fit: cover;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, .5);
 }
@@ -356,68 +225,36 @@ width: 95%;
 .favorites-card-img {
     display: block;
     position: absolute;
-    width: auto;
-    height: 60px;
-    width: 60px;
-    object-fit: contain;
+    height: 7%;
     cursor: move;
 }
 
-.favorites-decorate {
+.main-tree-container{
+ 
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    align-content: flex-start;
-    gap: 10px;
-    width: 100%;
-    padding-top: 25px;
-    padding-left: 25px;
+    justify-content: center;
+    align-items: flex-end;
+    background-size: cover;
+    background-position: center;
+    height: calc(100vh - 140px);
+    min-height: 750px;
+    width: 700px;
+    padding-bottom: 20px;
+    overflow: hidden;
 }
 
-.favorites-decorate::before {
-    content: "Вы нарядили";
-    width: 100%;
-    font-size: 20px;
-    font-weight: 400;
-    padding: 10px;
-    padding-left: 0;
-    text-transform: uppercase;
+.christmas-tree {
+    // position: absolute;
+    // top: 10px;
+    // right: 0;
+    display: block;
+    width: 500px;
+    height: 714px;
 }
 
-.favorites-decorate-container {
+.section-tree{
+    position: relative;
     display: flex;
-    overflow-x: auto;
-    gap: 10px;
-    height: 140px;
-    width: 400px;
-    overflow-x: auto;
-}
-
-.tree-decorate {
-    display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 115px;
-    min-width: 115px;
-    height: 115px;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, .5);
-}
-
-.tree-decorate-img {
-    height: 110px;
-}
-
-.favorites-decorate-container::-webkit-scrollbar {
-    height: 10px;
-    border-radius: 5px;
-    background-color: rgba(255, 255, 255, .5);
-    backdrop-filter: blur(6px);
-}
-
-.favorites-decorate-container::-webkit-scrollbar-thumb {
-    background-color: #237E8F;
-    border-radius: 5px;
-    cursor: pointer;
 }
