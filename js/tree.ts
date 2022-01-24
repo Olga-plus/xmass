@@ -33,12 +33,12 @@ export class TreeCard {
         map.appendChild(area);
         containTree.treeContainer.appendChild(map);
 
-        this.treeImg = new Image();
-        this.treeImg.className = "christmas-tree";
-        this.treeImg.src = `../assets/tree/2.webp`;
-        this.treeImg.setAttribute('usemap', '#tree-map')
-        this.treeImg.setAttribute('alt', 'tree')
-        containTree.treeContainer.appendChild(this.treeImg);
+        // this.treeImg = new Image();
+        // this.treeImg.className = "christmas-tree";
+        // this.treeImg.src = `../assets/tree/2.webp`;
+        // this.treeImg.setAttribute('usemap', '#tree-map')
+        // this.treeImg.setAttribute('alt', 'tree')
+        // containTree.treeContainer.appendChild(this.treeImg);
     }
 
     checkTree(i: number) {

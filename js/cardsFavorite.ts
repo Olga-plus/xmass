@@ -37,7 +37,7 @@ export class FavoriteCard {
             this.cardFavoriteImg.setAttribute(`data-local`, '1');
             this.cardFavoriteImg.src = `../assets/toys/${this.num}.webp`
             this.cardFavorite.appendChild(this.cardFavoriteImg); 
-            this.cardFavoriteImg.ondragstart = this.dragstart_.bind(Event);
+            this.cardFavoriteImg.ondragstart = this.dragstart_.bind(this);
             this.cardFavoriteImg.ondragend = this.dragEnd_.bind(this);
         }
     }

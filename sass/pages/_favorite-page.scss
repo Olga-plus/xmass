@@ -8,11 +8,7 @@
 
 .page-container {
     display: flex;
-//     height: 100%;
-//     justify-content: space-between;
-//     align-items: flex-start;
-//     align-content: flex-start;
-//     margin: 0 auto;
+    align-items:center;
 }
 
 .menu-container {
@@ -225,6 +221,7 @@
 }
 
 .main-tree-container {
+    position: relative;
     width: inherit;
     display: flex;
     justify-content: center;
@@ -243,13 +240,15 @@ img {
 }
 
 .christmas-tree {
+    display: block;
     position: relative;
     display: block;
+    min-width: 500px;
     height: 714px;
 }
 
 #section-tree{
-    position: relative;
+  
     max-width: 50%;
 }
 
