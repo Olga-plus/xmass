@@ -8,11 +8,11 @@
 
 .page-container {
     display: flex;
-    height: 100%;
-    justify-content: space-between;
-    align-items: flex-start;
-    align-content: flex-start;
-    margin: 0 auto;
+//     height: 100%;
+//     justify-content: space-between;
+//     align-items: flex-start;
+//     align-content: flex-start;
+//     margin: 0 auto;
 }
 
 .menu-container {
@@ -27,13 +27,8 @@
 }
 
 .favorites-menu {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    align-content: flex-start;
-    height: 100%;
-    width: 300px;
-    padding-top: 25px;
+    flex-grow: 1;
+    max-width: 25%;
 }
 
 .menu-item {
@@ -186,8 +181,8 @@
 .favorites-container::before{
     content: "Игрушки";
     grid-column-start: 1;
-    grid-column-end: 4;
-    width: 100%;
+    grid-column-end: 5;
+    width: 80%;
     font-size: 20px;
     font-weight: 400;
     padding: 10px;
@@ -229,41 +224,32 @@
     cursor: move;
 }
 
-.main-tree-container{
-//  height: inherit;
- width: inherit;
-display: flex;
-justify-content: center;
-align-items: flex-end;
-background-size: cover;
-background-position: center;
-// height: calc(100vh - 140px);
-// min-height: 750px;
-// width: 700px;
-padding-bottom: 20px;
-overflow: hidden;
+.main-tree-container {
+    width: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-size: cover;
+    background-position: center;
+    padding-bottom: 20px;
+    overflow: hidden;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
 }
 
 .christmas-tree {
     position: relative;
-    // position: absolute;
-    // top: 10px;
-    // right: 0;
     display: block;
-    width: 500px;
     height: 714px;
 }
 
 #section-tree{
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    height: calc(100vh - 140px);
-    min-height: 750px;
-    width: 800px;
-    padding-bottom: 20px;
-    overflow: hidden;
+    max-width: 50%;
 }
 

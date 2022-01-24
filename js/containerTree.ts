@@ -15,6 +15,7 @@ export class TreeContainer {
 
         this.treeContainer.ondragover = this.dragOver_.bind(this);
         this.treeContainer.ondrop = this.dragDrop_.bind(Event);
+        this.treeContainer.onmousemove = this.dragDrop_.bind(Event);
     }
 
     dragOver_(event: Event): void{
@@ -31,6 +32,9 @@ export class TreeContainer {
         console.log(ev.offsetX, ev.offsetY , document.getElementById(data))
         document.getElementById(data).style.top = `${Math.abs(ev.offsetY)}px`;
         document.getElementById(data).style.left = `${ev.offsetX}px`;
+
+        // document.getElementById(data).style.top = ev.pageX -  document.getElementById(data).offsetWidth/2 + 'px';
+        // document.getElementById(data).style.left = ev.pageY -  document.getElementById(data).offsetHeight/2 + 'px';
         sectiontreeContainer.append(document.getElementById(data)); //section
         ev.dataTransfer.clearData();
     }

@@ -1,5 +1,6 @@
 
 const containerFavorite = document.querySelector('.favorites-container');
+const treeContainer = document.querySelector('.section-tree')
 export class FavoriteCard {
     cardFavoriteImg: HTMLImageElement;
     count: string;
@@ -47,6 +48,7 @@ export class FavoriteCard {
     }
 
     dragEnd_(event: DragEvent): void {
+        console.log ('end',  event.dataTransfer.dropEffect, this.cardFavoriteImg);
         if ( event.dataTransfer.dropEffect === 'none' && this.cardFavoriteImg.getAttribute('data-local') === '0'){
             this.cardFavoriteImg.style.removeProperty('top');
             this.cardFavoriteImg.style.removeProperty('left');
@@ -57,7 +59,6 @@ export class FavoriteCard {
         this.countFavorite.innerText = `${countToy.length}`
         this.cardFavoriteImg.setAttribute('data-local', '0');
         // console.log( this.cardFavoriteImg.getAttribute('data-local'), 'ffffffffffff')
-        // console.log ('end');
     }
 
 }
