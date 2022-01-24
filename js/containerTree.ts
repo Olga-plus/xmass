@@ -27,9 +27,9 @@ export class TreeContainer {
     // }
     dragDrop_(ev: DragEvent): void{
         console.log(ev);
-        let data = ev.dataTransfer.getData("text");
-        console.log(ev.offsetX, ev.offsetY )
-        document.getElementById(data).style.top = `${ev.offsetY}px`;
+        const data = ev.dataTransfer.getData("text");
+        console.log(ev.offsetX, ev.offsetY , document.getElementById(data))
+        document.getElementById(data).style.top = `${Math.abs(ev.offsetY)}px`;
         document.getElementById(data).style.left = `${ev.offsetX}px`;
         sectiontreeContainer.append(document.getElementById(data)); //section
         ev.dataTransfer.clearData();
@@ -40,4 +40,4 @@ export  function contTree() {
     return tree;
 }
 
-export let containTree = contTree();
+export const containTree = contTree();

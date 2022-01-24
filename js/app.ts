@@ -12,10 +12,9 @@ import { snowOn } from "./snow";
 import { SearchFilter } from "./Search";
 import { SliderFilterCount } from "./Slider";
 import { SliderFilterYear } from "./SliderYear";
-import { createTreesCard, TreeCard } from "./tree";
+import { createTreesCard} from "./tree";
 import { backG } from "./background";
 import { light } from "./Lightrope";
-import { containTree, contTree } from "./containerTree";
 
 export const cardContauner: HTMLElement = document.querySelector(".card-container") as HTMLElement;
 
@@ -62,9 +61,9 @@ function openTeePage(): void { // исправить
 }
 
 function cardFs(): FavoriteCard[]{
-    let favoritToys = state.getFavoriteTous();
+    const favoritToys = state.getFavoriteTous();
     return favoritToys.map((item) => {
-        let cardsFavorite = new FavoriteCard(item.count, item.num);
+        const cardsFavorite = new FavoriteCard(item.count, item.num);
         return cardsFavorite;
     });
 }
@@ -100,7 +99,7 @@ const search = new SearchFilter(filterCards);
 
 function filterCards() {
     cardContauner.innerHTML = '';
-    let arrSize = cards.filter(elem => colorsFilters.checkFilterIsSelected(elem.color) && filtersShape.checkFilterIsSelected(elem.shape) 
+    const arrSize = cards.filter(elem => colorsFilters.checkFilterIsSelected(elem.color) && filtersShape.checkFilterIsSelected(elem.shape) 
         && sizeFilters.checkFilterIsSelected(elem.size) && sliderCount.checkFilterIsSelected(Number(elem.count))
         && sliderYear.checkFilterIsSelected(Number(elem.year)) && checkFavorite.checkFilterOnlyIsSelected(elem.favorite)
         && search.checkFilterSearchIsSelected(elem.name))

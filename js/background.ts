@@ -32,6 +32,6 @@ export class BackgroundCard {
 }
 
 export function backG() {
-    let bg = new BackgroundCard();
+    const bg = new BackgroundCard();
     return bg;
 }

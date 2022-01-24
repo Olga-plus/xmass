@@ -17,7 +17,7 @@ export class ShapeFilter implements Filter {
     buttonCone: HTMLButtonElement;
     buttonToy: HTMLButtonElement;
     buttonSnowF: HTMLButtonElement;
-    selected: boolean = false;
+    selected = false;
 
     constructor(callback: () => void) {
         this.callback = callback;
@@ -37,7 +37,7 @@ export class ShapeFilter implements Filter {
     checkFilterIsSelected(shape: string): boolean {
         if (this.selectorShape.size === 0) {
             return true;
-        };
+        }
         return this.selectorShape.has(shape);
     }
 
@@ -88,7 +88,7 @@ export class ShapeFilter implements Filter {
 
     filterShapes(a: HTMLButtonElement) : void{
         a.classList.toggle("active");
-        let dataFilter = a.getAttribute('data-filter');
+        const dataFilter = a.getAttribute('data-filter');
         if (!this.selectorShape.has(dataFilter)){
             this.selectorShape.add(dataFilter);
            this.checkFilter();

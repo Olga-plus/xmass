@@ -10,7 +10,7 @@ export class SizeFilter extends ChristmasState implements Filter {
     buttonBig: HTMLButtonElement;
     buttonMedium: HTMLButtonElement;
     buttonSmall: HTMLButtonElement;
-    selected: boolean = false;
+    selected = false;
 
     constructor(callback: () => void) {
         super();
@@ -32,7 +32,7 @@ export class SizeFilter extends ChristmasState implements Filter {
     checkFilterIsSelected(shape: string): boolean {
         if (this.selectorSize.size === 0) {
             return true;
-        };
+        }
         return this.selectorSize.has(shape);
     }
 
@@ -70,7 +70,7 @@ export class SizeFilter extends ChristmasState implements Filter {
 
     filterSize(a: HTMLButtonElement) : void{
         a.classList.toggle("active");
-        let dataFilter = a.getAttribute('data-filter');
+        const dataFilter = a.getAttribute('data-filter');
         if (!this.selectorSize.has(dataFilter)){
             this.selectorSize.add(dataFilter); 
             this.checkFilter()

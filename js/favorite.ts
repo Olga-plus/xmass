@@ -1,7 +1,7 @@
 import { cardContauner } from "./app";
 const filtersValue: HTMLDivElement = document.querySelector('.filters-value');
 export class Favorite {
-    private favoriteValue: boolean = false;
+    private favoriteValue = false;
     callback: () => void;
     favoriteCount: HTMLSpanElement;
     selectorOnly: Set<string>

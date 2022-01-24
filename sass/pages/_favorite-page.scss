@@ -230,20 +230,22 @@
 }
 
 .main-tree-container{
- 
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    background-size: cover;
-    background-position: center;
-    height: calc(100vh - 140px);
-    min-height: 750px;
-    width: 700px;
-    padding-bottom: 20px;
-    overflow: hidden;
+ height: inherit;
+ width: inherit;
+display: flex;
+justify-content: center;
+align-items: flex-end;
+background-size: cover;
+background-position: center;
+// height: calc(100vh - 140px);
+// min-height: 750px;
+// width: 700px;
+padding-bottom: 20px;
+overflow: hidden;
 }
 
 .christmas-tree {
+    position: relative;
     // position: absolute;
     // top: 10px;
     // right: 0;
@@ -252,9 +254,16 @@
     height: 714px;
 }
 
-.section-tree{
+#section-tree{
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    height: calc(100vh - 140px);
+    min-height: 750px;
+    width: 800px;
+    padding-bottom: 20px;
+    overflow: hidden;
 }
+

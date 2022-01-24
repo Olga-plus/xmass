@@ -1,6 +1,5 @@
 import { Filter } from './interfaces';
 import * as noUiSlider from 'nouislider';
-const cardContauner: HTMLElement = document.querySelector(".card-container") as HTMLElement;
 const filtrRunge: HTMLElement = document.querySelector(".filters-range") as HTMLElement;
 
 import { API } from "nouislider";
@@ -14,7 +13,7 @@ export class SliderFilterYear implements Filter {
     }
 
     checkFilterIsSelected(filter: number): boolean {
-        let values = this.countSlider.get() as number[];
+        const values = this.countSlider.get() as number[];
         return values[0] <= filter && values[1] >= filter;
     }
 
@@ -24,30 +23,30 @@ export class SliderFilterYear implements Filter {
 
     createSlaider() {
 
-        let year = document.createElement('div');
+        const year = document.createElement('div');
         year.className = 'year';
         filtrRunge.appendChild(year);
 
-        let nameYear = document.createElement('span');
+        const nameYear = document.createElement('span');
         nameYear.className = 'control-span';
         nameYear.innerText = 'Год приобретения:';
         year.appendChild(nameYear);
 
-        let countContainer = document.createElement('div');
+        const countContainer = document.createElement('div');
         countContainer.className = 'count-slider-container';
         year.appendChild(countContainer);
 
-        let outputYearStart = document.createElement('output');
+        const outputYearStart = document.createElement('output');
         outputYearStart.className = 'slider-output';
         outputYearStart.innerText = '1940';
         countContainer.appendChild(outputYearStart);
 
-        let sliderYear = document.createElement('div');
+        const sliderYear = document.createElement('div');
         sliderYear.className = 'year-slider';
         sliderYear.id = 'year-slider';
         countContainer.appendChild(sliderYear);
 
-        let outputYearFin = document.createElement('output');
+        const outputYearFin = document.createElement('output');
         outputYearFin.className = 'slider-output';
         outputYearFin.innerText = '2020';
         countContainer.appendChild(outputYearFin);
@@ -72,7 +71,7 @@ export class SliderFilterYear implements Filter {
         });
 
         this.countSlider.on('change', (values) => {
-            let a = document.querySelectorAll('.slider-output');
+            const a = document.querySelectorAll('.slider-output');
             a[2].innerHTML = `${values[0]}`;
             a[3].innerHTML = `${values[1]}`;
             this.callback();

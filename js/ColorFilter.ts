@@ -11,7 +11,7 @@ export class ColorFilter implements Filter{
     buttonBlue: HTMLButtonElement;
     buttonGreen: HTMLButtonElement;
     callback: () => void;
-    selected: boolean = false;
+    selected = false;
 
     constructor(callback: () => void) {
         this.callback = callback;
@@ -37,7 +37,7 @@ export class ColorFilter implements Filter{
     checkFilterIsSelected(color: string): boolean {
         if (this.selectorColor.size === 0) {
             return true;
-        };
+        }
         return this.selectorColor.has(color);
     }
 
@@ -105,7 +105,7 @@ export class ColorFilter implements Filter{
 
     filterColor(a: HTMLButtonElement) : void{
         a.classList.toggle("active");
-        let dataFilter = a.getAttribute('data-filter');
+        const dataFilter = a.getAttribute('data-filter');
         if (!this.selectorColor.has(dataFilter)){
             this.selectorColor.add(dataFilter); 
             this.checkFilter();

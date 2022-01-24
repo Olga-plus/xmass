@@ -1,5 +1,5 @@
 const treeContainer: HTMLDivElement = document.querySelector('#section-tree');
-let controlsContainer: HTMLDivElement =  document.querySelector('#controls-snow-audio');
+const controlsContainer: HTMLDivElement =  document.querySelector('#controls-snow-audio');
 
 export class Snow {
     snowContainer: HTMLDivElement;
@@ -31,13 +31,11 @@ export class Snow {
     }
 
     onOff(){
-        // cont.classList.toggle("none");
         this.snowContainer.classList.toggle("none");
-        // this.snow.forEach(item => item.classList.toggle("none"))
     }
 
 }
 
 export function snowOn() {
-    let snowPlay = new Snow();
+    const snowPlay = new Snow();
 }

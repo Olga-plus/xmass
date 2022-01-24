@@ -1,6 +1,5 @@
 
 const containerFavorite = document.querySelector('.favorites-container');
-const treeContainer = document.querySelector('.main-tree-container');
 export class FavoriteCard {
     cardFavoriteImg: HTMLImageElement;
     count: string;
@@ -42,9 +41,9 @@ export class FavoriteCard {
         }
     }
 
-    dragstart_(ev: any, containerCard: HTMLDivElement): void{
+    dragstart_(ev: any): void{ //DragEvent
         ev.dataTransfer.setData(`text/plain`, ev.target.id)
-        // console.log ('start', ev, ev.target.id);
+        console.log ('start', ev.dataTransfer.setData(`text/plain`, ev.target.id));
     }
 
     dragEnd_(event: DragEvent): void {
@@ -54,7 +53,7 @@ export class FavoriteCard {
             this.cardFavorite.appendChild(this.cardFavoriteImg); 
         }
        
-        let countToy = this.cardFavorite.querySelectorAll('.favorites-card-img');
+        const  countToy = this.cardFavorite.querySelectorAll('.favorites-card-img');
         this.countFavorite.innerText = `${countToy.length}`
         this.cardFavoriteImg.setAttribute('data-local', '0');
         // console.log( this.cardFavoriteImg.getAttribute('data-local'), 'ffffffffffff')

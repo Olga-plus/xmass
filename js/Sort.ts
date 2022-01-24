@@ -1,7 +1,7 @@
 const cardContauner: HTMLElement = document.querySelector('.card-container') as HTMLElement;
 const filtersSort: HTMLDivElement = document.querySelector('.filters-sort');
 export class FiltersSort {
-    sortSelect: any;
+    sortSelect: HTMLSelectElement;
     callback: () => void;
     filterCards: () => void;
 
@@ -50,14 +50,14 @@ export class FiltersSort {
 
         this.sortSelect.onclick = this.sortToys.bind(this, this.sortSelect);
 
-        let buttonReset = document.createElement('button');
+        const buttonReset = document.createElement('button');
         buttonReset.className = 'reset';
         buttonReset.innerText = 'Сброс фильтров';
         titleSortControls.appendChild(buttonReset);
-        buttonReset.onclick = this.reset.bind(this, this.sortSelect);
+        buttonReset.onclick = this.reset.bind(this);
     }
 
-    sortToys (a: HTMLOptionElement) {
+    sortToys () {
         cardContauner.innerHTML = '';
         this.filterCards();
     }

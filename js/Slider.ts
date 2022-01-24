@@ -1,10 +1,8 @@
 import { Filter } from './interfaces';
 import * as noUiSlider from 'nouislider';
-const cardContauner: HTMLElement = document.querySelector(".card-container") as HTMLElement;
-const filtrRunge: HTMLElement = document.querySelector(".filters-range") as HTMLElement;
-
 import { API } from "nouislider";
 
+const filtrRunge: HTMLElement = document.querySelector(".filters-range") as HTMLElement;
 export class SliderFilterCount implements Filter {
     countSlider: API;
     callback: () => void;
@@ -14,7 +12,7 @@ export class SliderFilterCount implements Filter {
     }
 
     checkFilterIsSelected(filter: number): boolean {
-        let values = this.countSlider.get() as number[];
+        const values = this.countSlider.get() as number[];
         return values[0] <= filter && values[1] >= filter;
     }
 
@@ -23,30 +21,30 @@ export class SliderFilterCount implements Filter {
     }
 
     createSlaider() {
-        let count = document.createElement('div');
+        const count = document.createElement('div');
         count.className = 'count';
         filtrRunge.appendChild(count);
 
-        let nameCount = document.createElement('span');
+        const nameCount = document.createElement('span');
         nameCount.className = 'control-span';
         nameCount.innerText = 'Количество экземпляров:';
         count.appendChild(nameCount);
 
-        let countContainer = document.createElement('div');
+        const countContainer = document.createElement('div');
         countContainer.className = 'count-slider-container';
         count.appendChild(countContainer);
 
-        let outputCountStart = document.createElement('output');
+        const outputCountStart = document.createElement('output');
         outputCountStart.className = 'slider-output';
         outputCountStart.innerText = '1';
         countContainer.appendChild(outputCountStart);
 
-        let sliderCount = document.createElement('div');
+        const sliderCount = document.createElement('div');
         sliderCount.className = 'count-slider';
         sliderCount.id = 'slider';
         countContainer.appendChild(sliderCount);
 
-        let outputCountFin = document.createElement('output');
+        const outputCountFin = document.createElement('output');
         outputCountFin.className = 'slider-output';
         outputCountFin.innerText = '12';
         countContainer.appendChild(outputCountFin);
@@ -71,7 +69,7 @@ export class SliderFilterCount implements Filter {
         });
 
         this.countSlider.on('change', (values) => {
-            let a = document.querySelectorAll('.slider-output');
+            const a = document.querySelectorAll('.slider-output');
             a[0].innerHTML = `${values[0]}`;
             a[1].innerHTML = `${values[1]}`;
             this.callback();

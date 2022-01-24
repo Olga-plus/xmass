@@ -17,12 +17,12 @@ export class ChristmasState {
     }
 
     valueFavorite(){
-        let favoritesToy = this.getFavoriteTous();
+        const favoritesToy = this.getFavoriteTous();
         favoriteCount.innerText = `${favoritesToy.length}`;
     }
 
     getFavoriteTous(){
-        let favoritesToy = Array.from(this.favoriteToys);
+        const favoritesToy = Array.from(this.favoriteToys);
         return favoritesToy;
     }
 }

@@ -1,10 +1,6 @@
 import "../sass/style.scss";
 import data from '../assets/data.js';
 import { state} from "./state";
-import { resetFun } from "./app";
-
-const filtersValue: HTMLDivElement = document.querySelector('.filters-value');
-const headerControls = document.querySelector('.header__controls');
 export class Card {
     num: string;
     name: string;
@@ -39,41 +35,41 @@ export class Card {
         this.card.className = 'card';
         this.card.setAttribute(`data-num`, `${this.num}`);
 
-        let cardTitle = document.createElement('h2');
+        const cardTitle = document.createElement('h2');
         cardTitle.className = 'card-title';
         cardTitle.innerHTML = this.name; 
         this.card.appendChild(cardTitle);
 
-        let cardImg = new Image();
+        const cardImg = new Image();
         cardImg.className = 'card-img';
         cardImg.src = `../assets/toys/${this.num}.webp`
         this.card.appendChild(cardImg);
 
-        let cardDescription = document.createElement('div');
+        const cardDescription = document.createElement('div');
         cardDescription.className = 'card-description';
         this.card.appendChild(cardDescription);
 
-        let cardCount = document.createElement('p');
+        const cardCount = document.createElement('p');
         cardCount.className = `count`;
         cardCount.innerHTML = `Kолличество: ${this.count}`; 
         cardDescription.appendChild(cardCount);
 
-        let cardYear = document.createElement('p');
+        const cardYear = document.createElement('p');
         cardYear.className = `year`;
         cardYear.innerHTML = `Год: ${this.year}`; 
         cardDescription.appendChild(cardYear);
 
-        let cardShape = document.createElement('p');
+        const cardShape = document.createElement('p');
         cardShape.className = `shape`;
         cardShape.innerHTML = `Форма: ${this.shape}`; 
         cardDescription.appendChild(cardShape);
 
-        let cardColor = document.createElement('p');
+        const cardColor = document.createElement('p');
         cardColor.className = `color`;
         cardColor.innerHTML = `Цвет: ${this.color}`; 
         cardDescription.appendChild(cardColor);
 
-        let cardSize = document.createElement('p');
+        const cardSize = document.createElement('p');
         cardSize.className = `size`;
         cardSize.innerHTML = `Размер: ${this.size}`; 
         cardDescription.appendChild(cardSize);
@@ -82,8 +78,8 @@ export class Card {
         this.cardFavor= document.createElement('p');
 
         this.cardFavor.className = `favorite`;
-        let yes = 'да';
-        let no = 'нет';
+        const  yes = 'да';
+        const  no = 'нет';
         if (this.favorite === false) {
             this.cardFavor.innerHTML = `Любимая: ${no}`; 
         } else
@@ -108,7 +104,7 @@ export class Card {
         this.card.onclick = this.clicked.bind(this);
     }
 
-    clicked(a: HTMLDivElement): void {
+    clicked(): void {
         this.favorite = !this.favorite
         this.cardRibbon.classList.toggle("active");
         this.card.classList.toggle("active");
@@ -126,7 +122,7 @@ export class Card {
 
 export function cardXs(): Card[]{
     return data.map(function (item) {
-            let cardX = new Card(item);
+        const cardX = new Card(item);
             return cardX;
         });
 } 

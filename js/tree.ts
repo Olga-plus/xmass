@@ -47,5 +47,5 @@ export class TreeCard {
 }
 
 export function createTreesCard () {
-    let treeCards = new TreeCard;
+    const treeCards = new TreeCard;
 }

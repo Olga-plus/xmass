@@ -177,10 +177,6 @@ export class LightRope {
     }
 }
 
-
-
-
-
 export function light() {
-    let light = new LightRope();
+    const light = new LightRope();
 }
