@@ -221,7 +221,6 @@
 }
 
 .main-tree-container {
-    position: relative;
     width: inherit;
     display: flex;
     justify-content: center;
@@ -232,23 +231,22 @@
     overflow: hidden;
 }
 
-img {
-    display: block;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-}
+// img {
+//     display: block;
+//     max-width: 100%;
+//     max-height: 100%;
+//     object-fit: cover;
+// }
 
 .christmas-tree {
-    display: block;
-    position: relative;
+    // position: relative;
     display: block;
     min-width: 500px;
     height: 714px;
 }
 
 #section-tree{
-  
+    position: relative;
     max-width: 50%;
 }
 
