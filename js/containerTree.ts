@@ -44,14 +44,14 @@ export class TreeContainer {
     //     console.log('Enter', this)
     // }
     dragDrop_(ev: DragEvent): void{
-        console.log(ev);
+        console.log(ev, 'tytyt');
         const treeContainerRect = this.treeContainer.getBoundingClientRect();
         const data = ev.dataTransfer.getData("text");
         console.log(ev.offsetX, ev.offsetY , document.getElementById(data))
         document.getElementById(data).style.top = `${ev.clientY - treeContainerRect.top}px`;
         document.getElementById(data).style.left = `${ev.clientX - treeContainerRect.left}px`;
+        document.getElementById(data).setAttribute('data-local', '0')
         this.treeContainer.append(document.getElementById(data)); //section
-        ev.dataTransfer.clearData();
     }
 }
 export  function contTree() {

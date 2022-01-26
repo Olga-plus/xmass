@@ -1,6 +1,7 @@
+import { target } from "nouislider";
 
 const containerFavorite = document.querySelector('.favorites-container');
-const treeContainer = document.querySelector('.section-tree')
+let dragElem; // 
 export class FavoriteCard {
     cardFavoriteImg: HTMLImageElement;
     count: string;
@@ -31,7 +32,6 @@ export class FavoriteCard {
             this.cardFavoriteImg = new Image();
             this.cardFavoriteImg.className = 'favorites-card-img';
             this.cardFavoriteImg.id = `${this.num}-${i}`;
-            this.cardFavoriteImg.setAttribute(`data-imgnum`, `${this.num}`);
             this.cardFavoriteImg.setAttribute(`draggable`, `true`);
             this.cardFavoriteImg.setAttribute(`alt`, `toy`);
             this.cardFavoriteImg.setAttribute(`data-local`, '1');
@@ -44,21 +44,21 @@ export class FavoriteCard {
 
     dragstart_(ev: any): void{ //DragEvent
         ev.dataTransfer.setData(`text/plain`, ev.target.id)
-        console.log ('start', ev.dataTransfer.setData(`text/plain`, ev.target.id));
+        console.log ('start',  ev.target.id);
     }
 
     dragEnd_(event: DragEvent): void {
-        console.log ('end',  event.dataTransfer.dropEffect, this.cardFavoriteImg);
+        dragElem = event.target as HTMLElement;
         if ( event.dataTransfer.dropEffect === 'none' && this.cardFavoriteImg.getAttribute('data-local') === '0'){
-            this.cardFavoriteImg.style.removeProperty('top');
-            this.cardFavoriteImg.style.removeProperty('left');
-            this.cardFavorite.appendChild(this.cardFavoriteImg); 
+            dragElem.style.removeProperty('top');
+            dragElem.style.removeProperty('left');
+            dragElem.setAttribute('data-local', '1');
+            this.cardFavorite.appendChild(dragElem); 
+        } else {
+           this.cardFavoriteImg.setAttribute('data-local', '0'); 
         }
-       
-        const  countToy = this.cardFavorite.querySelectorAll('.favorites-card-img');
+        const countToy = this.cardFavorite.querySelectorAll('.favorites-card-img');
         this.countFavorite.innerText = `${countToy.length}`
-        this.cardFavoriteImg.setAttribute('data-local', '0');
-        // console.log( this.cardFavoriteImg.getAttribute('data-local'), 'ffffffffffff')
     }
 
 }

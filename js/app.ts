@@ -50,12 +50,11 @@ function openToysPage(): void {
     favoriteCount.innerText = `${cards.filter(elem => elem.favorite === true).length}`;
 }
 
-function openTeePage(): void { // исправить
+function openTeePage(): void { 
     mainePage.className = 'none';
     homePage.className = 'none';
     favoritPage.className = 'page favorites-page';
-
-    // let tree = new TreeCard(); // елки исправить
+    favoriteCount.innerText = `${cards.filter(elem => elem.favorite === true).length}`;
     containerFavorite.innerHTML = '';
     cardFs();
 }
