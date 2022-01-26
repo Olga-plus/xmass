@@ -1,4 +1,4 @@
-const treeContainer: HTMLDivElement = document.querySelector('#section-tree');
+const treeContainer: HTMLDivElement = document.querySelector('#favorite-wrapper');
 const controlsContainer: HTMLDivElement =  document.querySelector('#controls-snow-audio');
 
 export class Snow {

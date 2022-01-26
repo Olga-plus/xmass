@@ -1,4 +1,4 @@
-const sectiontreeContainer = document.querySelector('.maine');
+const sectiontreeContainer = document.querySelector('.main');
 
 export class TreeContainer {
 

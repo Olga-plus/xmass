@@ -1,7 +1,8 @@
 
 .snow-blocks{
     position: absolute;
-    width: 90%;
+    max-width: 1020px;
+    height: 100%;
     top: 0;
     left: -6%;
     filter: drop-shadow(0 0 10px white);

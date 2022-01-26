@@ -1,5 +1,3 @@
-import { target } from "nouislider";
-
 const containerFavorite = document.querySelector('.favorites-container');
 let dragElem; // 
 export class FavoriteCard {

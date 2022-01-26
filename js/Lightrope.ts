@@ -11,15 +11,12 @@ export class LightRope {
     colorLight: string;
     lightContainer: HTMLUListElement;
 
-
     constructor(){
         this.createLightcontainer()
         // this.createLight();
-        
     }
 
     createLightcontainer(){
-
         const menuGirland = document.createElement('div');
         menuGirland.className = 'garland-container menu-container';
         favoritesMenu.appendChild( menuGirland);
@@ -103,37 +100,59 @@ export class LightRope {
         let countsection =  0;
         for (let j = 0; j < 11; j++) {            
             countsection = countsection + 55;
-            
-            for (let i = 0; i < ((j * 2)+2); i++) {
+
+            if (j === 0 || j === 1 || j === 2){
+                for (let i = 0; i < ((j * 2)+2); i++) {
               
-                this.light = document.createElement('li');
-                this.light.className = 'lightrope_move';
-                this.light.style.backgroundColor = `${this.colorLight}`;
-                this.light.style.boxShadow = `0px 0.6px 14px 3px ${this.colorLight}`;
-                this.light.style.transformOrigin = '0% 50%';
-                this.light.style.animationDuration = `2s`;
-
-                if (i === 0) {
-                    
-                    this.light.style.transform = `rotate(0.3deg) translate(0px, ${countsection}px )`; 
+                    this.light = document.createElement('li');
+                    this.light.className = 'lightrope_move';
+                    this.light.style.backgroundColor = `${this.colorLight}`;
+                    this.light.style.boxShadow = `0px 0.6px 14px 3px ${this.colorLight}`;
+                    this.light.style.animationDuration = `2s`;
+    
+                    if (i === 0) {
+                        this.light.style.transform = `rotate(0.9deg) translate(0px, ${countsection}px )`; 
+                    }
+                    if (i === 1) {
+                        this.light.style.transform = `rotate(-2deg) translate(0px, ${countsection}px )`; 
+                    }
+                    if (i % 2 > 0 && i > 1) {
+                        this.light.style.transform = `rotate(${-i-1.5}deg) translate(0px, ${countsection}px )`; 
+                    }
+                    if (i % 2 === 0 && i > 0) {
+                        this.light.style.transform = `rotate(${i+1.5}deg) translate(0px, ${countsection}px)`; 
+                    }
+                    this.lightContainer.appendChild(this.light);
                 }
-                if (i === 1) {
-        
-                    this.light.style.transform = `rotate(-1.3deg) translate(0px, ${countsection}px )`; 
-                }
+    
+            } else {
+                for (let i = 0; i < ((j * 2)+2); i++) {
+                    this.light = document.createElement('li');
+                    this.light.className = 'lightrope_move';
+                    this.light.style.backgroundColor = `${this.colorLight}`;
+                    this.light.style.boxShadow = `0px 0.6px 14px 3px ${this.colorLight}`;
+                    this.light.style.animationDuration = `2s`;
 
-                if (i % 2 > 0 && i > 1) {
-
-                    this.light.style.transform = `rotate(${-i}deg) translate(0px, ${countsection}px )`; 
-                }
-                if (i % 2 === 0 && i > 0) {
-
-                    this.light.style.transform = `rotate(${i}deg) translate(0px, ${countsection}px)`; 
-                }
+                    if (i === 0) {
+                        
+                        this.light.style.transform = `rotate(0.3deg) translate(0px, ${countsection}px )`; 
+                    }
+                    if (i === 1) {
             
-                this.lightContainer.appendChild(this.light);
-            }
+                        this.light.style.transform = `rotate(-1.3deg) translate(0px, ${countsection}px )`; 
+                    }
 
+                    if (i % 2 > 0 && i > 1) {
+
+                        this.light.style.transform = `rotate(${-i}deg) translate(0px, ${countsection}px )`; 
+                    }
+                    if (i % 2 === 0 && i > 0) {
+
+                        this.light.style.transform = `rotate(${i}deg) translate(0px, ${countsection}px)`; 
+                    }
+                    this.lightContainer.appendChild(this.light);
+                }
+            }
         }
     }
 
