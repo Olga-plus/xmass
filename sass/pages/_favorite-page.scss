@@ -9,6 +9,7 @@
 .page-container {
     display: flex;
     align-items:center;
+    justify-content: center;
 }
 
 .menu-container {
@@ -60,11 +61,11 @@
     text-transform: uppercase;
 }
 .tree {
-    width: 115px;
-    height: 115px;
+    width: 95px;
+    height: 95px;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, .5);
-    background-size: auto 110px;
+    background-size: auto 90%;
 }
 
 .bg {
@@ -173,16 +174,11 @@
     grid-row-gap: 0.5em;
     padding-left: 0.5em;
 }
-
-.favorites-container::before{
-    content: "Игрушки";
-    grid-column-start: 1;
-    grid-column-end: 5;
-    width: 80%;
+.toy-container{
     font-size: 20px;
     font-weight: 400;
     padding: 10px;
-    padding-left: 0;
+    padding-left: 10px;
     text-transform: uppercase;
 }
 
@@ -190,7 +186,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-   
     height: 85px;
     object-fit: cover;
     border-radius: 10px;
@@ -216,7 +211,8 @@
 .favorites-card-img {
     display: block;
     position: absolute;
-    height: 7%;
+    width: auto;
+    height: 7vh;
     cursor: move;
 }
 
@@ -241,12 +237,13 @@
 .christmas-tree {
     // position: relative;
     display: block;
-    min-width: 500px;
-    height: 714px;
+    min-width: 50%;
+    // height: 70vh;
 }
 
-#section-tree{
+.main{
     position: relative;
     max-width: 50%;
+    height: 80%;
 }
 
