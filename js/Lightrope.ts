@@ -116,6 +116,7 @@ export class LightRope {
                     if (i === 1) {
                         this.light.style.transform = `rotate(-2deg) translate(0px, ${countsection}px )`; 
                     }
+    
                     if (i % 2 > 0 && i > 1) {
                         this.light.style.transform = `rotate(${-i-1.5}deg) translate(0px, ${countsection}px )`; 
                     }
@@ -127,6 +128,7 @@ export class LightRope {
     
             } else {
                 for (let i = 0; i < ((j * 2)+2); i++) {
+
                     this.light = document.createElement('li');
                     this.light.className = 'lightrope_move';
                     this.light.style.backgroundColor = `${this.colorLight}`;
