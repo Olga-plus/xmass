@@ -35,13 +35,20 @@ export class FavoriteCard {
             this.cardFavoriteImg.setAttribute(`data-local`, '1');
             this.cardFavoriteImg.src = `../assets/toys/${this.num}.webp`
             this.cardFavorite.appendChild(this.cardFavoriteImg); 
+            // this.cardFavoriteImg.onmousedown = this.onmousedown_.bind(this)
             this.cardFavoriteImg.ondragstart = this.dragstart_.bind(this);
             this.cardFavoriteImg.ondragend = this.dragEnd_.bind(this);
         }
     }
+    // onmousedown_(ev:any){
+    //     this.cardFavoriteImg.style.position = 'absolute';
+    //     this.cardFavoriteImg.style.zIndex = '1005';
+    //     this.cardFavorite.append(this.cardFavoriteImg); 
+    // }
 
     dragstart_(ev: any): void{ //DragEvent
         ev.dataTransfer.setData(`text/plain`, ev.target.id)
+        
         console.log ('start',  ev.target.id);
     }
 

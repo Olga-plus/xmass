@@ -50,9 +50,6 @@ export class TreeContainer {
         console.log(ev.offsetX, ev.offsetY , document.getElementById(data))
         document.getElementById(data).style.top = `${ev.clientY - treeContainerRect.top}px`;
         document.getElementById(data).style.left = `${ev.clientX - treeContainerRect.left}px`;
-
-        // document.getElementById(data).style.top = `${ev.pageY - treeContainerRect.top}px`;
-        // document.getElementById(data).style.left = `${ev.pageX - treeContainerRect.left}px`;
         document.getElementById(data).setAttribute('data-local', '0')
         this.treeContainer.append(document.getElementById(data)); //section
     }
