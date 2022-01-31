@@ -1,0 +1,117 @@
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-rows: minmax(280px, auto);
+    grid-column-gap: 1em;
+    grid-row-gap: 1em;
+    padding: 1em;
+}
+
+.card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 0;
+    padding-left: 10px;
+    border-radius: 10px;
+    border: 1px solid #278D9F;
+    background-color: rgba(31, 112, 127, .3);
+    backdrop-filter: blur(6px);
+    cursor: pointer;
+}
+
+.card-title {
+    width: 100%;
+    font-size: 20px;
+    font-stretch: condensed;
+    padding-left: 10px;
+}
+
+.card-img {
+    width: 90px;
+    height: 112px;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+.card-description {
+    margin-top: -20px;
+    padding-left: 10px;
+    pointer-events: none;
+    line-height: 1;
+    user-select: none;
+}
+
+.ribbon {
+    position: absolute;
+    top: 210px;
+    width: 80px;
+    height: 40px;
+    background: #24C5DB;
+    left: -8px;
+}
+
+.ribbon::before, .ribbon::after {
+    content: "";
+    position: absolute;
+    height: 0;
+    width: 0;
+}
+
+.ribbon:before {
+    border-bottom: 8px solid #14455b;
+    border-left: 8px solid transparent;
+    top: -8px;
+}
+
+.ribbon:after {
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 15px solid #24C5DB;
+    right: -15px;
+}
+
+.card.active .ribbon {
+    background: #CBB77A;
+}
+
+.card.active .ribbon:after {
+    border-left: 15px solid #CBB77A;
+}
+
+// .favorites-card {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     width: 25%;
+//     max-width: 84px;
+//     min-height: 84px;
+//     border-radius: 10px;
+//     background-color: rgba(255, 255, 255, .5);
+// }
+
+// .favorites-count {
+//     z-index: 10;
+//     align-self: flex-end;
+//     width: 25px;
+//     height: 25px;
+//     line-height: 25px;
+//     text-align: center;
+//     padding: 0;
+//     margin: 0;
+//     margin-left: 60px;
+//     border-radius: 10px;
+//     background-color: #24C5DB;
+//     font-size: 14px;
+//     font-weight: 900;
+// }
+
+// .favorites-card-img {
+//     display: block;
+//     position: absolute;
+//     width: auto;
+//     height: 60px;
+//     width: 60px;
+//     object-fit: contain;
+//     cursor: move;
+// }

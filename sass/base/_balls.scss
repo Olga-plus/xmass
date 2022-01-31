@@ -1,0 +1,45 @@
+.ball {
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+
+.ball::before {
+    content: "";
+    position: absolute;
+    background-color: #aaa;
+}
+
+.ball-one {
+    width: 400px;
+    height: 400px;
+    left: calc(50% - 350px);
+    top: 150px;
+    object-fit: cover;
+    background-image: url("/assets/ball/1.webp");
+}
+
+.ball-one::before {
+    top: -210px;
+    left: calc(50% - 47px);
+    width: 4px;
+    height: 220px;
+    width: 5px;
+}
+
+.ball-two {
+    width: 300px;
+    height: 300px;
+    left: calc(50% + 150px);
+    top: 149px;
+    background-image: url("/assets/ball/2.webp");
+}
+
+.ball-two::before {
+    top: -205px;
+    left: calc(50% - 32px);
+    width: 4px;
+    height: 210px;
+    width: 5px;
+}

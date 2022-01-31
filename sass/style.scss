@@ -1,0 +1,32 @@
+@import "../node_modules/normalize-scss/sass/_normalize";
+@include normalize();
+
+@import 'nouislider/dist/nouislider.css';
+
+@import "abstract/_constants";
+@import "abstract/placeholder";
+@import "abstract/mixins";
+
+@import "./base/_base";
+@import "./base/_buttons.scss";
+@import "./base/logo";
+@import "./base/_input.scss";
+@import "./base/_wrapper.scss";
+@import "./base/balls";
+@import "./base/blur";
+@import "./base/_controls";
+@import "./base/_sliders";
+@import "./base/_card.scss";
+@import "./base/audio-control";
+@import "./base/_snow-control.scss";
+@import "./base/snowF.scss";
+@import "./base/lightrope";
+
+
+@import "./layout/header";
+@import "./layout/footer";
+
+@import "./pages/_page";
+@import "./pages/_start-page.scss";
+@import "./pages/main-page";
+@import "./pages/favorite-page";

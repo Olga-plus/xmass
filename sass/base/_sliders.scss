@@ -1,0 +1,57 @@
+.count-slider-container {
+    margin-bottom: 35px;
+}
+
+.year-slider-container, .count-slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.count-slider, .year-slider {
+    display: inline-block;
+    height: 6px;
+    width: 270px;
+}
+
+.year-slider-container, .count-slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+output {
+    margin: 1px 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 70px;
+    height: 40px;
+    backdrop-filter: blur(6px);
+    border-radius: 20px;
+    border: 1px solid #278D9F;
+}
+
+
+.noUi-horizontal .noUi-handle {
+    width: 18px;
+    height: 18px;
+    right: inherit;
+    bottom: 0px;
+    border-radius: 50%;
+}
+
+.noUi-handle:before, .noUi-handle:after {
+    display: none;
+}
+.noUi-tooltip {
+    display: none
+}
+
+.noUi-target{
+    border: none;
+    top: 0px;
+    right: -12px;
+    margin-right: 14px;
+    margin-left: 8px;
+}
